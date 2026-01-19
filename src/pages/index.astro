@@ -1,0 +1,400 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero2.astro';
+import Note from '~/components/widgets/Note.astro';
+import Note2 from '~/components/widgets/Note2.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features3.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import SpecialOffers, { buildSpecialOffersItemList } from '~/components/widgets/SpecialOffers.astro';
+import { computeDiscounted } from '~/lib/discounts';
+import CategoryGrid from '../components/widgets/CategoryGrid.astro';
+import MainCategoryGrid from '../components/widgets/Tabs.jsx';
+import { fetchCategoriesOnly, fetchDiscountedProducts } from '../lib/medusa-adapter'
+import MapWidget from '../components/widgets/MapWidget.astro';
+
+import heroImg from '../assets/images/elvira-tuzep-hero.png';
+
+const metadata = {
+  title: 'Elvira Tüzép | Fűrészáru, Brikett és Szerkezeti Fa Érden',
+  description: 'Fűrészáru, brikett és szerkezeti fa Érden. Elvira Tüzép – a Gigawood Kft. telephelye. Megbízható kiszolgálás és kedvező árak lakosságnak és kivitelezőknek.',
+  ignoreTitleTemplate: true,
+};
+
+const schemaHome = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://elviratuzep.hu/#website",
+    "name": "Elvira Tüzép",
+    "url": "https://elviratuzep.hu/",
+    "publisher": { "@id": "https://gigawood.hu/#organization" },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://elviratuzep.hu/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://gigawood.hu/#organization",
+    "name": "Gigawood Kft.",
+    "url": "https://gigawood.hu/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gigawood.hu/custom/megawood/image/cache/w220h100m00/GigaWood_logo_3_Vasvari_Design.png"
+    },
+    "sameAs": [
+      "https://www.facebook.com/kertifajatszoter",
+      "https://www.instagram.com/gigawoodkft",
+      "https://www.google.com/maps?cid=4954816018312604745"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+36 70 368 7809",
+        "contactType": "customer service",
+        "email": "info@gigawood.hu",
+        "areaServed": "HU",
+        "availableLanguage": ["hu"]
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://elviratuzep.hu/#store",
+    "name": "Elvira Tüzép",
+    "image": "https://elviratuzep.hu/favicon.png",
+    "telephone": "+36 70 368 7809",
+    "email": "info@elviratuzep.hu",
+    "url": "https://elviratuzep.hu/",
+    "priceRange": "Ft",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Elvira utca 33.",
+      "addressLocality": "Érd",
+      "addressRegion": "Pest",
+      "postalCode": "2030",
+      "addressCountry": "HU"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "07:00",
+        "closes": "17:00"
+      }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 47.375516,
+      "longitude": 18.932424
+    },
+    "hasMap": "https://maps.google.com/?q=47.375516,18.932424",
+    "parentOrganization": { "@id": "https://gigawood.hu/#organization" },
+    "areaServed": ["Érd","Diósd","Tárnok","Budapest","Szigetszentmiklós","Százhalombatta"],
+    "currenciesAccepted": "HUF",
+    "paymentAccepted": "Cash, Card, BankTransfer",
+    "sameAs": [
+      "https://www.google.com/maps?cid=4954816018312604745"
+    ]
+  }
+];
+
+const productsData = await fetchCategoriesOnly()
+const discounted = await fetchDiscountedProducts();
+/* console.log(discounted); */
+const itemListJsonLd = buildSpecialOffersItemList(discounted);
+
+---
+
+<Layout metadata={metadata}>
+
+    {schemaHome && (
+    <script
+        type="application/ld+json"
+        slot="head"
+        set:html={JSON.stringify(schemaHome)}
+    />
+    )}
+
+    {itemListJsonLd && (
+      <script 
+        type="application/ld+json" 
+        slot="head" 
+        set:html={JSON.stringify(itemListJsonLd)} 
+      />
+    )}
+
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Termékeink megtekintése',
+        href: '/termekek',
+        icon: 'tabler:shopping-cart',
+      },
+  /*     {
+        text: 'Kapcsolat',
+        href: '/kapcsolat',
+      }, */
+    ]}
+    heroSlides={[
+      { image: heroImg.src, alt: 'Elvira Tüzép Hero képe. Egy árny, aki egy pajzsot tart ET felirattal, mely az Elvira Tüzepet rövidíti.', href: '', label: 'Prémium termékek', sublabel: '' },
+      { image: '/termekek/bsh-gerenda-8x16.jpg', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/bsh-ragasztott-gerenda', label: 'BSH gerendák', sublabel: 'Osztrák minőség' },
+      { image: '/kategoriak/brikett.jpg', alt: 'Brikett termékkategória, izzó brikettet ábrázoló kép', href: '/termekek/kemenyfa-brikett', label: 'Keményfa brikett', sublabel: 'I.osztály - kiváló minőség' },
+      ]}
+    image={{ src: '~/assets/images/elvira-tuzep-hero.png', alt: 'Elvira Tüzép Hero képe. Egy árny, aki egy pajzsot tart ET felirattal, mely az Elvira Tüzepet rövidíti.' }}
+  >
+    <Fragment slot="title">
+      <span class="text-orange-600 text-5xl md:text-6xl">Elvira Tüzép</span><br />
+      <span class="text-2xl md:text-3xl">Építőanyag és tüzelőanyag egy helyen</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Építkezel vagy fűtenél? Minőségi <strong>faanyagok</strong> és <strong>keményfa brikett</strong> Érden, közvetlenül a tüzéptől.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="Filozófiánk:" description="Minőség, megbízhatóság és a fa iránti tisztelet vezérel." />
+
+<!--   <CategoryGrid categories={productsData} /> -->
+
+<MainCategoryGrid categories={productsData} client:visible productListing={false} mainPage={true}/>
+
+  <Note2   
+    action={{
+    variant: 'primary',
+    text: 'Gigawood.hu',
+    href: 'https://gigawood.hu',
+    target: '_blank',
+    icon: 'tabler:shopping-cart',
+  }}
+    title="Játszótornyaink és kertészeti fa termékeink:" 
+    description="" 
+  />
+
+  <SpecialOffers discounted={discounted}/>
+  
+  <CallToAction>
+    <Fragment slot="title">
+      Minőség, amit faanyagban is biztosítunk
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Az Elvira Tüzép gondosan válogatott hazai és nemzetközi beszállítóktól szerzi be fa- és tüzelőanyagait, hogy minden feladathoz megbízható alapanyagot kínáljon.
+    </Fragment>
+  </CallToAction>
+
+  <!-- Features Widget *************** -->
+
+  <Features
+  id="features"
+  tagline="Előnyeink"
+  title="Amit az Elvira Tüzép kínál"
+  subtitle="Több mint építőanyag – megbízható partner vagyunk a kivitelezés és fűtés terén, magánszemélyeknek és cégeknek egyaránt."
+  items={[
+    {
+      title: 'Fa megmunkálási szolgáltatások',
+      description:
+        'Precíz méretre vágás, gépi csiszolás és időtálló festés – elvégezzük Ön helyett a fa előkészítését, hogy csak az építkezésre kelljen koncentrálnia.',
+      icon: 'tabler:tools',
+    },
+    {
+      title: 'Szakértelem és tanácsadás',
+      description:
+        'Segítünk választani az igényeidnek megfelelő faanyag vagy tüzelőanyag közül – tapasztalattal, nem sablonokkal.',
+      icon: 'tabler:messages',
+    },
+    {
+      title: 'Széles termékválaszték',
+      description:
+        'BSH, KVH, brikett, tűzifa, fűrészáru – minden egy helyen, folyamatos készlettel, minőségre válogatva.',
+      icon: 'tabler:building-warehouse',
+    },
+
+    {
+      title: 'Minden egy kézből',
+      description:
+        'Alapanyag + megmunkálás + kiszállítás – nem kell több helyről rendelni. Egyszerűbb, gyorsabb, átláthatóbb.',
+      icon: 'tabler:box-multiple',
+    },
+    {
+      title: 'Versenyképes árak',
+      description:
+        'Árainkat mindig a piaci realitásokhoz igazítjuk, így korrekt és hosszú távon is fenntartható együttműködést kínálunk.',
+      icon: 'tabler:coin',
+    },
+    {
+      title: 'Gyors ajánlatadás',
+      description:
+        'Nincs napokig tartó várakozás – kérj ajánlatot, és 2 munkanapon belül visszajelzünk. Így időben tudsz tervezni.',
+      icon: 'tabler:clock',
+    }
+  ]}
+/>
+<CallToAction
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Szolgáltatásaink',
+      href: '/szolgaltatasok',
+      icon: 'tabler:tool',
+    },
+  ]}
+>
+  <Fragment slot="title">
+    Teljes körű faanyag előkészítés
+  </Fragment>
+
+  <Fragment slot="subtitle">
+    Rohanó világunkban nem biztos, hogy van ideje a faanyag előkészítésére – <strong>vágásra, csiszolásra vagy festésre</strong>.  
+    Mi levesszük a terhet a válláról: <strong>szakértelemmel, precizitással és korszerű gépekkel dolgozunk,</strong>  
+    hogy Ön már csak az építkezésre koncentrálhasson.
+
+  </Fragment>
+</CallToAction>
+
+
+  <Steps 
+  title="Teljes vásárlási élmény a faanyag kiválasztásától a házhozszállításig"
+  items={[
+    {
+      title: '1. lépés: <span class="font-medium">Termék kiválasztás</span>',
+      description:
+        'Válassza ki a kívánt faterméket kínálatunkból – pallók, deszkák, gerendák vagy lambériák. Segítünk a megfelelő méret és típus kiválasztásában is.',
+      icon: 'tabler:layers-subtract',
+    },
+    {
+      title: '2. lépés: <span class="font-medium">Szolgáltatás kiválasztása</span>',
+      description:
+        'Kérjen vágást, csiszolást vagy festést – akár mindhármat. Mi pontosan az Ön igényei szerint készítjük elő az anyagot.',
+      icon: 'tabler:tools',
+    },
+    {
+      title: '3. lépés: <span class="font-medium">Gyors és szakszerű kivitelezés</span>',
+      description:
+        'Modern gépekkel és tapasztalt kollégákkal rövid határidő alatt elvégezzük a faanyag előkészítését. Minőség, amire számíthat.',
+      icon: 'tabler:tools-kitchen-2',
+    },
+    {
+      title: '4. lépés: <span class="font-medium">Igény esetén házhozszállítás</span>',
+      description:
+        'Nem tudja elhozni? Kérésre segítünk a kiszállításban is, így Önnek csak a beépítésre kell koncentrálnia.',
+      icon: 'tabler:truck',
+    },
+    {
+      title: 'Elégedett vevőként építkezhet tovább!',
+      description: 'Készen kapott faanyag, előkészítve, kiszállítva – ahogy Ön szeretné.',
+      icon: 'tabler:check',
+    },
+  ]}
+  image={{
+    src: '/time_is_money.avif',
+    alt: 'Az idő pénz – Elvira Tüzép',
+  }}
+/>
+
+
+
+<CallToAction
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Faanyag kínálatunk',
+      href: '/termekek',
+      target: '_blank',
+      icon: 'tabler:shopping-cart',
+    },
+  ]}
+>
+  <Fragment slot="title">
+    Elvira&nbsp;Tüzép – minőségi faanyag Érden
+  </Fragment>
+
+  <Fragment slot="subtitle">
+     Építkezéshez, felújításhoz vagy hatékony fűtéshez keres megbízható forrást? Az Elvira Tüzép Érden kiváló minőségű <strong>faanyagot</strong> és <strong>tüzelőanyagot</strong> kínál lakossági és kivitelező partnereinek.
+
+    <br /><br />
+
+    Az Elvira Tüzép Érden kínál <strong>szárított fűrészárut</strong>, <strong>gyalult faanyagot</strong>,
+    <strong>BSH és KVH ragasztott gerendát</strong>, valamint <strong>keményfa brikettet</strong> az építkezők és fűtőanyag-vásárlók számára. A termékek jelentős része elérhető készletről, a speciális szerkezeti faanyagokat pedig rövid <strong>beszerzési határidővel</strong> biztosítjuk. 
+    Nálunk megbízható forrásból szerezheti be, amire szüksége van – <strong>faanyag Érden</strong>, közvetlenül a tüzéptől.
+  </Fragment>
+</CallToAction>
+
+<!-- <MapWidget /> -->
+
+<BlogLatestPosts
+  title="Böngéssz az Elvira Tüzép infótárában"
+  information={`Cikkeink és tudástárunk segítenek eligazodni az építő- és tüzelőanyagok világában.
+  Legyen szó BSH gerendákról, brikettekről vagy gyalult fenyőről – mindenről közérthető útmutatót és hasznos tanácsokat kínálunk.
+  Olvasd el legújabb bejegyzéseinket, és hozd meg a legjobb döntést vásárlás előtt.`}
+/>
+
+<FAQs
+  title="Építőfa – Gyakran Ismételt Kérdések"
+  subtitle="Ismerd meg a fűrészelt és a műszárított, gyalult építőfa közötti különbségeket, és tudd meg, melyik a legjobb választás a tetőszerkezethez vagy más építési feladathoz."
+  tagline="Építőfa FAQ"
+  classes={{ container: 'max-w-6xl' }}
+  items={[
+    {
+      title: 'Mi a különbség a fűrészelt és a műszárított, gyalult építőfa között?',
+      description:
+        'A fűrészelt építőfa érdes felületű, légszáraz vagy friss állapotban kerül forgalomba, és kedvezőbb árú. A műszárított, gyalult faanyag ezzel szemben kamrában szárított, sima felületű és mérettartó, így tartósabb és esztétikusabb szerkezetekhez ajánlott.',
+    },
+    {
+      title: 'Mekkora nedvességtartalommal kapható az építőfa?',
+      description:
+        'A fűrészelt építőfa általában 15–20%-os légszáraz nedvességtartalommal bír, frissen fűrészelve pedig akár 30% fölött is lehet. A műszárított, gyalult faanyag viszont 10–14%-ra szárított, ezért kevésbé vetemedik és jobban tartja a méretét.',
+    },
+    {
+      title: 'Melyik építőfa a legjobb tetőszerkezethez?',
+      description:
+        'Tetőszerkezethez és tartós szerkezeti elemekhez a műszárított, gyalult építőfa a legjobb választás, mert stabil és hosszú élettartamú. Ideiglenes szerkezetekhez, zsaluzathoz a kedvező árú fűrészelt fa is elegendő lehet.',
+    },
+    {
+      title: 'Melyik építőfa a kedvezőbb árban?',
+      description:
+        'A fűrészelt építőfa a legolcsóbb megoldás, mivel nem esik át ipari szárításon és gyaluláson. A műszárított, gyalult faanyag prémium minőséget képvisel, ezért magasabb árkategóriába tartozik, de hosszabb távon jobban megéri.',
+    },
+    {
+      title: 'Mi a különbség a deszka és a palló között?',
+      description:
+        'A deszka jellemzően 2–3 cm vastag, sokoldalúan használható burkolatokhoz és zsaluzathoz. A palló vastagabb (4 cm felett, gyakran 5 cm), nagyobb teherbírású, ezért padlók, födémek és tetővázak készítésénél alkalmazzák.',
+    },
+    {
+      title: 'Miért fontos a C24 minősítés a szerkezeti fenyőnél?',
+      description:
+        'A C24 szilárdsági osztály garantálja, hogy a faanyag válogatott, mérettartó és biztonságosan méretezhető teherhordó szerkezetekhez. Tetőkhöz, födémekhez érdemes ilyen minősítést választani a hosszú távú stabilitás érdekében. A C24 felett prémium megoldást kínálnak a BSH rétegragasztott gerendák, amelyek kiemelkedő teherbírást és mérettartást biztosítanak nagy fesztávú vagy látszó szerkezeteknél.',
+    },
+    {
+      title: 'Mire használják a lambériát és a hajópadlót?',
+      description:
+        'A lambéria vékonyabb burkolat falakra és mennyezetre (beltér: 12,5–14 mm; kültér: 14–19 mm). A hajópadló vastagabb (15–28 mm), önhordó járófelület, padlókhoz, teraszokhoz és védett külső burkolatokhoz ajánlott.',
+    },
+    {
+      title: 'Mi az a rönkház profil és mire használják?',
+      description:
+        'A rönkház profil (faház építő profil) félköríves vagy zsindelyprofilú burkolóelem. Vastagabb (19–24 mm), rusztikus megjelenést ad, és homlokzatok, melléképületek, kerítések vagy beltéri falak burkolására használják. A 24 mm-es változat erősebb és jobb hőszigetelést is ad.',
+    },
+  ]}
+/>
+
+
+</Layout>

@@ -1,0 +1,520 @@
+[
+  {
+    "id": "2025-05-29T15:04:19.422Z",
+    "name": "dfg",
+    "email": "taskony@gmail.com",
+    "phone": "sdfg",
+    "message": "sdf",
+    "quantity": 4,
+    "product": {
+      "name": "BSH 120x160 mm",
+      "slug": "bsh-120x160",
+      "price": 61000,
+      "sku": "BSH-120x160"
+    },
+    "contacted": true,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-29T15:04:19.422Z"
+  },
+  {
+    "name": "cvb",
+    "email": "taskony@gmail.com",
+    "phone": "1212",
+    "message": "cvsdfsdf",
+    "quantity": 1,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "receivedAt": "2025-05-30T12:29:28.015Z"
+  },
+  {
+    "id": "2025-05-30T12:44:21.117Z",
+    "name": "Jani",
+    "email": "ads@sdf.sdf",
+    "phone": "5154",
+    "message": "sdfsdfsf",
+    "quantity": 3,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": true,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-05-30T12:44:21.117Z"
+  },
+  {
+    "id": "2025-05-30T21:50:38.409Z",
+    "name": "Kiss István",
+    "email": "taskony@gmail.com",
+    "phone": "55656",
+    "message": "565656",
+    "quantity": 4,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-05-30T21:50:38.409Z"
+  },
+  {
+    "id": "2025-05-30T21:54:08.214Z",
+    "name": "sdf",
+    "email": "taskony@gmail.com",
+    "phone": "6565",
+    "message": "asdgd",
+    "quantity": 3,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": true,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-30T21:54:08.214Z"
+  },
+  {
+    "id": "2025-05-30T21:55:20.651Z",
+    "name": "asfs",
+    "email": "g@d.dg",
+    "phone": "234254",
+    "message": "sdfsfd",
+    "quantity": 3,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-05-30T21:55:20.651Z"
+  },
+  {
+    "id": "2025-05-30T21:56:56.874Z",
+    "name": "asfsag",
+    "email": "sdg@fg.hj",
+    "phone": "5623562465",
+    "message": "236423567",
+    "quantity": 7,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-30T21:56:56.874Z"
+  },
+  {
+    "id": "2025-05-30T22:01:02.687Z",
+    "name": "af",
+    "email": "taskony@gmail.com",
+    "phone": "2342",
+    "message": "534536",
+    "quantity": 5,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-30T22:01:02.687Z"
+  },
+  {
+    "id": "2025-05-30T22:02:44.957Z",
+    "name": "asdf",
+    "email": "taskony@gmail.com",
+    "phone": "34235",
+    "message": "3254231523",
+    "quantity": 5,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-30T22:02:44.957Z"
+  },
+  {
+    "id": "2025-05-30T22:04:52.160Z",
+    "name": "rewz",
+    "email": "taskony@gmail.com",
+    "phone": "236436",
+    "message": "rzwerz",
+    "quantity": 5,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-30T22:04:52.160Z"
+  },
+  {
+    "id": "2025-05-31T05:20:27.596Z",
+    "name": "Mészáros János",
+    "email": "taskony@gmail.com",
+    "phone": "",
+    "message": "asdfasdf",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:20:27.596Z"
+  },
+  {
+    "id": "2025-05-31T05:21:26.989Z",
+    "name": "Kiss eleme",
+    "email": "aff@sdf.saf",
+    "phone": "",
+    "message": "asdfsd",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:21:26.989Z"
+  },
+  {
+    "id": "2025-05-31T05:24:08.952Z",
+    "name": "Mészáros János",
+    "email": "taskony@gmail.com",
+    "phone": "",
+    "message": "uioprstzwerz",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:24:08.952Z"
+  },
+  {
+    "id": "2025-05-31T05:24:56.366Z",
+    "name": "Phone",
+    "email": "taskony@gmail.com",
+    "phone": "",
+    "message": "asfasf",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:24:56.366Z"
+  },
+  {
+    "id": "2025-05-31T05:25:55.955Z",
+    "name": "Tel_2",
+    "email": "taskony@gmail.com",
+    "phone": "",
+    "message": "ahdhhdsh",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:25:55.955Z"
+  },
+  {
+    "id": "2025-05-31T05:27:37.906Z",
+    "name": "Mészáros János",
+    "email": "taskony@gmail.com",
+    "phone": "",
+    "message": "zer5uzreu",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:27:37.906Z"
+  },
+  {
+    "id": "2025-05-31T05:31:09.620Z",
+    "name": "Mészáros János_Phone3",
+    "email": "taskony@gmail.com",
+    "phone": "06703734949",
+    "message": "dsfgdsfhdsfh",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:31:09.620Z"
+  },
+  {
+    "id": "2025-05-31T05:33:19.621Z",
+    "name": "Mészáros János",
+    "email": "taskony@gmail.com",
+    "phone": "06703734949",
+    "message": "asdfgasdg",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-05-31T05:33:19.621Z"
+  },
+  {
+    "id": "2025-06-01T08:49:55.808Z",
+    "name": "Mész",
+    "email": "taskony@gmail.com",
+    "phone": "3453245345",
+    "message": "1241234",
+    "quantity": 3,
+    "product": {
+      "name": "BSH 120x160 mm",
+      "slug": "bsh-120x160",
+      "price": 61000,
+      "sku": "BSH-120x160"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-01T08:49:55.808Z"
+  },
+  {
+    "id": "2025-06-01T08:53:54.722Z",
+    "name": "Mész",
+    "email": "taskony@gmail.com",
+    "phone": "06703734949",
+    "message": "ergerg",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-01T08:53:54.722Z"
+  },
+  {
+    "id": "2025-06-01T09:52:42.449Z",
+    "name": "Mész",
+    "email": "taskony@gmail.com",
+    "phone": "325235235",
+    "message": "32532525",
+    "quantity": 1,
+    "product": {
+      "name": "Gyalult fenyő 45x95 mm",
+      "slug": "gyalult-fenyo-45x95",
+      "price": 4250,
+      "sku": "GYF-45x95"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-01T09:52:42.449Z"
+  },
+  {
+    "id": "2025-06-03T07:06:53.904Z",
+    "name": "55555",
+    "email": "taskony@gmail.com",
+    "phone": "2345235",
+    "message": "2523532",
+    "quantity": 4,
+    "product": {
+      "name": "BSH 120x160 mm",
+      "slug": "bsh-120x160",
+      "price": 61000,
+      "sku": "BSH-120x160"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-06-03T07:06:53.904Z"
+  },
+  {
+    "id": "2025-06-03T11:29:34.966Z",
+    "name": "rgrgrg",
+    "email": "taskony@gmail.com",
+    "phone": "3543",
+    "message": "35566",
+    "quantity": 5,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-06-03T11:29:34.966Z"
+  },
+  {
+    "id": "2025-06-03T12:58:36.823Z",
+    "name": "sfsdgsdfg",
+    "email": "taskony@gmail.com",
+    "phone": "234532",
+    "message": "23452345",
+    "quantity": 5,
+    "product": {
+      "name": "BSH 100x120 mm",
+      "slug": "bsh-100x120",
+      "price": 5000,
+      "sku": "BSH-100x120"
+    },
+    "contacted": true,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-06-03T12:58:36.823Z"
+  },
+  {
+    "id": "2025-06-03T13:00:21.354Z",
+    "name": "érdeklődő",
+    "email": "taskony@gmail.com",
+    "phone": "06703734949",
+    "message": "2134rwwef",
+    "quantity": 1,
+    "product": {
+      "name": "",
+      "slug": "",
+      "price": "",
+      "sku": ""
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-03T13:00:21.354Z"
+  },
+  {
+    "id": "2025-06-05T15:03:04.202Z",
+    "name": "Zsol",
+    "email": "zsolt@zsolt.hu",
+    "phone": "666565",
+    "message": "6565655",
+    "quantity": 2,
+    "product": {
+      "name": "Pini-Kay keményfa brikett 960 kg (1 raklap)",
+      "slug": "pini-kay-brikett-960kg",
+      "price": 114900,
+      "sku": "PINIKAY-960KG"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": true,
+    "receivedAt": "2025-06-05T15:03:04.202Z"
+  },
+  {
+    "id": "2025-06-10T21:58:08.634Z",
+    "name": "kiss elemér",
+    "email": "taskony@gmail.com",
+    "phone": "234234",
+    "message": "2523452",
+    "quantity": 3,
+    "product": {
+      "name": "Pini‑Kay keményfa brikett I. osztály",
+      "slug": "pini-kay-brikett-tolgy",
+      "price": 159900,
+      "sku": "brikett-pini-kay-tolgy"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-10T21:58:08.634Z"
+  },
+  {
+    "id": "2025-06-11T12:20:25.567Z",
+    "name": "Most",
+    "email": "taskony@gmail.com",
+    "phone": "2342134",
+    "message": "12352135",
+    "quantity": 1,
+    "product": {
+      "name": "Lambéria Trapéz F-profil 12,5x96mmx4m BC minőség",
+      "slug": "lamberia-12_5x96-bc",
+      "price": 0,
+      "sku": "luc-lam-12_5x96-4m-bc"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-11T12:20:25.567Z"
+  },
+  {
+    "id": "2025-06-11T12:29:11.745Z",
+    "name": "Most_2",
+    "email": "sdf@sdf.asdf",
+    "phone": "495564",
+    "message": "45454",
+    "quantity": 1,
+    "product": {
+      "name": "Lambéria Trapéz F-profil 12,5x96mmx4m BC minőség",
+      "slug": "lamberia-12_5x96-bc",
+      "price": 0,
+      "sku": "luc-lam-12_5x96-4m-bc"
+    },
+    "contacted": false,
+    "orderRecorded": false,
+    "orderCompleted": false,
+    "receivedAt": "2025-06-11T12:29:11.745Z"
+  }
+]

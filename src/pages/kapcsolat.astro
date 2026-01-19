@@ -1,0 +1,85 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Kapcsolat | Elvira Tüzép',
+  description: 'Lépjen kapcsolatba az Elvira Tüzép csapatával! Érdi telephelyünkön fűrészáruval, brikettel és szerkezeti fával várjuk – kérdésére gyorsan válaszolunk.'
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="" title="Vedd fel velünk a kapcsolatot!" />
+
+  <ContactUs
+    id="form"
+    title="Írj nekünk üzenetet!"
+    subtitle="Fordulj hozzánk bizalommal!"
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Név',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email cím',
+      },
+            {
+        type: 'phone',
+        name: 'phone',
+        label: 'Telefonszám',
+      },
+    ]}
+    textarea={{
+      label: 'Üzenet',
+    }}
+    disclaimer={{
+      label:
+        'Az űrlap elküldésével elfogadod az adatkezelési tájékoztatónkban foglaltakat.',
+    }}
+    description="Általában 2 munkanapon belül válaszolunk."
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Egyéb elérhetőségeink"
+    items={[
+      {
+        title: 'Általános információk',
+        description: `Írj nekünk faipari termékekkel, tüzelőanyaggal, elérhetőséggel vagy megrendeléssel kapcsolatos kérdéseiddel.`,
+      },
+      {
+        title: 'Értékesítés',
+        description:
+          'Ajánlatkérés, rendelés leadás, nagykereskedelmi érdeklődés vagy projektárak egyeztetése kapcsán is várjuk üzeneted.',
+      },
+      {
+        title: 'Technikai kérdések',
+        description:
+          'Weboldal használatával, rendelési folyamattal vagy ajánlatkérő űrlappal kapcsolatos hibák esetén fordulj hozzánk.',
+      },
+      {
+        title: 'Telefon',
+        description: '+36 70 368 7809',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Email',
+        description: 'info@elviratuzep.hu',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Telephely',
+        description: 'Gigawood telephely, 2030 Érd, Elvira utca 33.',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/PageLayout.astro';
+import MainCategoryGrid from '../../components/widgets/Tabs.jsx';
+import { fetchCategoriesWithProducts } from '../../lib/medusa-adapter'
+
+const metadata = {
+  title: 'Termékek | Elvira Tüzép',
+  description: 'Fedezd fel az Elvira Tüzép teljes faanyag kínálatát: szárított fűrészáru, gyalult fa, brikett és további minőségi termékek egy helyen.'
+};
+
+const productsData = await fetchCategoriesWithProducts()
+
+const base = 'https://elviratuzep.hu';
+const pageUrl = `${base}/termekek`;
+const pageId = `${pageUrl}#collection`;
+const listId = `${pageUrl}#itemlist`;
+const breadcrumbId = `${pageUrl}#breadcrumb`;
+
+const schema = [
+  // 1) Az oldal mint CollectionPage
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": pageId,
+    "url": pageUrl,
+    "name": "Termékkategóriák",
+    "description": metadata.description,
+    "inLanguage": "hu",
+    "isPartOf": { "@type": "WebSite", "@id": `${base}/#website`, "url": base, "name": "Elvira Tüzép" },
+    "publisher": { "@id": `${base}/#store` },
+    "mainEntity": { "@id": listId }
+  },
+
+  // 2) ItemList: a kategóriák listája
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": listId,
+    "name": "Termékkategóriák",
+    "itemListOrder": "ItemListOrderAscending",
+    "numberOfItems": productsData.length,
+    "itemListElement": productsData.map((cat, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": cat.category,
+      "url": `${base}/termekek/${cat.slug}`
+    }))
+  },
+
+  // 3) BreadcrumbList: Főoldal → Termékek
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": breadcrumbId,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Főoldal", "item": `${base}/` },
+      { "@type": "ListItem", "position": 2, "name": "Termékek", "item": pageUrl }
+    ]
+  }
+];
+
+---
+
+<Layout metadata={metadata}>
+    {schema && (
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(schema)}
+            slot="head"
+        />
+    )}
+  <section class="py-12">
+    <div class="container max-w-4xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="text-sm mb-6 text-gray-500 dark:text-gray-400 px-4">
+        <a href="/" class="hover:underline">Főoldal</a> /
+        <span class="font-medium text-gray-800 dark:text-gray-200">Termékek</span>
+      </nav>
+
+<!--       <h1 class="text-3xl font-bold mb-10">Termékkategóriák</h1> -->
+
+<!--       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {productsData.map((category) => (
+          <a href={`/termekek/${category.slug}`} class="block border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800 dark:border-gray-700 motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade
+                intersect-once intersect-quarter intercept-no-queue">
+            <img src={category.meta.image} alt={category.category} class="w-full h-48 object-cover" loading="lazy" />
+            <div class="p-4">
+              <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{category.category}</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400">{category.meta.description}</p>
+            </div>
+          </a>
+        ))}
+      </div> -->
+
+      <!-- <MainCategoryGrid categories={productsData} client:visible headerSelectors={['#header']} /> -->
+      <MainCategoryGrid categories={productsData} client:visible productListing={true}/>
+
+    </div>
+  </section>
+</Layout>

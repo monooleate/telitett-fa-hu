@@ -1,0 +1,60 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+// import PostTags from "~/components/blog/Tags.astro";
+import BlogSidebar from '~/components/blog/BlogSidebar.astro';
+
+import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogList({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props as Props;
+const currentPage = page.currentPage ?? 1;
+
+// const allCategories = await findCategories();
+// const allTags = await findTags();
+
+const metadata = {
+  title: `Tudástár${currentPage > 1 ? ` — Oldal ${currentPage}` : ''}`,
+  robots: {
+    index: blogListRobots?.index && currentPage === 1,
+    follow: blogListRobots?.follow,
+  },
+  openGraph: {
+    type: 'blog',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="flex flex-col lg:flex-row gap-8 px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-7xl">
+
+    <!-- Sidebar bal oldalon -->
+    <div class="w-full lg:w-1/4 order-first lg:order-none">
+      <BlogSidebar />
+    </div>
+
+    <!-- Fő tartalom jobb oldalon -->
+    <section class="w-full lg:w-3/4">
+      <Headline
+        subtitle="Információ bázis az általunk forgalmazott termékekről."
+      >
+        Tudástár
+      </Headline>
+      <BlogList posts={page.data} />
+      <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    </section>
+
+  </div>
+</Layout>
+

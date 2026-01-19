@@ -1,0 +1,24 @@
+[
+  {
+    "category": "Építőanyagok",
+    "items": [
+      { "title": "Faipari nevezéktan", "slug": "/tudastar/faipari-nevezektan" },
+      { "title": "BSH ragasztott gerenda", "slug": "/tudastar/mi-az-a-bsh-fa" },
+      { "title": "Minőségi jelölések", "slug": "/tudastar/fa_minosegi_jelolesek" },
+      { "title": "Építőfa típusok", "slug": "/tudastar/epitofa-tipusok" },
+      { "title": "Ellenléc Cserépléc kisokos", "slug": "/tudastar/ellenlec-csereplec-kisokos" },
+      { "title": "OSB lap 2025", "slug": "/tudastar/mi-az-az-osb-lap" }
+
+    ]
+  },
+    {
+    "category": "Tüzelőanyagok",
+    "items": [
+      { "title": "Környezetbarát fabrikett", "slug": "/tudastar/kornyezetbarat-brikett" },
+      { "title": "Tüzifa mértékegységek", "slug": "/tudastar/tuzifa-mertekegysegek" },
+      { "title": "Fapelletről", "slug": "/tudastar/fa-pellet" },
+      { "title": "Pellet alomként", "slug": "/tudastar/pellet-alomkent" }
+    ]
+  }
+]
+
