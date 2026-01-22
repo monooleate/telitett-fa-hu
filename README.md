@@ -1,303 +1,220 @@
-# 🚀 AstroWind
+# 🌲 Telített Fa Weboldal - AstroWind Alapon
 
-<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
-     alt="AstroWind Lighthouse Score" width="100" height="358">
+Modern, SEO-optimalizált weboldal nagynyomáson kezelt borovifa termékek bemutatására. Magyar nyelven, dark mode támogatással, B2B célközönségnek.
 
-🌟 _Most *starred* & *forked* Astro theme in 2022, 2023 & 2024_. 🌟
+## ✨ Főbb Jellemzők
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+- 🎨 **Modern UI/UX**: Tailwind CSS, dark mode, responsive design
+- 📊 **Interaktív Összehasonlítások**: Animated comparison charts
+- 🚀 **SEO Optimalizált**: Meta tags, structured data, semantic HTML
+- 📱 **Mobile-First**: Tökéletes megjelenés minden eszközön
+- ⚡ **Gyors Betöltés**: Astro SSG, optimalizált képek
+- 🌍 **Multilingual Ready**: Könnyen bővíthető román, horvát, szlovák nyelvvel
 
-- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
-- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
-- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
-- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
-- ✅ Generation of **project sitemap** based on your routes.
-- ✅ **Open Graph tags** for social media sharing.
-- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
-
-<br>
-
-![AstroWind Theme Screenshot](https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astrowind-1.0.png)
-
-[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
-[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
-[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
-[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
-[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
-[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
-
-<br>
-
-<details open>
-<summary>Table of Contents</summary>
-
-- [Demo](#demo)
-- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
-- [TL;DR](#tldr)
-- [Getting started](#getting-started)
-  - [Project structure](#project-structure)
-  - [Commands](#commands)
-  - [Configuration](#configuration)
-  - [Deploy](#deploy)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Related Projects](#related-projects)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
-
-</details>
-
-<br>
-
-## Demo
-
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
-
-<br>
-
-## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
-
-We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
-
-[Share Your Feedback in Our Discussion!](https://github.com/onwidget/astrowind/discussions/392)
-
-<br>
-
-
-## TL;DR
-
-```shell
-npm create astro@latest -- --template onwidget/astrowind
-```
-
-## Getting started
-
-**AstroWind** tries to give you quick access to creating a website using [Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
-
-Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
-
-In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
-
-### Project structure
-
-Inside **AstroWind** template, you'll see the following folders and files:
+## 📁 Projekt Struktúra
 
 ```
-/
-├── public/
-│   ├── _headers
-│   └── robots.txt
+telitett-fa-fooldal/
 ├── src/
-│   ├── assets/
-│   │   ├── favicons/
-│   │   ├── images/
-│   │   └── styles/
-│   │       └── tailwind.css
 │   ├── components/
-│   │   ├── blog/
-│   │   ├── common/
-│   │   ├── ui/
 │   │   ├── widgets/
-│   │   │   ├── Header.astro
-│   │   │   └── ...
-│   │   ├── CustomStyles.astro
-│   │   ├── Favicons.astro
-│   │   └── Logo.astro
-│   ├── content/
-│   │   ├── post/
-│   │   │   ├── post-slug-1.md
-│   │   │   ├── post-slug-2.mdx
-│   │   │   └── ...
-│   │   └-- config.ts
-│   ├── layouts/
-│   │   ├── Layout.astro
-│   │   ├── MarkdownLayout.astro
-│   │   └── PageLayout.astro
+│   │   │   ├── Comparison.astro    # Új összehasonlító widget
+│   │   │   ├── Stats.astro          # Új statisztika widget
+│   │   │   └── ...                  # AstroWind alap widgetek
+│   │   └── ui/
 │   ├── pages/
-│   │   ├── [...blog]/
-│   │   │   ├── [category]/
-│   │   │   ├── [tag]/
-│   │   │   ├── [...page].astro
-│   │   │   └── index.astro
-│   │   ├── index.astro
-│   │   ├── 404.astro
-│   │   ├-- rss.xml.ts
-│   │   └── ...
-│   ├── utils/
-│   ├── config.yaml
-│   └── navigation.js
-├── package.json
-├── astro.config.ts
-└── ...
+│   │   └── index.astro              # Főoldal
+│   ├── types.d.ts                   # TypeScript típusok
+│   └── ...
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎯 Tartalom Stratégia
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Főoldal Szekciók:
 
-Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
+1. **Hero Section** - Impaktus első benyomás
+   - Főcím: "Nagynyomáson Kezelt Borovifa"
+   - CTA gombok: Árajánlat + Termékek
+   - Placeholder termék vizualizáció
 
-[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)
+2. **Stats Section** - Gyors számok
+   - 15-25 év élettartam
+   - 100% nehézfém-mentes
+   - UC4 minősítés
+   - 0% króm & arzén
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
+3. **Comparison Section** - Interaktív összehasonlítás
+   - **Keményfa vs Telített Borovi**
+     * Ár: 100% vs 45% (telített nyeri)
+     * Élettartam: 100% vs 70%
+     * Megmunkálhatóság: 50% vs 100% (telített nyeri)
+     * Teljes költség: 95% vs 52% (telített nyeri)
+   
+   - **Mártott vs Telített Borovi**
+     * Ár: 35% vs 48%
+     * Élettartam: 20% vs 100% (telített nyeri)
+     * Karbantartás: 100% vs 15% (telített nyeri)
+     * Teljes költség: 100% vs 45% (telített nyeri)
 
-<br>
+4. **Features Section** - 9 fő előny
+   - Mély védelem, Gyermekbarát, Tartósság
+   - Könnyű megmunkálás, Fenntarthatóság, B2B árak
+   - Nem korrodál, Festhető, Méretválaszték
 
-### Commands
+5. **Content Section** - Miért Borovi?
+   - Sejtszerkezet magyarázat
+   - Összehasonlítás más fenyőkkel
 
-All commands are run from the root of the project, from a terminal:
+6. **Steps Section** - Gyártási folyamat
+   - 5 lépés vizuálisan
 
-| Command             | Action                                             |
-| :------------------ | :------------------------------------------------- |
-| `npm install`       | Installs dependencies                              |
-| `npm run dev`       | Starts local dev server at `localhost:4321`        |
-| `npm run build`     | Build your production site to `./dist/`            |
-| `npm run preview`   | Preview your build locally, before deploying       |
-| `npm run check`     | Check your project for errors                      |
-| `npm run fix`       | Run Eslint and format codes with Prettier          |
-| `npm run astro ...` | Run CLI commands like `astro add`, `astro preview` |
+7. **FAQs** - 8 gyakori kérdés
+   - Élettartam, biztonság, árak, karbantartás, stb.
 
-<br>
+8. **Call to Action** - Záró felhívás
+   - B2B kapcsolatfelvétel
 
-### Configuration
+## 🎨 Design Rendszer
 
-Basic configuration file: `./src/config.yaml`
+### Színek:
+- **Primary**: Blue/Teal (természet, megbízhatóság)
+- **Secondary**: Green (környezetbarát, fenntarthatóság)
+- **Accent**: Amber (figyelem, kiemelés)
+- **Highlight**: Emerald (ajánlott, pozitív)
 
-```yaml
-site:
-  name: 'Example'
-  site: 'https://example.com'
-  base: '/' # Change this if you need to deploy to Github Pages, for example
-  trailingSlash: false # Generate permalinks with or without "/" at the end
+### Komponensek:
+- Glassmorphism effect-ek
+- Smooth scroll animations
+- Hover interactions
+- Dark mode kompatibilis
 
-  googleSiteVerificationId: false # Or some value,
+## 🔧 Használat
 
-# Default SEO metadata
-metadata:
-  title:
-    default: 'Example'
-    template: '%s — Example'
-  description: 'This is the default meta description of Example website'
-  robots:
-    index: true
-    follow: true
-  openGraph:
-    site_name: 'Example'
-    images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
-    type: website
-  twitter:
-    handle: '@twitter_user'
-    site: '@twitter_user'
-    cardType: summary_large_image
+### Telepítés:
 
-i18n:
-  language: en
-  textDirection: ltr
+```bash
+# Klónozd az AstroWind template-et
+npm create astro@latest -- --template onwidget/astrowind
 
-apps:
-  blog:
-    isEnabled: true # If the blog will be enabled
-    postsPerPage: 6 # Number of posts per page
+# Másold be a komponenseket
+cp -r telitett-fa-fooldal/src/* your-project/src/
 
-    post:
-      isEnabled: true
-      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
-      robots:
-        index: true
+# Telepítsd a függőségeket
+npm install
 
-    list:
-      isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
-      robots:
-        index: true
-
-    category:
-      isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
-      robots:
-        index: true
-
-    tag:
-      isEnabled: true
-      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
-      robots:
-        index: false
-
-    isRelatedPostsEnabled: true # If a widget with related posts is to be displayed below each post
-    relatedPostsCount: 4 # Number of related posts to display
-
-analytics:
-  vendors:
-    googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
-
-ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+# Indítsd el a dev servert
+npm run dev
 ```
 
-<br>
+### Testreszabás:
 
-#### Customize Design
+1. **config.yaml** - Alap beállítások
+2. **Képek** - Cseréld le a placeholder képeket termék fotókra
+3. **Tartalom** - Frissítsd az árajánlat linkeket
+4. **Blog** - Hozz létre összehasonlító cikkeket
 
-To customize Font families, Colors or more Elements refer to the following files:
+## 📝 Blog Ötletek
 
-- `src/components/CustomStyles.astro`
-- `src/assets/styles/tailwind.css`
+Készítendő blog cikkek SEO-hoz:
 
-### Deploy
+1. **"Keményfa vs Telített Borovifa - Melyiket Válaszd 2025-ben?"**
+   - Részletes összehasonlítás
+   - Költségelemzés (TCO)
+   - Projekt esettanulmányok
 
-#### Deploy to production (manual)
+2. **"Mártott vs Telített Fa - A Valódi Különbség"**
+   - Felületi vs mély védelem
+   - Élettartam összehasonlítás
+   - Karbantartási költségek
 
-You can create an optimized production build with:
+3. **"UC4 Minősítés - Mit Jelent és Miért Fontos?"**
+   - Minősítési rendszer magyarázat
+   - Alkalmazási területek
+   - Tanúsítványok
 
-```shell
+4. **"Tanalith Kezelés - Gyermekbarát Faanyagvédelem"**
+   - Nehézfém-mentesség
+   - EN 71-3 szabvány
+   - Játszótér alkalmazások
+
+5. **"Telített Fa Élettartama - 15-25 Év Garantált Védelem"**
+   - Tényezők befolyásoló hatása
+   - Karbantartási tippek
+   - Esettanulmányok
+
+## 🌍 Nemzetköziesítés
+
+### Következő lépések:
+
+1. **Román verzió** (lemn tratat sub presiune)
+2. **Horvát verzió** (impregnirano drvo pod tlakom)
+3. **Szlovák verzió** (impregnované drevo pod tlakom)
+
+Minden nyelv:
+- Külön `/ro/`, `/hr/`, `/sk/` mappa
+- Hreflang tag-ek
+- Lokalizált tartalom
+
+## 📊 SEO Checklist
+
+- ✅ Meta title & description
+- ✅ Open Graph tags
+- ✅ Structured data (Product, Organization)
+- ✅ Semantic HTML
+- ✅ Alt text képeken
+- ✅ Internal linking
+- ✅ Mobile-friendly
+- ✅ Page speed optimized
+- ✅ XML sitemap
+- ✅ Robots.txt
+
+## 🎯 Konverzió Optimalizálás
+
+### CTA Helyek:
+1. Hero section - 2 gomb
+2. Comparison után - "Árajánlat kérése"
+3. Features után - "Termékek böngészése"
+4. FAQ után - "Kérdésed van?"
+5. Footer CTA - Záró felhívás
+
+### Lead Capture:
+- `/kapcsolat` oldal email form
+- Google Sheets integráció
+- Automatikus email válasz
+
+## 🚀 Telepítés és Hostolás
+
+### Javasolt platformok:
+- **Netlify** - Ingyenes SSL, automatikus deploy
+- **Vercel** - Edge functions, analytics
+- **Cloudflare Pages** - CDN, DDoS védelem
+
+### Deploy parancsok:
+
+```bash
+# Build
 npm run build
+
+# Preview
+npm run preview
+
+# Deploy (Netlify példa)
+netlify deploy --prod
 ```
 
-Now, your website is ready to be deployed. All generated files are located at
-`dist` folder, which you can deploy the folder to any hosting service you
-prefer.
+## 📞 Kapcsolat és Support
 
-#### Deploy to Netlify
+- **Email**: kapcsolat@gigawood.hu
+- **Telefon**: +36 30 531 9050
+- **Cím**: 2030 Érd, Elvira utca 33.
 
-Clone this repository on your own GitHub account and deploy it to Netlify:
+## 📄 Licenc
 
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/onwidget/astrowind)
+MIT License - Szabadon használható és módosítható
 
-#### Deploy to Vercel
+---
 
-Clone this repository on your own GitHub account and deploy to Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonwidget%2Fastrowind)
-
-<br>
-
-## Frequently Asked Questions
-
-- Why?
--
--
-
-<br>
-
-## Related projects
-
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
-
-## Contributing
-
-If you have any ideas, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
-That would be very useful for all of us and we would be happy to listen and take action.
-
-## Acknowledgements
-
-Initially created by [onWidget](https://onwidget.com) and maintained by a community of [contributors](https://github.com/onwidget/astrowind/graphs/contributors).
-
-## License
-
-**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
+**Készítve**: 2025 Január - AstroWind + Tailwind CSS + Astro 5.0
+**Verzió**: 1.0.0
+**Status**: Production Ready 🚀

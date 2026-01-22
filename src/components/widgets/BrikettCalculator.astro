@@ -1,0 +1,355 @@
+---
+/**
+ * BrikettCalculator.astro
+ * Interaktív brikett árazó táblázat és kalkulátor
+ * 1 csomagtól 96 csomagig (1 raklap)
+ */
+
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Brikett árak - példa adatok (módosítsd a valós árakra!)
+// Árak csomagszám függvényében, degresszív árazás
+const priceTiers = [
+  { min: 1, max: 5, pricePerPackage: 2890, label: '1-5 csomag', discount: '0%' },
+  { min: 6, max: 10, pricePerPackage: 2790, label: '6-10 csomag', discount: '3%' },
+  { min: 11, max: 24, pricePerPackage: 2690, label: '11-24 csomag', discount: '7%' },
+  { min: 25, max: 48, pricePerPackage: 2590, label: '25-48 csomag (fél raklap)', discount: '10%' },
+  { min: 49, max: 72, pricePerPackage: 2490, label: '49-72 csomag', discount: '14%' },
+  { min: 73, max: 96, pricePerPackage: 2390, label: '73-96 csomag (1 raklap)', discount: '17%' },
+];
+
+// Szállítási díj sávok (példa)
+const shippingTiers = [
+  { min: 1, max: 24, cost: 5900, label: 'Kis tétel' },
+  { min: 25, max: 48, cost: 8900, label: 'Fél raklap' },
+  { min: 49, max: 96, cost: 12900, label: 'Teljes raklap' },
+];
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline
+    title="Brikett Árak & Kalkulátor"
+    subtitle="1 csomagtól 96 csomagig – minél többet rendel, annál jobban megéri!"
+    tagline="🔥 Interaktív árazás"
+  />
+
+  <div class="grid lg:grid-cols-2 gap-8 mt-8">
+    
+    <!-- BAL OLDAL: Ártáblázat -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden">
+      <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          Ártáblázat
+        </h3>
+      </div>
+      
+      <div class="p-6">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b-2 border-amber-200 dark:border-amber-800">
+              <th class="text-left py-3 px-2 text-gray-700 dark:text-gray-300 font-semibold">Mennyiség</th>
+              <th class="text-right py-3 px-2 text-gray-700 dark:text-gray-300 font-semibold">Ár/csomag</th>
+              <th class="text-right py-3 px-2 text-gray-700 dark:text-gray-300 font-semibold">Kedvezmény</th>
+            </tr>
+          </thead>
+          <tbody>
+            {priceTiers.map((tier, index) => (
+              <tr 
+                class={`border-b border-gray-100 dark:border-slate-700 transition-colors hover:bg-amber-50 dark:hover:bg-amber-900/20 ${index === priceTiers.length - 1 ? 'bg-amber-50 dark:bg-amber-900/30' : ''}`}
+                data-tier-min={tier.min}
+                data-tier-max={tier.max}
+                data-price={tier.pricePerPackage}
+              >
+                <td class="py-3 px-2">
+                  <span class="font-medium text-gray-800 dark:text-gray-200">{tier.label}</span>
+                </td>
+                <td class="py-3 px-2 text-right">
+                  <span class="font-bold text-amber-600 dark:text-amber-400">{tier.pricePerPackage.toLocaleString('hu-HU')} Ft</span>
+                </td>
+                <td class="py-3 px-2 text-right">
+                  {tier.discount !== '0%' ? (
+                    <span class="inline-block bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-sm font-semibold px-2 py-1 rounded">
+                      -{tier.discount}
+                    </span>
+                  ) : (
+                    <span class="text-gray-400 dark:text-gray-500 text-sm">-</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        
+        <div class="mt-4 p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+          <p class="text-sm text-amber-800 dark:text-amber-200">
+            <strong>💡 Tipp:</strong> 1 raklap = 96 csomag. A legjobb egységárat a teljes raklapnál kapja!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOBB OLDAL: Interaktív Kalkulátor -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden">
+      <div class="bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-4">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          Kalkulátor
+        </h3>
+      </div>
+      
+      <div class="p-6">
+        <!-- Csomag választó slider -->
+        <div class="mb-6">
+          <label for="package-slider" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
+            Hány csomagot szeretne?
+          </label>
+          <div class="flex items-center gap-4">
+            <input 
+              type="range" 
+              id="package-slider" 
+              min="1" 
+              max="96" 
+              value="24"
+              class="w-full h-3 bg-gray-200 dark:bg-slate-600 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+            />
+            <div class="flex items-center gap-2">
+              <input 
+                type="number" 
+                id="package-input" 
+                min="1" 
+                max="96" 
+                value="24"
+                class="w-20 px-3 py-2 text-center font-bold text-lg border-2 border-emerald-300 dark:border-emerald-600 rounded-lg bg-white dark:bg-slate-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+              />
+              <span class="text-gray-500 dark:text-gray-400 font-medium">db</span>
+            </div>
+          </div>
+          
+          <!-- Quick select gombok -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            <button class="quick-select px-3 py-1 text-sm bg-gray-100 dark:bg-slate-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-gray-700 dark:text-gray-300 rounded-full transition-colors" data-value="10">10 db</button>
+            <button class="quick-select px-3 py-1 text-sm bg-gray-100 dark:bg-slate-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-gray-700 dark:text-gray-300 rounded-full transition-colors" data-value="24">24 db</button>
+            <button class="quick-select px-3 py-1 text-sm bg-gray-100 dark:bg-slate-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-gray-700 dark:text-gray-300 rounded-full transition-colors" data-value="48">Fél raklap</button>
+            <button class="quick-select px-3 py-1 text-sm bg-amber-100 dark:bg-amber-900/50 hover:bg-amber-200 dark:hover:bg-amber-900/70 text-amber-700 dark:text-amber-300 rounded-full transition-colors font-semibold" data-value="96">1 raklap 🏆</button>
+          </div>
+        </div>
+
+        <!-- Eredmények -->
+        <div class="space-y-4 border-t border-gray-200 dark:border-slate-600 pt-6">
+          
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 dark:text-gray-400">Egységár:</span>
+            <span id="unit-price" class="font-bold text-lg text-gray-800 dark:text-white">2.690 Ft/csomag</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 dark:text-gray-400">Termék összesen:</span>
+            <span id="subtotal" class="font-bold text-lg text-gray-800 dark:text-white">64.560 Ft</span>
+          </div>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 dark:text-gray-400">Becsült szállítás:</span>
+            <span id="shipping-cost" class="font-semibold text-gray-700 dark:text-gray-300">~8.900 Ft</span>
+          </div>
+
+          <div class="flex justify-between items-center pt-4 border-t-2 border-emerald-200 dark:border-emerald-800">
+            <span class="text-gray-800 dark:text-white font-bold text-lg">Becsült végösszeg:</span>
+            <span id="total" class="font-bold text-2xl text-emerald-600 dark:text-emerald-400">~73.460 Ft</span>
+          </div>
+          
+          <div id="savings-badge" class="text-center py-2 px-4 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded-lg font-semibold hidden">
+            💰 Megtakarítás: <span id="savings-amount">0 Ft</span>
+          </div>
+        </div>
+
+        <!-- CTA gombok -->
+        <div class="mt-6 space-y-3">
+          <a 
+            href="#megrendeles" 
+            class="block w-full py-3 px-6 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold text-center rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+          >
+            Megrendelem! 🛒
+          </a>
+          <a 
+            href="tel:+36305319050" 
+            class="block w-full py-3 px-6 bg-white dark:bg-slate-700 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 font-bold text-center rounded-xl hover:bg-emerald-50 dark:hover:bg-slate-600 transition-colors"
+          >
+            📞 Kérdezek telefonon
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Megjegyzés -->
+  <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+    <p>* Az árak tájékoztató jellegűek, bruttó árak. A pontos szállítási díj súly- és távolságfüggő.</p>
+    <p>Végleges árajánlatért vegye fel velünk a kapcsolatot!</p>
+  </div>
+</WidgetWrapper>
+
+<script>
+  // Brikett kalkulátor interaktivitás
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('package-slider') as HTMLInputElement;
+    const input = document.getElementById('package-input') as HTMLInputElement;
+    const unitPriceEl = document.getElementById('unit-price');
+    const subtotalEl = document.getElementById('subtotal');
+    const shippingEl = document.getElementById('shipping-cost');
+    const totalEl = document.getElementById('total');
+    const savingsBadge = document.getElementById('savings-badge');
+    const savingsAmount = document.getElementById('savings-amount');
+    const quickSelectBtns = document.querySelectorAll('.quick-select');
+    const tableRows = document.querySelectorAll('[data-tier-min]');
+
+    // Árak konfigurációja
+    const priceTiers = [
+      { min: 1, max: 5, price: 2890 },
+      { min: 6, max: 10, price: 2790 },
+      { min: 11, max: 24, price: 2690 },
+      { min: 25, max: 48, price: 2590 },
+      { min: 49, max: 72, price: 2490 },
+      { min: 73, max: 96, price: 2390 },
+    ];
+
+    const shippingTiers = [
+      { min: 1, max: 24, cost: 5900 },
+      { min: 25, max: 48, cost: 8900 },
+      { min: 49, max: 96, cost: 12900 },
+    ];
+
+    const basePrice = 2890; // Alapár megtakarítás számításhoz
+
+    function getPrice(qty: number): number {
+      for (const tier of priceTiers) {
+        if (qty >= tier.min && qty <= tier.max) {
+          return tier.price;
+        }
+      }
+      return priceTiers[priceTiers.length - 1].price;
+    }
+
+    function getShipping(qty: number): number {
+      for (const tier of shippingTiers) {
+        if (qty >= tier.min && qty <= tier.max) {
+          return tier.cost;
+        }
+      }
+      return shippingTiers[shippingTiers.length - 1].cost;
+    }
+
+    function formatPrice(price: number): string {
+      return price.toLocaleString('hu-HU') + ' Ft';
+    }
+
+    function highlightTableRow(qty: number): void {
+      tableRows.forEach(row => {
+        const min = parseInt(row.getAttribute('data-tier-min') || '0');
+        const max = parseInt(row.getAttribute('data-tier-max') || '0');
+        
+        if (qty >= min && qty <= max) {
+          row.classList.add('!bg-emerald-100', 'dark:!bg-emerald-900/40');
+        } else {
+          row.classList.remove('!bg-emerald-100', 'dark:!bg-emerald-900/40');
+        }
+      });
+    }
+
+    function updateCalculator(qty: number): void {
+      const unitPrice = getPrice(qty);
+      const subtotal = unitPrice * qty;
+      const shipping = getShipping(qty);
+      const total = subtotal + shipping;
+      const savings = (basePrice - unitPrice) * qty;
+
+      if (unitPriceEl) unitPriceEl.textContent = formatPrice(unitPrice) + '/csomag';
+      if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
+      if (shippingEl) shippingEl.textContent = '~' + formatPrice(shipping);
+      if (totalEl) totalEl.textContent = '~' + formatPrice(total);
+
+      // Megtakarítás badge
+      if (savingsBadge && savingsAmount) {
+        if (savings > 0) {
+          savingsBadge.classList.remove('hidden');
+          savingsAmount.textContent = formatPrice(savings);
+        } else {
+          savingsBadge.classList.add('hidden');
+        }
+      }
+
+      highlightTableRow(qty);
+    }
+
+    // Event listeners
+    if (slider && input) {
+      slider.addEventListener('input', () => {
+        const value = parseInt(slider.value);
+        input.value = value.toString();
+        updateCalculator(value);
+      });
+
+      input.addEventListener('change', () => {
+        let value = parseInt(input.value);
+        if (isNaN(value) || value < 1) value = 1;
+        if (value > 96) value = 96;
+        input.value = value.toString();
+        slider.value = value.toString();
+        updateCalculator(value);
+      });
+
+      quickSelectBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const value = parseInt(btn.getAttribute('data-value') || '24');
+          slider.value = value.toString();
+          input.value = value.toString();
+          updateCalculator(value);
+        });
+      });
+
+      // Inicializálás
+      updateCalculator(24);
+    }
+  });
+</script>
+
+<style>
+  /* Custom slider styling */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+</style>

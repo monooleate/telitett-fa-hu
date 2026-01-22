@@ -5,9 +5,8 @@
 
 import productsLocal from "../data/products.json" with { type: "json" }
 import productsSafe from "../data/products_safe.json" with { type: "json" }
-import { sdk } from "../lib/medusa-client"
-import type { HttpTypes } from "@medusajs/types"
-import { USE_API } from "~/lib/useApiFlag.ts";
+
+const USE_API = false
 
 /* -----------------------------------------------------
  *  Típusdefiníciók

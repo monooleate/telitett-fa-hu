@@ -1,0 +1,174 @@
+---
+import type { Comparison as Props } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+
+  <div class="grid gap-8 md:gap-12">
+    {
+      items &&
+        items.map(({ title: itemTitle, description, icon, comparisons = [] }, index) => (
+          <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8 transition-all hover:shadow-2xl">
+            {/* Comparison Header */}
+            <div class="flex items-center gap-4 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+              {icon && (
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+                  <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <use href={`/icons.svg#${icon}`} />
+                  </svg>
+                </div>
+              )}
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">{itemTitle}</h3>
+                {description && (
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">{description}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Comparison Bars */}
+            <div class="space-y-6">
+              {comparisons.map((comp, compIndex) => (
+                <div class="space-y-3">
+                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {comp.label}
+                  </div>
+
+                  {/* Option 1 Bar */}
+                  <div class="space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="font-medium text-gray-600 dark:text-gray-400">{comp.option1.name}</span>
+                      {comp.option1.subtitle && (
+                        <span class="text-gray-500 dark:text-gray-500 italic">{comp.option1.subtitle}</span>
+                      )}
+                    </div>
+                    <div class="relative h-8 bg-gray-100 dark:bg-gray-900/50 rounded-lg overflow-hidden">
+                      <div
+                        class={`absolute inset-y-0 left-0 rounded-lg transition-all duration-700 ease-out ${
+                          comp.option1.color === 'amber' 
+                            ? 'bg-gradient-to-r from-amber-400 to-amber-500' 
+                            : comp.option1.color === 'rose'
+                            ? 'bg-gradient-to-r from-rose-400 to-rose-500'
+                            : 'bg-gradient-to-r from-emerald-400 to-emerald-500'
+                        }`}
+                        style={`width: ${comp.option1.value}%`}
+                        data-animate="true"
+                      >
+                        <span class="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-bold text-white">
+                          {comp.option1.value}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Option 2 Bar */}
+                  <div class="space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                      <span class={`font-medium ${comp.option2.highlight ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-gray-600 dark:text-gray-400'}`}>
+                        {comp.option2.name}
+                        {comp.option2.highlight && (
+                          <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">
+                            ✓ Ajánlott
+                          </span>
+                        )}
+                      </span>
+                      {comp.option2.subtitle && (
+                        <span class="text-gray-500 dark:text-gray-500 italic">{comp.option2.subtitle}</span>
+                      )}
+                    </div>
+                    <div class="relative h-8 bg-gray-100 dark:bg-gray-900/50 rounded-lg overflow-hidden">
+                      <div
+                        class={`absolute inset-y-0 left-0 rounded-lg transition-all duration-700 ease-out ${
+                          comp.option2.highlight 
+                            ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg' 
+                            : comp.option2.color === 'amber'
+                            ? 'bg-gradient-to-r from-amber-400 to-amber-500'
+                            : comp.option2.color === 'rose'
+                            ? 'bg-gradient-to-r from-rose-400 to-rose-500'
+                            : 'bg-gradient-to-r from-emerald-400 to-emerald-500'
+                        }`}
+                        style={`width: ${comp.option2.value}%`}
+                        data-animate="true"
+                      >
+                        <span class="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-bold text-white">
+                          {comp.option2.value}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  {compIndex < comparisons.length - 1 && (
+                    <div class="border-t border-gray-100 dark:border-gray-800 mt-4 pt-2"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+    }
+  </div>
+</WidgetWrapper>
+
+<script>
+  // Intersection Observer az animált bejövéshez
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('[data-animate="true"]');
+        bars.forEach((bar, index) => {
+          setTimeout(() => {
+            bar.style.width = bar.getAttribute('style')?.match(/width:\s*(\d+)%/)?.[1] + '%' || '0%';
+          }, index * 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all comparison containers
+  document.addEventListener('DOMContentLoaded', () => {
+    // Reset bars to 0 width initially
+    const allBars = document.querySAll('[data-animate="true"]');
+    allBars.forEach(bar => {
+      const targetWidth = bar.getAttribute('style')?.match(/width:\s*(\d+)%/)?.[1];
+      bar.setAttribute('data-target-width', targetWidth || '0');
+      bar.style.width = '0%';
+    });
+
+    // Start observing containers
+    const containers = document.querySelectorAll('.space-y-6');
+    containers.forEach(container => observer.observe(container));
+  });
+</script>
+
+<style>
+  @keyframes slideIn {
+    from {
+      width: 0%;
+    }
+  }
+
+  [data-animate="true"] {
+    animation: slideIn 0.7s ease-out forwards;
+  }
+</style>

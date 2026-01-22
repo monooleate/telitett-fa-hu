@@ -1,0 +1,131 @@
+---
+import type { Stats as Props } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  stats = [],
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={{ container: 'text-center mb-8' }} />
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    {
+      stats &&
+        stats.map(({ amount, title: statTitle, icon }, index) => (
+          <div
+            class="group relative bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            data-stat-index={index}
+          >
+            {/* Icon */}
+            {icon && (
+              <div class="flex justify-center mb-4">
+                <div class="w-14 h-14 rounded-xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-7 h-7 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <use href={`/icons.svg#${icon}`} />
+                  </svg>
+                </div>
+              </div>
+            )}
+
+            {/* Amount */}
+            <div class="text-center mb-2">
+              <div
+                class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400 bg-clip-text text-transparent"
+                data-count-to={amount}
+              >
+                0
+              </div>
+            </div>
+
+            {/* Title */}
+            <div class="text-center">
+              <p class="text-sm md:text-base font-medium text-gray-700 dark:text-gray-300">{statTitle}</p>
+            </div>
+
+            {/* Decorative element */}
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary-500/5 to-secondary-500/5 dark:from-primary-500/10 dark:to-secondary-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+          </div>
+        ))
+    }
+  </div>
+</WidgetWrapper>
+
+<script>
+  // Animated Counter Function
+  function animateCounter(element: HTMLElement, target: string, duration: number = 2000) {
+    // Check if target contains only numbers
+    const isNumeric = /^\d+$/.test(target.replace(/[-+]/g, ''));
+    
+    if (!isNumeric) {
+      // If not numeric (like "UC4", "0%"), just display it immediately
+      element.textContent = target;
+      return;
+    }
+
+    const targetNum = parseInt(target, 10);
+    const startTime = performance.now();
+    
+    const updateCount = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * targetNum);
+      
+      element.textContent = current.toString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      } else {
+        element.textContent = target; // Ensure final value is exact
+      }
+    };
+    
+    requestAnimationFrame(updateCount);
+  }
+
+  // Intersection Observer for triggering animations
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px'
+  };
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const statElement = entry.target as HTMLElement;
+        const counterElement = statElement.querySelector('[data-count-to]') as HTMLElement;
+        
+        if (counterElement) {
+          const targetValue = counterElement.getAttribute('data-count-to') || '0';
+          
+          // Add a slight delay based on index for staggered effect
+          const index = parseInt(statElement.getAttribute('data-stat-index') || '0', 10);
+          
+          setTimeout(() => {
+            animateCounter(counterElement, targetValue);
+          }, index * 100);
+        }
+        
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Initialize observers when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const statCards = document.querySelectorAll('[data-stat-index]');
+    statCards.forEach(card => statsObserver.observe(card));
+  });
+</script>

@@ -12,15 +12,7 @@ function formatPrice(value) {
   return typeof value === 'number' ? value.toLocaleString('hu-HU') : '';
 }
 
-import { USE_API } from "~/lib/useApiFlag";
-// Csak akkor generál statikus oldalakat, ha nem SSR
-export const prerender = !USE_API;
-
 export async function getStaticPaths() {
-  if (USE_API) {
-    // SSR módban nem kell buildidőben útvonal
-    return [];
-  }
 
   // SSG módban buildidőben legenerálja az összes termék útvonalat
   return await fetchProductPaths();

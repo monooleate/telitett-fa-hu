@@ -280,3 +280,84 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface ComparisonOption {
+  name: string;
+  value: number;
+  color?: 'amber' | 'emerald' | 'rose';
+  highlight?: boolean;
+  subtitle?: string;
+}
+
+export interface ComparisonData {
+  label: string;
+  option1: ComparisonOption;
+  option2: ComparisonOption;
+}
+
+export interface ComparisonItem {
+  title: string;
+  description?: string;
+  icon?: string;
+  comparisons: ComparisonData[];
+}
+
+export interface Comparison {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  items?: ComparisonItem[];
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
+export interface StatItem {
+  amount: string;
+  title: string;
+  icon?: string;
+}
+
+export interface Stats {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  stats?: StatItem[];
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
+// Testimonials types
+export interface Testimonial {
+  name: string;
+  job: string;
+  company?: string;
+  testimonial: string;
+  image?: string;
+  rating?: number;
+}
+
+export interface Testimonials {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  testimonials?: Testimonial[];
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
+// Interactive Comparison types
+export interface InteractiveComparison {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}

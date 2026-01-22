@@ -1,7 +1,6 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import ItemGrid2 from '~/components/ui/ItemGrid2.astro';
 import type { Features as Props } from '~/types';
 
 const {
@@ -9,7 +8,7 @@ const {
   subtitle = await Astro.slots.render('subtitle'),
   tagline = await Astro.slots.render('tagline'),
   items = [],
-  columns = 3,
+  columns = 2,
   defaultIcon,
 
   id,
@@ -21,18 +20,61 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
-  <ItemGrid2
-    items={items}
-    columns={columns}
-    defaultIcon={defaultIcon}
-    classes={{
-      container: 'gap-4 md:gap-6',
-      panel:
-        'rounded-lg shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur border border-[#ffffff29] bg-white dark:bg-slate-900 p-6',
-      // panel:
-      //   "text-center bg-page items-center md:text-left rtl:md:text-right md:items-start p-6 p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-800",
-      icon: 'w-12 h-12 mb-6 text-primary',
-      ...((classes?.items as Record<string, never>) ?? {}),
-    }}
-  />
+  
+  <div class={`grid gap-8 md:gap-12 ${columns === 2 ? 'sm:grid-cols-1 lg:grid-cols-2' : 'md:grid-cols-3'}`}>
+    {
+      items &&
+        items.map(({ title: itemTitle, description, icon, image, callToAction }, index) => (
+          <div class={`group relative ${columns === 2 ? 'flex flex-col lg:flex-row lg:gap-8' : ''} ${columns === 2 && index % 2 === 0 ? 'lg:flex-row' : columns === 2 && index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            
+            {/* Image */}
+            {image && columns === 2 && (
+              <div class="lg:basis-2/5 mb-6 lg:mb-0">
+                <div class="relative h-64 lg:h-full lg:min-h-[340px] rounded-xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-shadow duration-300">
+                  <img
+                    src={image}
+                    alt={itemTitle}
+                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              </div>
+            )}
+
+            {/* Content */}
+            <div class={`${columns === 2 && image ? 'lg:basis-3/5' : ''} ${!image ? 'rounded-lg shadow-lg dark:shadow-none border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6' : ''}`}>
+              {icon && (
+                <div class="flex justify-center sm:justify-start mb-4">
+                  <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <use href={`#${icon}`} />
+                    </svg>
+                  </div>
+                </div>
+              )}
+              
+              <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                {itemTitle}
+              </h3>
+              
+              <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                {description}
+              </p>
+
+              {callToAction && (
+                <a
+                  href={callToAction.href}
+                  class="inline-flex items-center text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors group/link"
+                >
+                  {callToAction.text}
+                  <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))
+    }
+  </div>
 </WidgetWrapper>

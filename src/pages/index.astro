@@ -1,31 +1,27 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
-import Hero from '~/components/widgets/Hero2.astro';
-import Note from '~/components/widgets/Note.astro';
-import Note2 from '~/components/widgets/Note2.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features3.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import ContentSticky from '~/components/widgets/ContentSticky.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import InteractiveComparison from '~/components/widgets/InteractiveComparison.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
 import SpecialOffers, { buildSpecialOffersItemList } from '~/components/widgets/SpecialOffers.astro';
-import { computeDiscounted } from '~/lib/discounts';
-import CategoryGrid from '../components/widgets/CategoryGrid.astro';
-import MainCategoryGrid from '../components/widgets/Tabs.jsx';
 import { fetchCategoriesOnly, fetchDiscountedProducts } from '../lib/medusa-adapter'
-import MapWidget from '../components/widgets/MapWidget.astro';
 
-import heroImg from '../assets/images/elvira-tuzep-hero.png';
+import Features from '~/components/widgets/Features.astro';
+import Stats from '~/components/widgets/Stats.astro';
+
 
 const metadata = {
-  title: 'Elvira Tüzép | Fűrészáru, Brikett és Szerkezeti Fa Érden',
-  description: 'Fűrészáru, brikett és szerkezeti fa Érden. Elvira Tüzép – a Gigawood Kft. telephelye. Megbízható kiszolgálás és kedvező árak lakosságnak és kivitelezőknek.',
+  title: 'Nagynyomáson Kezelt Borovifa | Tartós és Biztonságos Faanyag',
+  description: 'Tanalith-kezelt telített borovifa B2B értékesítés. Gyermekbarát, környezetbarát, 15-25 év tartósság. Kerítésoszlopok, játszóterek, kerti építmények számára.',
   ignoreTitleTemplate: true,
 };
+const discounted = await fetchDiscountedProducts();
 
 const schemaHome = [
   {
@@ -111,290 +107,708 @@ const schemaHome = [
     ]
   }
 ];
-
-const productsData = await fetchCategoriesOnly()
-const discounted = await fetchDiscountedProducts();
-/* console.log(discounted); */
-const itemListJsonLd = buildSpecialOffersItemList(discounted);
-
 ---
 
 <Layout metadata={metadata}>
-
-    {schemaHome && (
-    <script
-        type="application/ld+json"
-        slot="head"
-        set:html={JSON.stringify(schemaHome)}
-    />
-    )}
-
-    {itemListJsonLd && (
-      <script 
-        type="application/ld+json" 
-        slot="head" 
-        set:html={JSON.stringify(itemListJsonLd)} 
-      />
-    )}
-
-  <!-- Hero Widget ******************* -->
-
+  
+  <!-- HERO SECTION -->
   <Hero
+    id="hero"
     actions={[
       {
         variant: 'primary',
-        text: 'Termékeink megtekintése',
-        href: '/termekek',
-        icon: 'tabler:shopping-cart',
-      },
-  /*     {
-        text: 'Kapcsolat',
+        text: 'Árajánlat kérése',
         href: '/kapcsolat',
-      }, */
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Termékek böngészése',
+        href: '/telitett-fa',
+        icon: 'tabler:arrow-right',
+      },
     ]}
-    heroSlides={[
-      { image: heroImg.src, alt: 'Elvira Tüzép Hero képe. Egy árny, aki egy pajzsot tart ET felirattal, mely az Elvira Tüzepet rövidíti.', href: '', label: 'Prémium termékek', sublabel: '' },
-      { image: '/termekek/bsh-gerenda-8x16.jpg', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/bsh-ragasztott-gerenda', label: 'BSH gerendák', sublabel: 'Osztrák minőség' },
-      { image: '/kategoriak/brikett.jpg', alt: 'Brikett termékkategória, izzó brikettet ábrázoló kép', href: '/termekek/kemenyfa-brikett', label: 'Keményfa brikett', sublabel: 'I.osztály - kiváló minőség' },
-      ]}
-    image={{ src: '~/assets/images/elvira-tuzep-hero.png', alt: 'Elvira Tüzép Hero képe. Egy árny, aki egy pajzsot tart ET felirattal, mely az Elvira Tüzepet rövidíti.' }}
   >
     <Fragment slot="title">
-      <span class="text-orange-600 text-5xl md:text-6xl">Elvira Tüzép</span><br />
-      <span class="text-2xl md:text-3xl">Építőanyag és tüzelőanyag egy helyen</span>
+      <h1 class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4">
+        Nagynyomáson Kezelt Borovifa
+      </h1>
+      <p class="text-xl md:text-2xl text-muted mb-4">Tartós · Biztonságos · Költséghatékony</p>
+    </Fragment>
+    <Fragment slot="subtitle">
+      <span class="font-semibold text-primary-600 dark:text-primary-400">B2B faanyag megoldások</span> Közép-Európában.
+      <br />
+      <span class="text-base">Tanalith-kezelt • UC4 minősítés • Gyermekbarát • 15-25 év élettartam</span>
     </Fragment>
 
-    <Fragment slot="subtitle">
-      Építkezel vagy fűtenél? Minőségi <strong>faanyagok</strong> és <strong>keményfa brikett</strong> Érden, közvetlenül a tüzéptől.
+    <Fragment slot="image">
+      <div class="relative w-full">
+        <div class="aspect-video rounded-2xl bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20 flex items-center justify-center overflow-hidden shadow-2xl">
+          <div class="text-center p-8">
+            <svg class="w-32 h-32 mx-auto mb-4 text-primary-600 dark:text-primary-400 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <p class="text-lg font-medium text-gray-600 dark:text-gray-400">Telített Borovi Cölöp</p>
+            <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">UC4 minősítés • Tanalith kezelés</p>
+          </div>
+        </div>
+        
+        <div class="absolute -top-4 -left-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-pulse">
+          ✓ Gyermekbarát
+        </div>
+        <div class="absolute -bottom-4 -right-4 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+          🌱 Környezetbarát
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
     </Fragment>
   </Hero>
+ <!-- TRUST SIGNALS - Stats Widget -->
+  <Stats
+    id="trust-signals"
+    stats={[
+      {
+        amount: '15+',
+        title: 'év tapasztalat faanyag kereskedésben',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        amount: '500+',
+        title: 'B2B partner Közép-Európában',
+        icon: 'tabler:users-group',
+      },
+      {
+        amount: '48h',
+        title: 'gyors kiszállítás Pest megyébe',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        amount: '15-25',
+        title: 'év garantált élettartam UC4 minősítéssel',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </Stats>
 
-  <!-- Note Widget ******************* -->
-
-  <Note title="Filozófiánk:" description="Minőség, megbízhatóság és a fa iránti tisztelet vezérel." />
-
-<!--   <CategoryGrid categories={productsData} /> -->
-
-<MainCategoryGrid categories={productsData} client:visible productListing={false} mainPage={true}/>
-
-  <Note2   
-    action={{
-    variant: 'primary',
-    text: 'Gigawood.hu',
-    href: 'https://gigawood.hu',
-    target: '_blank',
-    icon: 'tabler:shopping-cart',
-  }}
-    title="Játszótornyaink és kertészeti fa termékeink:" 
-    description="" 
-  />
-
-  <SpecialOffers discounted={discounted}/>
-  
-  <CallToAction>
+  <!-- USE CASES - H2, 8 használati terület -->
+  <Features2
+    id="use-cases"
+    columns={2}
+    items={[
+      {
+        title: 'Faültetés Tartó Cölöpök',
+        description: 'Fiatal fák védelmére és támasztására. A telített cölöpök akár 25 évig tartanak talajkontaktusban, nem rothadnak, és stabilan tartják a növekvő fákat.',
+        icon: 'tabler:tree',
+        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Tudj meg többet',
+          href: '/felhasznalasok/faultetes',
+        },
+      },
+      {
+        title: 'Gyermek Játszóterek',
+        description: 'A Tanalith nehézfém-mentes kezelés gyermekbarát - nincs króm, nincs arzén. Mászókák, hinták, homokozó keretek biztonságosan készíthetők telített boroviból.',
+        icon: 'tabler:users',
+        image: 'https://images.unsplash.com/photo-1587616211892-d7a3c0f5f5e8?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Gyermekbarát részletek',
+          href: '/tanalith-gyermekbarat',
+        },
+      },
+      {
+        title: 'Kerítésépítés és Oszlopok',
+        description: 'Kerítésoszlopok, kapuoszlopok, kerítés tartószerkezetek. Könnyebb megmunkálni, mint keményfa, így gyorsabb a szerelés és alacsonyabb a munkaerőköltség.',
+        icon: 'tabler:fence',
+        image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Kerítés projektek',
+          href: '/felhasznalasok/kerites',
+        },
+      },
+      {
+        title: 'Kerti Építmények',
+        description: 'Pergolák, lugasok, kerti pihenők, teraszok tartószerkezete. A telített fa ellenáll az időjárásnak és UV sugárzásnak, festhető, gyönyörűen öregszik.',
+        icon: 'tabler:home-eco',
+        image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Kerti ötletek',
+          href: '/felhasznalasok/kerti-epitmenyek',
+        },
+      },
+      /* {
+        title: 'Teraszok és Járdák',
+        description: 'Teraszléc, járdalap, padozat. A telített fa tartós, csúszásmentes felületet biztosít. UC4 minősítéssel talajközeli használatra is alkalmas.',
+        icon: 'tabler:building',
+        image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Terasz megoldások',
+          href: '/felhasznalasok/terasz',
+        },
+      },
+      {
+        title: 'Támfalak és Talajmegőrző',
+        description: 'Talpgerenda, cölöpsor, támfal építés. Talajkontaktusban is tartós védelem, lejtős terepen ideális megoldás. Stabil, hosszú élettartamú.',
+        icon: 'tabler:wall',
+        image: 'https://images.unsplash.com/photo-1585914924626-e32a4f455de9?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Támfal projektek',
+          href: '/felhasznalasok/tamfal',
+        },
+      }, */
+      {
+        title: 'Közterületi Projektek',
+        description: 'Önkormányzati parkosítás, közterek, sétányok. EN 71-3 gyermekbarát tanúsítvány, hosszú élettartam, minimális karbantartás. Ideális közösségi terekhez.',
+        icon: 'tabler:building-community',
+        image: 'https://images.unsplash.com/photo-1573204464719-6bbfb61da1ea?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Közterületi referenciák',
+          href: '/felhasznalasok/kozterulet',
+        },
+      },
+      {
+        title: 'Mezőgazdasági Létesítmények',
+        description: 'Istálló, fészer, kerítés, kapualj. Tartós védelem állatokkal és időjárással szemben. UC4 minősítés, rézmentes - nem káros az állatokra.',
+        icon: 'tabler:tractor',
+        image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Mezőgazdasági megoldások',
+          href: '/felhasznalasok/mezogazdasag',
+        },
+      },
+    ]}
+  >
     <Fragment slot="title">
-      Minőség, amit faanyagban is biztosítunk
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Mire Használható a Telített Borovifa?</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Faültetéstől játszóterig, közterektől mezőgazdaságig - biztonságos, tartós megoldások minden kültéri alkalmazáshoz
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- INTERACTIVE COMPARISON - H2, Bar-ok egymás mellett -->
+  <InteractiveComparison
+    id="interactive-comparison"
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Hasonlítsd Össze Magad!</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Keményfa vs Telített • Mártott vs Telített - Látványos összehasonlítás számokkal
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </InteractiveComparison>
+
+  <!-- CERTIFICATES & QUALITY - H2, Tanúsítványok -->
+  <Features
+    id="certificates"
+    columns={4}
+    items={[
+      {
+        title: 'UC4 Minősítés',
+        description: 'Talajkontaktusban is használható. A legmagasabb tartóssági osztály kültéri fa termékekhez.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'EN 71-3 Szabvány',
+        description: 'Játékbiztonsági megfelelés. Gyermekekkel érintkező környezetben is biztonságos.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'FSC Tanúsítvány',
+        description: 'Felelős erdőgazdálkodás. Fenntartható forrásokból származó fa alapanyag.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Tanalith Jóváhagyás',
+        description: 'Hivatalos gyártói engedély. Garantált minőségű védőszer kezelés.',
+        icon: 'tabler:rosette-discount-check',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Tanúsítványok és Minőség</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Minden termékeink megfelelnek a legmagasabb európai szabványoknak
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </Features>
+
+  <!-- CUSTOMER TESTIMONIALS - H2 -->
+  <Testimonials
+    id="testimonials"
+    testimonials={[
+      {
+        name: 'Kovács János',
+        job: 'Építési Vállalkozó',
+        company: 'ÉpítőMester Kft',
+        testimonial: 'Több mint 50 kerítésprojektnél használtuk már a Gigawood telített boroviját. A megbízhatóság és tartósság kiváló, az ügyfelek elégedettek. A szállítás mindig pontosan érkezik.',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+        rating: 5,
+      },
+      {
+        name: 'Nagy Erzsébet',
+        job: 'Faanyag Kereskedő',
+        company: 'FaÁruház Bt',
+        testimonial: 'Partnereink számára a gyermekbarát Tanalith kezelés óriási előny. Játszótér projektekben kizárólag ezt ajánljuk, mert tudjuk, hogy biztonságos és hosszú élettartamú.',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces',
+        rating: 5,
+      },
+      {
+        name: 'Szabó Péter',
+        job: 'Kertészeti Szakember',
+        company: 'ZöldKert Mesterek',
+        testimonial: 'Faültetéshez kizárólag ezeket a cölöpöket használjuk. Talajba ásva sem rohadnak el évekig, stabil tartást adnak. Az ár-érték arány verhetetlen a keményfához képest.',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=faces',
+        rating: 5,
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Mit Mondanak Partnereink?</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      B2B építők és kereskedők valódi tapasztalatai
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </Testimonials>
+
+  <!-- SZÁLLÍTÁSI INFORMÁCIÓK - H2 -->
+  <ContentSticky
+    id="shipping"
+    isReversed
+    items={[
+      {
+        title: 'Gyors Kiszállítás',
+        description: '24-48 órán belül kiszállítjuk a megrendelést Pest megyébe. Országos szállítás 3-5 munkanapon belül.',
+        icon: 'tabler:clock-hour-4',
+      },
+      {
+        title: 'Központi Raktár',
+        description: 'Érd központi telephelyünkről szolgáljuk ki az Érd, Diósd, Tárnok, Budapest és környéki ügyfeleket.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Raklapos Szállítás',
+        description: 'B2B mennyiségben raklapos kiszállítás kedvező áron. Nagyobb tételek esetén egyedi árajánlat.',
+        icon: 'tabler:packages',
+      },
+      {
+        title: 'Közép-Európai Lefedettség',
+        description: 'Magyarország, Románia, Horvátország, Szlovákia területén szállítunk. Hosszú távú partnerkapcsolatok.',
+        icon: 'tabler:world',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h2 class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl mb-4">
+        Szállítási Információk
+      </h2>
+      <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+        Gyors és Megbízható Kiszállítás Közép-Európában
+      </h3>
+      <p class="text-lg mb-4">
+        <strong>Központi raktárunk Érden</strong> található, ahonnan 24-48 órán belül szállítunk Pest megyébe 
+        és 3-5 munkanapon belül országszerte. B2B partnereinknek <strong>raklapos mennyiségben</strong> 
+        kedvező áron biztosítjuk a szállítást.
+      </p>
+      <p class="text-base text-muted mb-6">
+        Szállítási területünk: <strong>Érd, Diósd, Tárnok, Budapest és agglomeráció, Pest megye, 
+        valamint Magyarország, Románia, Horvátország és Szlovákia</strong> területén.
+      </p>
+      
+      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-blue-900 dark:text-blue-100 mb-2">
+              📞 Egyedi Árajánlat Nagyobb Tételekre
+            </h4>
+            <p class="text-sm text-blue-800 dark:text-blue-200">
+              500.000 Ft feletti megrendelés esetén ingyenes szállítást biztosítunk Pest megyén belül. 
+              Egyedi igényekre (speciális méretek, nagyobb mennyiségek) kérjen árajánlatot telefonon vagy emailben!
+            </p>
+          </div>
+        </div>
+      </div>
     </Fragment>
 
+    <Fragment slot="image">
+      <img
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop"
+        alt="Raklapos szállítás"
+        class="rounded-2xl shadow-2xl"
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </ContentSticky>
+
+  <!-- JÁTSZÓTÉR - Sticky Image Content -->
+  <ContentSticky
+    id="playground"
+    title="Biztonságos Játszóterek Gyermekeknek"
+    subtitle="Tanalith gyermekbarát kezelés - EN 71-3 szabványnak megfelelő"
+    items={[
+      {
+        title: 'Nehézfém-Mentes Formula',
+        description: 'Nincs króm, nincs arzén, nincs réz. A Tanalith vízbázisú, környezetbarát védőszer, amely biztonságos gyermekek számára.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'EN 71-3 Játékbiztonsági Szabvány',
+        description: 'A telített borovifa megfelel az EU játékbiztonsági szabványnak, így köztereken, óvodákban, iskolákban is használható.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: '15-25 Év Tartósság',
+        description: 'UC4 minősítéssel akár talajkontaktusban is. Mászókák, hinták, homokozó keretek hosszú élettartama garantált.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Nem Korrodál, Nem Repedt',
+        description: 'Rézmentes kezelés - nem korrodálja a fém kötőelemeket. Simább felület, kevesebb szálka, biztonságosabb gyermekeknek.',
+        icon: 'tabler:heart',
+      },
+    ]}
+  >
+
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Biztonságos Játszóterek Gyermekeknek</h2>
+    </Fragment>
+    <Fragment slot="image">
+      <img
+        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=800&fit=crop"
+        alt="Gyermekek játszótéren"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </ContentSticky>
+
+  <!-- FAÜLTETÉS - Sticky Image Content (másik irányba) -->
+  <ContentSticky
+    id="tree-planting"
+    isReversed
+    title="Faültetés Tartó Cölöpök"
+    subtitle="Fiatal fák stabilitása évtizedekre"
+    items={[
+      {
+        title: 'Talajkontaktusban Tartós',
+        description: 'UC4 minősítéssel akár 25 évig is ellenáll a talaj nedvességének, gombáknak és rovaroknak.',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Könnyű Beépítés',
+        description: 'Hegyezett vég - könnyen leszúrható a földbe. Körmart forma - stabil tartás fiatal fáknak.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Költséghatékony Megoldás',
+        description: '40-60%-kal olcsóbb, mint keményfa cölöpök. Raklapos mennyiségben B2B áron elérhető.',
+        icon: 'tabler:currency-dollar',
+      },
+      {
+        title: 'Fenntartható Választás',
+        description: 'Borovi fenyő gyorsan növő fafaj. Újraültethető erdőkből származik, környezettudatos választás.',
+        icon: 'tabler:leaf',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Faültetés Tartó Cölöpök</h2>
+    </Fragment>
+    <Fragment slot="image">
+      <img
+        src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&h=800&fit=crop"
+        alt="Fiatal fa ültetve támasztékkal"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </ContentSticky>
+
+  <!-- TANALITH - Regular Content -->
+  <ContentSticky
+    id="tanalith"
+    title="Miért a Tanalith Kezelés?"
+    subtitle="Nehézfém-mentes, gyermekbarát, környezetbarát védelem"
+    items={[
+      {
+        title: 'Gyermekbarát és Biztonságos',
+        description: 'Nincs króm, nincs arzén. EN 71-3 szabványnak megfelelő, játszóterekhez is ajánlott.',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'Környezetbarát Technológia',
+        description: 'Vízbázisú kezelés, alacsony VOC-kibocsátás. Európai szabványok szerint engedélyezett.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Nem Korrodálja a Fémet',
+        description: 'Rézmentes formula - tűzihorganyzott csavarok és bilincsek hosszú élettartama garantált.',
+        icon: 'tabler:bolt-off',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Miért a Tanalith Kezelés?</h2>
+    </Fragment>
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-4">
+        Nehézfém-Mentes Védelem
+      </h3>
+      <p class="text-lg mb-4">
+        A <strong>Tanalith</strong> modern, vízbázisú faanyagvédő szer, amely <span class="text-primary-600 dark:text-primary-400 font-semibold">mélyen behatol a fa szerkezetébe</span> 
+        nyomás alatti telítési eljárással. Hosszú távon védi a fát gombák, rovarok, penész és korhadás ellen.
+      </p>
+      <p class="text-base text-muted mb-6">
+        Ellentétben a régebbi, réztartalmú kezelésekkel, a Tanalith <strong>nem tartalmaz nehézfémeket</strong>, 
+        ezért biztonságos gyermekek és háziállatok számára is.
+      </p>
+      
+      <div class="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-6 border border-emerald-200 dark:border-emerald-800">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <svg class="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-emerald-900 dark:text-emerald-100 mb-2">
+              🎓 EN 71-3 Szabványnak Megfelelő
+            </h4>
+            <p class="text-sm text-emerald-800 dark:text-emerald-200">
+              A Tanalith-kezelt fa megfelel az EN 71-3 játékbiztonsági szabványnak, 
+              így biztonságosan használható játszótereken, homokozókban és gyermekekkel érintkező környezetben.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <img
+        src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=600&fit=crop"
+        alt="Tanalith kezelés"
+        class="rounded-2xl shadow-2xl"
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </ContentSticky>
+
+  <!-- BOROVI FENYŐ -->
+  <ContentSticky
+    id="scots-pine"
+    isReversed
+    title="Miért Borovi Fenyő?"
+    subtitle="A sejtszerkezet teszi lehetővé a mély telítést"
+    items={[
+      {
+        title: 'Ideális Sejtszerkezet',
+        description: 'A borovi fenyő sejtszerkezete jól átjárható, ezért a védőszer mélyen behatol.',
+        icon: 'tabler:microscope',
+      },
+      {
+        title: 'Jobb, Mint Más Fenyők',
+        description: 'Luc vagy erdei fenyő nem ad hasonló minőséget - a borovi a biológiai felépítése miatt ideális.',
+        icon: 'tabler:trees',
+      },
+      {
+        title: 'Fenntartható Erdőgazdálkodás',
+        description: 'Gyorsan növő fafaj, újraültethető erdőkből. Környezettudatos választás.',
+        icon: 'tabler:recycle',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Miért Borovi Fenyő?</h2>
+    </Fragment>
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-4">
+        Nem Minden Fenyő Alkalmas Telítésre
+      </h3>
+      <p class="text-lg mb-4">
+        A <strong>borovi fenyő (Pinus sylvestris)</strong> egyedi sejtszerkezete teszi lehetővé, 
+        hogy a Tanalith védőszer a fa teljes keresztmetszetébe bejusson - nem csak a felszínen képezzen védelmet.
+      </p>
+      <p class="text-base text-muted">
+        Ez a mély védelem biztosítja a 15-25 éves élettartamot még talajkontaktusban is, 
+        ahol a fa folyamatosan nedvességnek, gombáknak és rovaroknak van kitéve.
+      </p>
+    </Fragment>
+
+    <Fragment slot="image">
+      <img
+        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+        alt="Borovi fenyőerdő"
+        class="rounded-2xl shadow-2xl"
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </ContentSticky>
+
+  <!-- PROCESS STEPS -->
+  <Steps
+    id="process"
+    items={[
+      {
+        title: 'Előkészítés',
+        description: 'A borovi fenyőfa beszállítása és szárítása optimális nedvességtartalomra.',
+        icon: 'tabler:wood',
+      },
+      {
+        title: 'Vákuum Fázis',
+        description: 'A fát speciális tartályba helyezik, ahol vákuummal eltávolítják a levegőt a sejtekből.',
+        icon: 'tabler:vacuum-cleaner',
+      },
+      {
+        title: 'Nyomásos Telítés',
+        description: 'Tanalith védőszert nagy nyomással préselnek a fa belsejébe, amely mélyen behatol a rostokba.',
+        icon: 'tabler:arrows-down',
+      },
+      {
+        title: 'Rögzítés és Szárítás',
+        description: 'A védőszer rögzül a fa szerkezetében, majd kontrollált szárítás következik.',
+        icon: 'tabler:sun',
+      },
+      {
+        title: 'Minőségellenőrzés',
+        description: 'UC4 minősítés ellenőrzése, méretellenőrzés, majd szállításra kész állapot.',
+        icon: 'tabler:certificate',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=800',
+      alt: 'Telítési eljárás folyamata',
+    }}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Hogyan Készül a Telített Borovifa?</h2>
+    </Fragment>
     <Fragment slot="subtitle">
-      Az Elvira Tüzép gondosan válogatott hazai és nemzetközi beszállítóktól szerzi be fa- és tüzelőanyagait, hogy minden feladathoz megbízható alapanyagot kínáljon.
+      A vákuum-nyomásos telítési eljárás lépései
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </Steps>
+
+  <!-- FAQS -->
+  <FAQs
+    id="faqs"
+    title="Gyakran Ismételt Kérdések"
+    subtitle="Minden, amit tudnod kell a telített borovifáról"
+    columns={2}
+    items={[
+      {
+        title: 'Milyen hosszú az élettartama?',
+        description: '15-25 év talajkontaktusban is, megfelelő beépítés és minimális karbantartás mellett. A védőszer mélyen behatol a rostokba.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Biztonságos gyermekek számára?',
+        description: 'Igen! A Tanalith kezelés nehézfém-mentes (nincs króm, arzén), EN 71-3 szabványnak megfelelő. Játszóterekhez is ajánlott.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Mennyivel olcsóbb a keményfánál?',
+        description: '40-60%-kal kedvezőbb kezdő beruházási költség. A teljes életciklus költség is alacsonyabb a keményfánál.',
+        icon: 'tabler:currency-dollar',
+      },
+      {
+        title: 'Szükséges-e karbantartás?',
+        description: 'Minimális. Esztétikai frissítéshez időszakos fedőfesték ajánlott. Vágott éleket impregnáló javítóanyaggal kell kezelni.',
+        icon: 'tabler:settings',
+      },
+      {
+        title: 'Milyen méretekben elérhető?',
+        description: 'Átmérő: 6-12 cm, hossz: 2,5-4 m. Körmart, hegyezett vég. Raklapos mennyiségben B2B partnereknek.',
+        icon: 'tabler:ruler',
+      },
+      {
+        title: 'Miben különbözik a mártott fától?',
+        description: 'A telített fa mély védelmet nyújt (15-25 év), míg a mártott csak felületi (2-5 év). Hosszú távon a telített fa gazdaságosabb.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Korrodálja a fém kötőelemeket?',
+        description: 'Nem! A Tanalith rézmentes, így nem korrodálja a tűzihorganyzott csavarokat és bilincseket.',
+        icon: 'tabler:bolt',
+      },
+      {
+        title: 'Milyen területekre szállítotok?',
+        description: 'Magyarország, Románia, Horvátország, Szlovákia. B2B raklapos mennyiségben kedvező szállítási feltételekkel.',
+        icon: 'tabler:truck-delivery',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </FAQs>
+
+  <!-- CALL TO ACTION -->
+  <CallToAction
+    id="cta"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Árajánlat kérése',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Termékek böngészése',
+        href: '/telitett-fa',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Készen állsz az első megrendelésre?</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Kérj árajánlatot raklapos mennyiségre telített borovi termékekre
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
     </Fragment>
   </CallToAction>
-
-  <!-- Features Widget *************** -->
-
-  <Features
-  id="features"
-  tagline="Előnyeink"
-  title="Amit az Elvira Tüzép kínál"
-  subtitle="Több mint építőanyag – megbízható partner vagyunk a kivitelezés és fűtés terén, magánszemélyeknek és cégeknek egyaránt."
-  items={[
-    {
-      title: 'Fa megmunkálási szolgáltatások',
-      description:
-        'Precíz méretre vágás, gépi csiszolás és időtálló festés – elvégezzük Ön helyett a fa előkészítését, hogy csak az építkezésre kelljen koncentrálnia.',
-      icon: 'tabler:tools',
-    },
-    {
-      title: 'Szakértelem és tanácsadás',
-      description:
-        'Segítünk választani az igényeidnek megfelelő faanyag vagy tüzelőanyag közül – tapasztalattal, nem sablonokkal.',
-      icon: 'tabler:messages',
-    },
-    {
-      title: 'Széles termékválaszték',
-      description:
-        'BSH, KVH, brikett, tűzifa, fűrészáru – minden egy helyen, folyamatos készlettel, minőségre válogatva.',
-      icon: 'tabler:building-warehouse',
-    },
-
-    {
-      title: 'Minden egy kézből',
-      description:
-        'Alapanyag + megmunkálás + kiszállítás – nem kell több helyről rendelni. Egyszerűbb, gyorsabb, átláthatóbb.',
-      icon: 'tabler:box-multiple',
-    },
-    {
-      title: 'Versenyképes árak',
-      description:
-        'Árainkat mindig a piaci realitásokhoz igazítjuk, így korrekt és hosszú távon is fenntartható együttműködést kínálunk.',
-      icon: 'tabler:coin',
-    },
-    {
-      title: 'Gyors ajánlatadás',
-      description:
-        'Nincs napokig tartó várakozás – kérj ajánlatot, és 2 munkanapon belül visszajelzünk. Így időben tudsz tervezni.',
-      icon: 'tabler:clock',
-    }
-  ]}
-/>
-<CallToAction
-  actions={[
-    {
-      variant: 'primary',
-      text: 'Szolgáltatásaink',
-      href: '/szolgaltatasok',
-      icon: 'tabler:tool',
-    },
-  ]}
->
-  <Fragment slot="title">
-    Teljes körű faanyag előkészítés
-  </Fragment>
-
-  <Fragment slot="subtitle">
-    Rohanó világunkban nem biztos, hogy van ideje a faanyag előkészítésére – <strong>vágásra, csiszolásra vagy festésre</strong>.  
-    Mi levesszük a terhet a válláról: <strong>szakértelemmel, precizitással és korszerű gépekkel dolgozunk,</strong>  
-    hogy Ön már csak az építkezésre koncentrálhasson.
-
-  </Fragment>
-</CallToAction>
-
-
-  <Steps 
-  title="Teljes vásárlási élmény a faanyag kiválasztásától a házhozszállításig"
-  items={[
-    {
-      title: '1. lépés: <span class="font-medium">Termék kiválasztás</span>',
-      description:
-        'Válassza ki a kívánt faterméket kínálatunkból – pallók, deszkák, gerendák vagy lambériák. Segítünk a megfelelő méret és típus kiválasztásában is.',
-      icon: 'tabler:layers-subtract',
-    },
-    {
-      title: '2. lépés: <span class="font-medium">Szolgáltatás kiválasztása</span>',
-      description:
-        'Kérjen vágást, csiszolást vagy festést – akár mindhármat. Mi pontosan az Ön igényei szerint készítjük elő az anyagot.',
-      icon: 'tabler:tools',
-    },
-    {
-      title: '3. lépés: <span class="font-medium">Gyors és szakszerű kivitelezés</span>',
-      description:
-        'Modern gépekkel és tapasztalt kollégákkal rövid határidő alatt elvégezzük a faanyag előkészítését. Minőség, amire számíthat.',
-      icon: 'tabler:tools-kitchen-2',
-    },
-    {
-      title: '4. lépés: <span class="font-medium">Igény esetén házhozszállítás</span>',
-      description:
-        'Nem tudja elhozni? Kérésre segítünk a kiszállításban is, így Önnek csak a beépítésre kell koncentrálnia.',
-      icon: 'tabler:truck',
-    },
-    {
-      title: 'Elégedett vevőként építkezhet tovább!',
-      description: 'Készen kapott faanyag, előkészítve, kiszállítva – ahogy Ön szeretné.',
-      icon: 'tabler:check',
-    },
-  ]}
-  image={{
-    src: '/time_is_money.avif',
-    alt: 'Az idő pénz – Elvira Tüzép',
-  }}
-/>
-
-
-
-<CallToAction
-  actions={[
-    {
-      variant: 'primary',
-      text: 'Faanyag kínálatunk',
-      href: '/termekek',
-      target: '_blank',
-      icon: 'tabler:shopping-cart',
-    },
-  ]}
->
-  <Fragment slot="title">
-    Elvira&nbsp;Tüzép – minőségi faanyag Érden
-  </Fragment>
-
-  <Fragment slot="subtitle">
-     Építkezéshez, felújításhoz vagy hatékony fűtéshez keres megbízható forrást? Az Elvira Tüzép Érden kiváló minőségű <strong>faanyagot</strong> és <strong>tüzelőanyagot</strong> kínál lakossági és kivitelező partnereinek.
-
-    <br /><br />
-
-    Az Elvira Tüzép Érden kínál <strong>szárított fűrészárut</strong>, <strong>gyalult faanyagot</strong>,
-    <strong>BSH és KVH ragasztott gerendát</strong>, valamint <strong>keményfa brikettet</strong> az építkezők és fűtőanyag-vásárlók számára. A termékek jelentős része elérhető készletről, a speciális szerkezeti faanyagokat pedig rövid <strong>beszerzési határidővel</strong> biztosítjuk. 
-    Nálunk megbízható forrásból szerezheti be, amire szüksége van – <strong>faanyag Érden</strong>, közvetlenül a tüzéptől.
-  </Fragment>
-</CallToAction>
-
-<!-- <MapWidget /> -->
-
-<BlogLatestPosts
-  title="Böngéssz az Elvira Tüzép infótárában"
-  information={`Cikkeink és tudástárunk segítenek eligazodni az építő- és tüzelőanyagok világában.
-  Legyen szó BSH gerendákról, brikettekről vagy gyalult fenyőről – mindenről közérthető útmutatót és hasznos tanácsokat kínálunk.
-  Olvasd el legújabb bejegyzéseinket, és hozd meg a legjobb döntést vásárlás előtt.`}
-/>
-
-<FAQs
-  title="Építőfa – Gyakran Ismételt Kérdések"
-  subtitle="Ismerd meg a fűrészelt és a műszárított, gyalult építőfa közötti különbségeket, és tudd meg, melyik a legjobb választás a tetőszerkezethez vagy más építési feladathoz."
-  tagline="Építőfa FAQ"
-  classes={{ container: 'max-w-6xl' }}
-  items={[
-    {
-      title: 'Mi a különbség a fűrészelt és a műszárított, gyalult építőfa között?',
-      description:
-        'A fűrészelt építőfa érdes felületű, légszáraz vagy friss állapotban kerül forgalomba, és kedvezőbb árú. A műszárított, gyalult faanyag ezzel szemben kamrában szárított, sima felületű és mérettartó, így tartósabb és esztétikusabb szerkezetekhez ajánlott.',
-    },
-    {
-      title: 'Mekkora nedvességtartalommal kapható az építőfa?',
-      description:
-        'A fűrészelt építőfa általában 15–20%-os légszáraz nedvességtartalommal bír, frissen fűrészelve pedig akár 30% fölött is lehet. A műszárított, gyalult faanyag viszont 10–14%-ra szárított, ezért kevésbé vetemedik és jobban tartja a méretét.',
-    },
-    {
-      title: 'Melyik építőfa a legjobb tetőszerkezethez?',
-      description:
-        'Tetőszerkezethez és tartós szerkezeti elemekhez a műszárított, gyalult építőfa a legjobb választás, mert stabil és hosszú élettartamú. Ideiglenes szerkezetekhez, zsaluzathoz a kedvező árú fűrészelt fa is elegendő lehet.',
-    },
-    {
-      title: 'Melyik építőfa a kedvezőbb árban?',
-      description:
-        'A fűrészelt építőfa a legolcsóbb megoldás, mivel nem esik át ipari szárításon és gyaluláson. A műszárított, gyalult faanyag prémium minőséget képvisel, ezért magasabb árkategóriába tartozik, de hosszabb távon jobban megéri.',
-    },
-    {
-      title: 'Mi a különbség a deszka és a palló között?',
-      description:
-        'A deszka jellemzően 2–3 cm vastag, sokoldalúan használható burkolatokhoz és zsaluzathoz. A palló vastagabb (4 cm felett, gyakran 5 cm), nagyobb teherbírású, ezért padlók, födémek és tetővázak készítésénél alkalmazzák.',
-    },
-    {
-      title: 'Miért fontos a C24 minősítés a szerkezeti fenyőnél?',
-      description:
-        'A C24 szilárdsági osztály garantálja, hogy a faanyag válogatott, mérettartó és biztonságosan méretezhető teherhordó szerkezetekhez. Tetőkhöz, födémekhez érdemes ilyen minősítést választani a hosszú távú stabilitás érdekében. A C24 felett prémium megoldást kínálnak a BSH rétegragasztott gerendák, amelyek kiemelkedő teherbírást és mérettartást biztosítanak nagy fesztávú vagy látszó szerkezeteknél.',
-    },
-    {
-      title: 'Mire használják a lambériát és a hajópadlót?',
-      description:
-        'A lambéria vékonyabb burkolat falakra és mennyezetre (beltér: 12,5–14 mm; kültér: 14–19 mm). A hajópadló vastagabb (15–28 mm), önhordó járófelület, padlókhoz, teraszokhoz és védett külső burkolatokhoz ajánlott.',
-    },
-    {
-      title: 'Mi az a rönkház profil és mire használják?',
-      description:
-        'A rönkház profil (faház építő profil) félköríves vagy zsindelyprofilú burkolóelem. Vastagabb (19–24 mm), rusztikus megjelenést ad, és homlokzatok, melléképületek, kerítések vagy beltéri falak burkolására használják. A 24 mm-es változat erősebb és jobb hőszigetelést is ad.',
-    },
-  ]}
-/>
-
 
 </Layout>
