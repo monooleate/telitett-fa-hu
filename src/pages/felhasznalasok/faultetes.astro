@@ -1,188 +1,289 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Faültetés telített fával | Felhasználások',
+  title: 'Faültetés Telített Borovi Cölöppel | Stabil, Környezetbarát Megoldások',
   description:
-    'Önkormányzatoknak és kertépítőknek ideális telített fa megoldások: fasorok, parkok, közterek és nagy volumenű ültetések tartós, környezetbarát kivitelben.',
+    'Faültetéshez ideális telített borovi cölöpök önkormányzatoknak és kertépítőknek. Tartós, UC4 minősítésű támasztó megoldások nagy mennyiségben, gyors szállítással.',
+  canonical: 'https://elviratuzep.hu/felhasznalasok/faultetes',
+  openGraph: {
+    type: 'website',
+    title: 'Faültetés Telített Borovi Cölöppel | Telített Fa Felhasználások',
+    description: 'Közterületi faültetés, parkosítás, nagy volumenű telepítések tartós támasztó cölöpökkel.',
+    image: '',
+  },
 };
-
-const heroImage = {
-  src: 'https://placeholdr.net/1400x800?text=Telitett+fa+ultetes',
-  alt: 'Telített faültetés parkos környezetben',
-};
-
-const useCaseHighlights = [
-  {
-    title: 'Önkormányzati fasorok és közterek',
-    description:
-      'Közterületi ültetésekhez tervezett, hosszan tartó faanyag, amely ellenáll az időjárásnak és a folyamatos használatnak.',
-    image: 'https://placeholdr.net/900x700?text=Fasor+projektek',
-    callToAction: { text: 'Kérjen ajánlatot', href: '/kapcsolat' },
-  },
-  {
-    title: 'Kertépítők és nagy volumenű projektek',
-    description:
-      'Sorozatgyártott, pontosan méretezett faanyag nagy mennyiségekhez, gyors logisztikával és stabil minőséggel.',
-    image: 'https://placeholdr.net/900x700?text=Kertepito+projekt',
-    callToAction: { text: 'Logisztikai egyeztetés', href: '/kapcsolat' },
-  },
-  {
-    title: 'Környezetvédelmi és faültetési programok',
-    description:
-      'Tartós támasztékok, keretek és szerkezetek a hosszú távú zöldterület-fejlesztéshez és edukációs projektekhez.',
-    image: 'https://placeholdr.net/900x700?text=Zold+program',
-    callToAction: { text: 'Programtámogatás', href: '/kapcsolat' },
-  },
-];
-
-const faqs = [
-  {
-    title: 'Milyen időjárási körülmények között használható?',
-    description:
-      'A telített fa UC4 minősítése miatt folyamatos kültéri használatra alkalmas, erős csapadék és napsugárzás mellett is.',
-  },
-  {
-    title: 'Mitől környezetbarát a telített fa?',
-    description:
-      'A tartós faanyag ritkább cserét igényel, csökkenti a hulladékot, és fenntartható erdőgazdálkodásból származó alapanyagból készülhet.',
-  },
-  {
-    title: 'Hogyan történik a kiszállítás nagy projektekhez?',
-    description:
-      'Előre ütemezett szállítási ütemtervet biztosítunk, hogy a kivitelezés folyamatos és hatékony legyen.',
-  },
-];
 ---
 
 <Layout metadata={metadata}>
   <Hero
-    id="faultetes-hero"
-    title="Faültetés telített fával"
-    subtitle="Közterek, fasorok és parkok tartós, környezetbarát faanyagból – önkormányzatoknak és nagy projektek kivitelezőinek."
+    id="hero"
+    tagline="🌱 Faültetés, ami évtizedekre stabil marad"
+    title="Faültetés Telített Borovi Cölöppel"
     actions={[
       {
         variant: 'primary',
-        text: 'Árajánlat kérése',
+        text: 'Ajánlatkérés nagy tételben',
         href: '/kapcsolat',
         icon: 'tabler:mail',
       },
       {
         variant: 'secondary',
-        text: 'Megoldásaink',
-        href: '/szolgaltatasok',
-        icon: 'tabler:leaf',
+        text: 'Telített fa kínálat',
+        href: '/telitett-fa',
+        icon: 'tabler:trees',
       },
     ]}
-    image={heroImage}
-  />
+    image={{
+      src: '',
+      alt: 'Faültetéshez használt telített borovi cölöpök városi parkosításban',
+    }}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-4 text-lg text-gray-600 dark:text-gray-300">
+        <p>
+          Önkormányzatoknak és kertépítő csapatoknak, akik <strong>nagy mennyiségű fát ültetnek</strong>. A
+          telített borovi cölöp stabil tartást ad a frissen ültetett fáknak, védi a gyökérzónát, és
+          hosszú éveken át ellenáll a talajkontaktusnak.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800 dark:bg-green-900/40 dark:text-green-200">
+            🌿 Környezetbarát, tanúsított faanyag
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">
+            🛡️ UC4 minősítésű védelem
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">
+            🚛 Gyors szállítás nagy tételben is
+          </span>
+        </div>
+      </div>
+    </Fragment>
+  </Hero>
 
   <Stats
-    id="faultetes-stats"
+    id="benefits"
     stats={[
-      { amount: '15-25', title: 'év élettartam kültéren', icon: 'tabler:shield-check' },
-      { amount: '500+', title: 'partner Közép-Európában', icon: 'tabler:users-group' },
-      { amount: '48h', title: 'gyors kiszállítás Pest megyében', icon: 'tabler:truck-delivery' },
-      { amount: 'UC4', title: 'minősítés a tartósságért', icon: 'tabler:certificate' },
-    ]}
-  />
-
-  <Features
-    id="faultetes-elonyok"
-    title="Miért ideális telített faültetéshez?"
-    subtitle="Olyan faanyag, amely bírja a mindennapi terhelést, miközben esztétikus és környezetbarát marad."
-    columns={2}
-    items={[
       {
-        title: 'Hosszú távú védelem',
-        description: 'Kiemelkedő ellenállás gombák, nedvesség és UV-sugárzás ellen.',
+        amount: '15-25 év',
+        title: 'tartósság talajkontaktusban',
         icon: 'tabler:shield-check',
       },
       {
-        title: 'Gyors telepítés',
-        description: 'Egységes méretezés és gyors elérhetőség nagyszabású projektekhez.',
-        icon: 'tabler:bolt',
+        amount: 'UC4',
+        title: 'minősítés kültéri használatra',
+        icon: 'tabler:certificate',
       },
       {
-        title: 'Esztétikus megjelenés',
-        description: 'Természetes, rendezett látvány, amely illeszkedik városi és zöld környezetbe is.',
-        icon: 'tabler:palette',
+        amount: '1000+',
+        title: 'faültető cölöp készleten nagy projektekhez',
+        icon: 'tabler:trees',
       },
       {
-        title: 'Fenntartható választás',
-        description: 'Hosszabb élettartam, kevesebb csere, kisebb ökológiai lábnyom.',
-        icon: 'tabler:leaf',
+        amount: '48h',
+        title: 'kiemelt kiszállítás Pest megyébe',
+        icon: 'tabler:truck-delivery',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
+    </Fragment>
+  </Stats>
+
+  <Features2
+    id="audiences"
+    columns={2}
+    items={[
+      {
+        title: 'Önkormányzati parkosítás',
+        description:
+          'Utcafák, parkok, fasorok. A telített cölöpök biztosítják a friss telepítések stabilitását és a közterek esztétikáját.',
+        icon: 'tabler:building-community',
+        image: '',
+      },
+      {
+        title: 'Kertépítők és kivitelezők',
+        description:
+          'Gyors telepítés, megbízható rögzítés, kevesebb utómunka. Telített fa cölöpök a profi csapatoknak.',
+        icon: 'tabler:shovel',
+        image: '',
+      },
+      {
+        title: 'Zöld beruházások',
+        description:
+          'Környezetvédelmi programok, ültess fát kampányok. Fenntartható, FSC-eredetű faanyag.',
+        icon: 'tabler:leaf',
+        image: '',
+      },
+      {
+        title: 'Nagy volumenű telepítések',
+        description:
+          'Ipari parkok, lakóparkok, útmenti fasorok. Nagy tételben, egységes minőségben.',
+        icon: 'tabler:map-2',
+        image: '',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold">Kiknek ajánlott a telített faültető cölöp?</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Stabil, tartós és környezetbarát megoldás minden olyan projekthez, ahol a fák hosszú távú védelme a cél.
+    </Fragment>
+  </Features2>
 
   <Content
-    id="faultetes-megoldasok"
-    title="Ültess fát okosan, közösen a városi zöld jövőért"
-    subtitle="Közterületi faültetésekhez, parkokhoz és környezetvédelmi programokhoz is megbízható szerkezeteket biztosítunk."
-    content={`
-      <p class="mb-4">A telített fa kiválóan alkalmazható fasorok, parkok, közösségi kertek és oktatási zöldprojektek kivitelezésénél. Stabil támasztékot ad, miközben hosszú élettartama miatt ritkább cserére van szükség.</p>
-      <p>Dolgozunk önkormányzatokkal, kertépítő csapatokkal és környezetvédelmi szervezetekkel, hogy a faültetés ne csak látványos, hanem fenntartható is legyen.</p>
-    `}
+    id="solution"
+    title="Miért telített borovi cölöp a faültetéshez?"
+    subtitle="Erős támasz, hosszú élettartam, egységes minőség"
     items={[
-      { title: 'Parkok és pihenőterek', description: 'Tartós fa szerkezetek, padok és támasztékok.' },
-      { title: 'Fasorok és sétányok', description: 'Egységes, nagy mennyiségű faanyag ütemezett szállítással.' },
-      { title: 'Iskolai zöld programok', description: 'Biztonságos és természetbarát faültetési megoldások.' },
-      { title: 'Védelmi és keretező elemek', description: 'Ágyások, kerítések és támasztó rendszerek egy helyről.' },
+      {
+        title: 'Talajkontaktusra tervezve',
+        description: 'A UC4 minősítésű kezelés védi a fát a nedvességtől, gombásodástól és rovaroktól.',
+      },
+      {
+        title: 'Gyors és tiszta telepítés',
+        description: 'Egységes méretek, könnyű megmunkálhatóság – kevesebb hulladék, gyorsabb kivitelezés.',
+      },
+      {
+        title: 'Esztétikus és természetes',
+        description: 'A telített borovi fa szépen öregszik, illeszkedik városi és természetközeli környezetbe is.',
+      },
     ]}
     image={{
-      src: 'https://placeholdr.net/1000x1000?text=Kozteri+faultetes',
-      alt: 'Közterületi faültetés telített fa támasztékokkal',
+      src: '',
+      alt: 'Frissen ültetett fák telített cölöpökkel rögzítve',
+    }}
+  >
+    <Fragment slot="content">
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        A telített borovi fa cölöpök egyszerre biztosítják a friss telepítések stabilitását és a hosszú távú
+        tartósságot. Ideális választás <strong>út menti fasorokhoz</strong>, parkosítási projektekhez és
+        bármilyen nagy volumenű faültetéshez.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Steps
+    id="process"
+    title="Faültetés a gyakorlatban"
+    subtitle="Egyszerű, mégis profi folyamat önkormányzatoknak és kertépítőknek"
+    items={[
+      {
+        title: 'Helyszíni felmérés',
+        description: 'Talajtípus, fa fajta és terhelés meghatározása a megfelelő cölöp mérethez.',
+        icon: 'tabler:map-search',
+      },
+      {
+        title: 'Cölöpök előkészítése',
+        description: 'Telített, hegyesre alakított cölöpök, egységes méretben nagy projektekhez.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Telepítés és rögzítés',
+        description: 'Gyors beütés, stabil támasztás, kötözés a törzs védelmével.',
+        icon: 'tabler:plant',
+      },
+      {
+        title: 'Hosszú távú védelem',
+        description: 'Időjárás- és talajálló védelem, minimális karbantartás.',
+        icon: 'tabler:shield-heart',
+      },
+    ]}
+    image={{
+      src: '',
+      alt: 'Faültetés folyamata telített cölöpökkel',
     }}
   />
 
-  <Features2
-    id="faultetes-tipikus-projektek"
-    title="Tipikus faültetési projektek"
-    subtitle="Inspiráló példák, amelyek megmutatják, hogyan épülnek tartós zöldterek telített faanyaggal."
-    columns={2}
-    items={useCaseHighlights}
-  />
-
-  <Steps
-    id="faultetes-folyamat"
-    title="Folyamat, amelyre számíthat"
-    subtitle="Átlátható lépések, hogy a telepítés mindig időben és költséghatékonyan történjen."
+  <Features
+    id="themes"
+    title="Inspiráció és kapcsolódó témakörök"
+    subtitle="Minden projekt, ahol a telített fa magabiztosan teljesít"
+    columns={3}
     items={[
-      { title: 'Felmérés és igények', description: 'Részletes projektigények és tervezett mennyiségek egyeztetése.' },
-      { title: 'Méretezés és ajánlat', description: 'Testreszabott specifikációk és átlátható árajánlat.' },
-      { title: 'Gyártás és előkészítés', description: 'Egységes minőség, ellenőrzött telítési folyamat.' },
-      { title: 'Szállítás és támogatás', description: 'Ütemezett logisztika és kivitelezési támogatás.' },
+      {
+        title: 'Fasorok és sétányok',
+        description: 'Közterületi sétányok, parkok, városi zöldfelületek stabil rögzítéssel.',
+        icon: 'tabler:road',
+      },
+      {
+        title: 'Vihar- és szélvédelem',
+        description: 'Fiatal fák védelme erős szélterhelésű környezetben.',
+        icon: 'tabler:wind',
+      },
+      {
+        title: 'Ültess fát programok',
+        description: 'Környezettudatos, közösségi faültetések fenntartható anyagból.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Árnyékot adó ligetek',
+        description: 'Közösségi terek, iskolák és parkok árnyékosítására.',
+        icon: 'tabler:sun',
+      },
+      {
+        title: 'Vízmegőrző zöldítések',
+        description: 'Közterületi vízmegtartó projektek fásítással kiegészítve.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: 'Lakóparkok és ipari parkok',
+        description: 'Esztétikus és tartós zöldsávok nagy területre optimalizálva.',
+        icon: 'tabler:building-factory-2',
+      },
     ]}
   />
 
-  <FAQs id="faultetes-gyik" title="Gyakori kérdések" subtitle="Minden, amit a telített faültetésről tudni érdemes." items={faqs} />
+  <FAQs
+    id="faq"
+    title="Gyakori kérdések faültetéshez"
+    subtitle="Segítünk a tervezésben és a beszerzésben"
+    items={[
+      {
+        title: 'Milyen méretű cölöpök érhetők el?',
+        description: 'Többféle átmérő és hossz áll rendelkezésre, a fa méretétől és a talajtól függően.',
+      },
+      {
+        title: 'Mekkora mennyiségtől rendelhető nagy tétel?',
+        description: 'Raklapos mennyiségtől kezdve szolgálunk ki projekteket – egyedi igény esetén kérjen ajánlatot.',
+      },
+      {
+        title: 'Miért előnyös a telített borovi fa?',
+        description: 'Hosszú élettartam, természetes megjelenés és környezetbarát kezelés jellemzi.',
+      },
+      {
+        title: 'Kapható-e helyszíni kiszállítás?',
+        description: 'Igen, gyors logisztikával szállítunk önkormányzati és kivitelezői projektekhez is.',
+      },
+    ]}
+  />
 
   <CallToAction
-    id="faultetes-cta"
-    title="Indítsuk el a következő faültetési projektet"
-    subtitle="Kérj ajánlatot, és tervezzünk együtt fenntartható zöldtereket!"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Kapcsolatfelvétel',
-        href: '/kapcsolat',
-        icon: 'tabler:mail',
-      },
-      {
-        variant: 'secondary',
-        text: 'Szolgáltatásaink',
-        href: '/szolgaltatasok',
-        icon: 'tabler:arrow-right',
-      },
-    ]}
-  />
+    id="cta"
+    title="Készen áll a következő faültetési projektre?"
+    subtitle="Ültess fát velünk – stabil támasz, tartós védelem, gyors beszerzés."
+    callToAction={{
+      text: 'Ajánlatkérés faültető cölöpökre',
+      href: '/kapcsolat',
+      icon: 'tabler:mail-forward',
+    }}
+    secondaryCallToAction={{
+      text: 'Telített fa termékek',
+      href: '/telitett-fa',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-to-r from-green-50 via-white to-amber-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

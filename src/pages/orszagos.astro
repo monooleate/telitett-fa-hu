@@ -1,0 +1,349 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Contact from '~/components/widgets/Contact.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'Országos szállítás raklapos tételben | Elvira Tüzép',
+  description:
+    'Országos, raklapos kiszállítás telített kertifára, brikettre és építőfára. Megrendeli, és harmadnapra ott a raklap.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Kérj ajánlatot',
+        href: '/kapcsolat',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        variant: 'secondary',
+        text: 'Termékeink',
+        href: '/termekek',
+        icon: 'tabler:shopping-cart',
+      },
+    ]}
+    heroSlides={[
+      {
+        image: '/kategoriak/telitett-kertifa.webp',
+        alt: 'Telített kertifa kültéri felhasználásra',
+        href: '/termekek/telitett-kertifa',
+        label: 'Telített kertifa',
+        sublabel: 'Időtálló kültéri megoldások',
+      },
+      {
+        image: '/kategoriak/brikett.jpg',
+        alt: 'Brikett raklapos kiszerelésben',
+        href: '/termekek/kemenyfa-brikett',
+        label: 'Keményfa brikett',
+        sublabel: 'Raklapos kiszerelésben',
+      },
+      {
+        image: '/termekek/bsh-gerenda-8x16.jpg',
+        alt: 'Szerkezeti faanyag építkezésekhez',
+        href: '/termekek/bsh-ragasztott-gerenda',
+        label: 'Szerkezeti faanyag',
+        sublabel: 'BSH és KVH minőség',
+      },
+    ]}
+    image={{ src: '/kategoriak/telitett-kertifa.webp', alt: 'Raklapos faanyag kiszállítás' }}
+  >
+    <Fragment slot="title">
+      <span class="text-orange-600 text-5xl md:text-6xl">Országos szállítás</span><br />
+      <span class="text-2xl md:text-3xl">Raklapos tételben, villámgyorsan</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Telített kertifa, brikett és szerkezeti faanyag – <strong>minden megoldható</strong>. Ne legyen álmának gátja a
+      beszerzés: <strong>megrendeli, és harmadnapra ott a raklap</strong>.
+    </Fragment>
+  </Hero>
+
+  <Content
+    tagline="A beszerzés most könnyű"
+    title="Kerítés, kert, játszótér – mi adjuk az alapanyagot"
+    subtitle="Építsen kerítést, rendezze a kertet, készítsen gyermekjátszóteret. Nyugtassa meg a szomszédokat és az asszonyt: a minőségi termékeket mi adjuk, országos kiszállítással."
+    content={`
+      <p>Raklapos logisztikánk miatt nagyobb projektekhez is biztonsággal tervezhet. A telített kertifa kültérre, a brikett fűtésre, a szerkezeti faanyag pedig tartós építkezéshez ideális.</p>
+      <p class="mt-4">A rendeléstől a kiszállításig végig fogjuk a kezed – gyors egyeztetés, átlátható szállítás és kiszámítható érkezés.</p>
+    `}
+    callToAction={{
+      variant: 'link',
+      text: 'Írj nekünk most',
+      href: '/kapcsolat',
+      icon: 'tabler:message-2',
+    }}
+    items={[
+      {
+        title: 'Országos lefedettség',
+        description: 'Raklapos kiszállítás az ország bármely pontjára, átlátható egyeztetéssel.',
+      },
+      {
+        title: 'Telített kertifa',
+        description: 'Kerítésoszlop, rúdfa, palló és deszka kültérre – tartós és kezelt.',
+      },
+      {
+        title: 'Tüzelőanyagok',
+        description: 'Keményfa brikett, kedvező raklapos kiszerelésben.',
+      },
+      {
+        title: 'Szerkezeti faanyag',
+        description: 'BSH, KVH, fűrészáru és egyedi méretek – építkezésre készen.',
+      },
+    ]}
+    image={{
+      src: '/termekek/bsh-gerenda-8x16.jpg',
+      alt: 'Raklapos szállításra előkészített faanyag',
+    }}
+  />
+
+  <Note
+    title="Nyugodt beszerzés, biztos érkezés"
+    description="A raklapos logisztikánk stabilitást ad a projektjeidhez – átlátható egyeztetés, pontos szállítás és megbízható minőség."
+  />
+
+  <Stats
+    tagline="Gyors, tiszta folyamat"
+    title="Számok, amik megnyugtatnak"
+    subtitle="A rendeléstől a szállításig minden lépés kiszámítható."
+    stats={[
+      { amount: '3', title: 'munkanap kiszállításig', icon: 'tabler:clock' },
+      { amount: '1', title: 'raklap = teljes tétel', icon: 'tabler:box' },
+      { amount: '100%', title: 'országos lefedettség', icon: 'tabler:map' },
+      { amount: '0', title: 'felesleges kör', icon: 'tabler:route' },
+    ]}
+  />
+
+  <Features
+    id="orszagos-szallitas-eloenyok"
+    tagline="Előnyök"
+    title="Miért éri meg velünk szállíttatni?"
+    subtitle="Modern logisztika, kiszámítható érkezés és tapasztalt csapat."
+    items={[
+      {
+        title: 'Raklapos biztonság',
+        description: 'Stabil csomagolás, rendezett áru, sérülésmentes átadás.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Precíz egyeztetés',
+        description: 'Minden szállítás előtt pontos időablakot egyeztetünk veled.',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        title: 'Teljes körű kínálat',
+        description: 'Kertifa, brikett, faanyag és szerkezeti elemek egy kézből.',
+        icon: 'tabler:stack-2',
+      },
+      {
+        title: 'Projektbarát mennyiségek',
+        description: 'Raktárról és rendelésre – nagyobb projektekhez is elegendő tétel.',
+        icon: 'tabler:building-warehouse',
+      },
+      {
+        title: 'Szaktanácsadás',
+        description: 'Segítünk a megfelelő anyag és mennyiség kiválasztásában.',
+        icon: 'tabler:message-circle-2',
+      },
+      {
+        title: 'Gyors reakció',
+        description: 'Ajánlat rövid határidővel, indulás akár azonnal.',
+        icon: 'tabler:bolt',
+      },
+    ]}
+  />
+
+  <Steps
+    title="Így érkezik meg a raklap harmadnapra"
+    items={[
+      {
+        title: '1. lépés: <span class="font-medium">Ajánlatkérés</span>',
+        description: 'Írd meg, mire van szükséged, és mennyi a kívánt mennyiség.',
+        icon: 'tabler:edit',
+      },
+      {
+        title: '2. lépés: <span class="font-medium">Egyeztetés</span>',
+        description: 'Pontosítjuk a terméket, méreteket és a szállítás részleteit.',
+        icon: 'tabler:messages',
+      },
+      {
+        title: '3. lépés: <span class="font-medium">Raklapos előkészítés</span>',
+        description: 'Összekészítjük a teljes tételt, rögzítjük és indítjuk.',
+        icon: 'tabler:package',
+      },
+      {
+        title: '4. lépés: <span class="font-medium">Kiszállítás</span>',
+        description: 'A raklap harmadnapra megérkezik a megbeszélt helyszínre.',
+        icon: 'tabler:truck',
+      },
+    ]}
+    image={{
+      src: '/images/products/fureszaru-500.avif',
+      alt: 'Raklapos faanyag kiszállítás folyamata',
+    }}
+  />
+
+  <Content
+    isReversed={true}
+    tagline="Ami a raklapon érkezik"
+    title="Telített kertifa és brikett – készen a felhasználásra"
+    subtitle="A kültéri faanyagokat előkészítve, a brikettet pedig raklapos kiszerelésben szállítjuk. Így időt spórolsz, és azonnal kezdődhet a munka vagy a fűtés."
+    content={`
+      <p>Válassz telített kertifát kerítéshez, pergolához, játszótérhez, vagy rendelj brikettet, ha biztosan meleg otthont szeretnél. A célunk: gyorsan és sérülésmentesen juttatni el hozzád a megfelelő mennyiséget.</p>
+      <p class="mt-4">Ha speciális méretre vagy mennyiségre van szükséged, jelezd bátran – segítünk az optimális megoldásban.</p>
+    `}
+    callToAction={{
+      variant: 'link',
+      text: 'Kérdezz rá a készletre',
+      href: '/kapcsolat',
+      icon: 'tabler:help-circle',
+    }}
+    items={[
+      {
+        title: 'Időjárásálló kertifa',
+        description: 'Nyomás alatt telített faanyag kültéri használatra.',
+      },
+      {
+        title: 'Magas fűtőértékű brikett',
+        description: 'Tiszta égés, kevés hamu, egyszerű tárolás.',
+      },
+      {
+        title: 'Egyedi igényekre szabva',
+        description: 'Méretezés, összeállítás és tanácsadás egy helyen.',
+      },
+      {
+        title: 'Raklapos stabilitás',
+        description: 'Rögzített, biztonságos csomagolás a szállításhoz.',
+      },
+    ]}
+    image={{
+      src: '/kategoriak/brikett.jpg',
+      alt: 'Raklapos brikett és kertifa kiszállítás',
+    }}
+  />
+
+  <Testimonials
+    tagline="Visszajelzések"
+    title="Amit az ügyfeleink mondanak"
+    subtitle="Országszerte szállítunk, és a gyorsaságunkra büszkék vagyunk."
+    testimonials={[
+      {
+        title: 'Pontosan érkezett',
+        testimonial:
+          'A raklap a megbeszélt napon ott volt, a faanyag sérülésmentesen megérkezett. Profi csapat!',
+        name: 'Tóth László',
+        job: 'Kivitelező, Győr',
+      },
+      {
+        title: 'Kert építéshez tökéletes',
+        testimonial:
+          'Telített kertifát rendeltem, egyből lehetett vele dolgozni. Kényelmes és gyors volt a kiszállítás.',
+        name: 'Nagy Réka',
+        job: 'Kerttulajdonos, Szeged',
+      },
+      {
+        title: 'Brikettből is verhetetlen',
+        testimonial:
+          'Raklapos brikett rendelésnél gyorsak voltak, az anyag pedig kiváló minőségű.',
+        name: 'Varga Gábor',
+        job: 'Családi ház, Miskolc',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Azonnali ajánlat',
+        href: '/kapcsolat',
+        icon: 'tabler:mail-fast',
+      },
+      {
+        variant: 'secondary',
+        text: 'Szolgáltatásaink',
+        href: '/szolgaltatasok',
+        icon: 'tabler:tool',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Nyugodtan tervezhet – mi visszük a raklapot
+    </Fragment>
+    <Fragment slot="subtitle">
+      Ha gyors, kiszámítható országos szállítást keres, itt az ideje lépni. Mondja el,
+      mire van szüksége, és mi intézzük a többit.
+    </Fragment>
+  </CallToAction>
+
+  <FAQs
+    title="Országos szállítás – Gyakori kérdések"
+    subtitle="Összegyűjtöttük a legfontosabb tudnivalókat a raklapos kiszállításról."
+    items={[
+      {
+        title: 'Mennyi idő alatt érkezik meg a raklap?',
+        description:
+          'A legtöbb megrendelés 3 munkanapon belül megérkezik, pontos egyeztetett időablakkal.',
+      },
+      {
+        title: 'Mekkora mennyiségtől éri meg a raklapos szállítás?',
+        description:
+          'Raklapos kiszállítást ajánlunk közepes és nagyobb tételekre, de segítünk az optimális mennyiség meghatározásában.',
+      },
+      {
+        title: 'Milyen termékeket lehet raklapon kérni?',
+        description:
+          'Telített kertifa, brikett, fűrészáru, BSH és KVH faanyag egyaránt elérhető raklapos kiszerelésben.',
+      },
+      {
+        title: 'Hogyan történik az egyeztetés?',
+        description:
+          'Az ajánlatkérés után felvesszük Önnel a kapcsolatot, és pontosítjuk a terméket, mennyiséget és szállítási címet.',
+      },
+    ]}
+  />
+
+  <Contact
+    title="Kérjen ajánlatot és egyeztessünk!"
+    subtitle="Töltse ki az űrlapot – visszahívjuk, és átbeszéljük a részleteket."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Név',
+        autocomplete: 'name',
+        placeholder: 'Kovács János',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'E-mail',
+        autocomplete: 'email',
+        placeholder: 'nev@pelda.hu',
+      },
+    ]}
+    textarea={{
+      name: 'message',
+      label: 'Miben segíthetünk?',
+      placeholder: 'Raklapos szállítás, kertifa, brikett vagy szerkezeti faanyag...',
+      rows: 5,
+    }}
+    disclaimer="Az üzenet elküldésével elfogadod, hogy kapcsolatba lépjünk veled a megadott elérhetőségeken."
+    button={{
+      title: 'Küldés',
+      type: 'submit',
+    }}
+  />
+</Layout>
