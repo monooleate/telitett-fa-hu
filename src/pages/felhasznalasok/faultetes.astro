@@ -1,0 +1,188 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Faültetés telített fával | Felhasználások',
+  description:
+    'Önkormányzatoknak és kertépítőknek ideális telített fa megoldások: fasorok, parkok, közterek és nagy volumenű ültetések tartós, környezetbarát kivitelben.',
+};
+
+const heroImage = {
+  src: 'https://placeholdr.net/1400x800?text=Telitett+fa+ultetes',
+  alt: 'Telített faültetés parkos környezetben',
+};
+
+const useCaseHighlights = [
+  {
+    title: 'Önkormányzati fasorok és közterek',
+    description:
+      'Közterületi ültetésekhez tervezett, hosszan tartó faanyag, amely ellenáll az időjárásnak és a folyamatos használatnak.',
+    image: 'https://placeholdr.net/900x700?text=Fasor+projektek',
+    callToAction: { text: 'Kérjen ajánlatot', href: '/kapcsolat' },
+  },
+  {
+    title: 'Kertépítők és nagy volumenű projektek',
+    description:
+      'Sorozatgyártott, pontosan méretezett faanyag nagy mennyiségekhez, gyors logisztikával és stabil minőséggel.',
+    image: 'https://placeholdr.net/900x700?text=Kertepito+projekt',
+    callToAction: { text: 'Logisztikai egyeztetés', href: '/kapcsolat' },
+  },
+  {
+    title: 'Környezetvédelmi és faültetési programok',
+    description:
+      'Tartós támasztékok, keretek és szerkezetek a hosszú távú zöldterület-fejlesztéshez és edukációs projektekhez.',
+    image: 'https://placeholdr.net/900x700?text=Zold+program',
+    callToAction: { text: 'Programtámogatás', href: '/kapcsolat' },
+  },
+];
+
+const faqs = [
+  {
+    title: 'Milyen időjárási körülmények között használható?',
+    description:
+      'A telített fa UC4 minősítése miatt folyamatos kültéri használatra alkalmas, erős csapadék és napsugárzás mellett is.',
+  },
+  {
+    title: 'Mitől környezetbarát a telített fa?',
+    description:
+      'A tartós faanyag ritkább cserét igényel, csökkenti a hulladékot, és fenntartható erdőgazdálkodásból származó alapanyagból készülhet.',
+  },
+  {
+    title: 'Hogyan történik a kiszállítás nagy projektekhez?',
+    description:
+      'Előre ütemezett szállítási ütemtervet biztosítunk, hogy a kivitelezés folyamatos és hatékony legyen.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    id="faultetes-hero"
+    title="Faültetés telített fával"
+    subtitle="Közterek, fasorok és parkok tartós, környezetbarát faanyagból – önkormányzatoknak és nagy projektek kivitelezőinek."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Árajánlat kérése',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Megoldásaink',
+        href: '/szolgaltatasok',
+        icon: 'tabler:leaf',
+      },
+    ]}
+    image={heroImage}
+  />
+
+  <Stats
+    id="faultetes-stats"
+    stats={[
+      { amount: '15-25', title: 'év élettartam kültéren', icon: 'tabler:shield-check' },
+      { amount: '500+', title: 'partner Közép-Európában', icon: 'tabler:users-group' },
+      { amount: '48h', title: 'gyors kiszállítás Pest megyében', icon: 'tabler:truck-delivery' },
+      { amount: 'UC4', title: 'minősítés a tartósságért', icon: 'tabler:certificate' },
+    ]}
+  />
+
+  <Features
+    id="faultetes-elonyok"
+    title="Miért ideális telített faültetéshez?"
+    subtitle="Olyan faanyag, amely bírja a mindennapi terhelést, miközben esztétikus és környezetbarát marad."
+    columns={2}
+    items={[
+      {
+        title: 'Hosszú távú védelem',
+        description: 'Kiemelkedő ellenállás gombák, nedvesség és UV-sugárzás ellen.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Gyors telepítés',
+        description: 'Egységes méretezés és gyors elérhetőség nagyszabású projektekhez.',
+        icon: 'tabler:bolt',
+      },
+      {
+        title: 'Esztétikus megjelenés',
+        description: 'Természetes, rendezett látvány, amely illeszkedik városi és zöld környezetbe is.',
+        icon: 'tabler:palette',
+      },
+      {
+        title: 'Fenntartható választás',
+        description: 'Hosszabb élettartam, kevesebb csere, kisebb ökológiai lábnyom.',
+        icon: 'tabler:leaf',
+      },
+    ]}
+  />
+
+  <Content
+    id="faultetes-megoldasok"
+    title="Ültess fát okosan, közösen a városi zöld jövőért"
+    subtitle="Közterületi faültetésekhez, parkokhoz és környezetvédelmi programokhoz is megbízható szerkezeteket biztosítunk."
+    content={`
+      <p class="mb-4">A telített fa kiválóan alkalmazható fasorok, parkok, közösségi kertek és oktatási zöldprojektek kivitelezésénél. Stabil támasztékot ad, miközben hosszú élettartama miatt ritkább cserére van szükség.</p>
+      <p>Dolgozunk önkormányzatokkal, kertépítő csapatokkal és környezetvédelmi szervezetekkel, hogy a faültetés ne csak látványos, hanem fenntartható is legyen.</p>
+    `}
+    items={[
+      { title: 'Parkok és pihenőterek', description: 'Tartós fa szerkezetek, padok és támasztékok.' },
+      { title: 'Fasorok és sétányok', description: 'Egységes, nagy mennyiségű faanyag ütemezett szállítással.' },
+      { title: 'Iskolai zöld programok', description: 'Biztonságos és természetbarát faültetési megoldások.' },
+      { title: 'Védelmi és keretező elemek', description: 'Ágyások, kerítések és támasztó rendszerek egy helyről.' },
+    ]}
+    image={{
+      src: 'https://placeholdr.net/1000x1000?text=Kozteri+faultetes',
+      alt: 'Közterületi faültetés telített fa támasztékokkal',
+    }}
+  />
+
+  <Features2
+    id="faultetes-tipikus-projektek"
+    title="Tipikus faültetési projektek"
+    subtitle="Inspiráló példák, amelyek megmutatják, hogyan épülnek tartós zöldterek telített faanyaggal."
+    columns={2}
+    items={useCaseHighlights}
+  />
+
+  <Steps
+    id="faultetes-folyamat"
+    title="Folyamat, amelyre számíthat"
+    subtitle="Átlátható lépések, hogy a telepítés mindig időben és költséghatékonyan történjen."
+    items={[
+      { title: 'Felmérés és igények', description: 'Részletes projektigények és tervezett mennyiségek egyeztetése.' },
+      { title: 'Méretezés és ajánlat', description: 'Testreszabott specifikációk és átlátható árajánlat.' },
+      { title: 'Gyártás és előkészítés', description: 'Egységes minőség, ellenőrzött telítési folyamat.' },
+      { title: 'Szállítás és támogatás', description: 'Ütemezett logisztika és kivitelezési támogatás.' },
+    ]}
+  />
+
+  <FAQs id="faultetes-gyik" title="Gyakori kérdések" subtitle="Minden, amit a telített faültetésről tudni érdemes." items={faqs} />
+
+  <CallToAction
+    id="faultetes-cta"
+    title="Indítsuk el a következő faültetési projektet"
+    subtitle="Kérj ajánlatot, és tervezzünk együtt fenntartható zöldtereket!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Kapcsolatfelvétel',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Szolgáltatásaink',
+        href: '/szolgaltatasok',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  />
+</Layout>
