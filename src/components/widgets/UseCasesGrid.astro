@@ -1,0 +1,395 @@
+---
+/**
+ * UseCasesGrid.astro - ALTERNATÍV VERZIÓ
+ * WhatToDeliver stílusú kártyák 3D hover effekttel
+ * + kiemelt aktív kártya automatikus váltással
+ */
+
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+} = Astro.props;
+
+const useCases = [
+  {
+    id: 'faultetes',
+    title: 'Faültetés',
+    subtitle: 'Tartó Cölöpök',
+    description: 'Fiatal fák védelme és támasztása. A telített cölöpök akár 25 évig tartanak talajkontaktusban.',
+    features: ['UC4 minősítés', 'Hegyezett vég', '15-25 év tartósság'],
+    href: '/felhasznalasok/faultetes',
+    image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop',
+    icon: '🌳',
+    color: {
+      bg: 'bg-emerald-50 dark:bg-emerald-950/40',
+      border: 'border-emerald-200 dark:border-emerald-800',
+      gradient: 'from-emerald-600 to-green-700',
+      text: 'text-emerald-700 dark:text-emerald-300',
+      btn: 'bg-emerald-600 hover:bg-emerald-700',
+    },
+  },
+  {
+    id: 'jatszoter',
+    title: 'Gyermekjátszótér',
+    subtitle: 'Biztonságos & Tartós',
+    description: 'EN 71-3 szabványnak megfelelő, nehézfém-mentes fa. Köztéri és kerti játszóterekhez egyaránt.',
+    features: ['Gyermekbarát', 'Nehézfém-mentes', 'EN 71-3 tanúsítvány'],
+    href: '/felhasznalasok/jatszoter',
+    image: 'https://images.unsplash.com/photo-1587616211892-d7a3c0f5f5e8?w=600&h=400&fit=crop',
+    icon: '🎠',
+    color: {
+      bg: 'bg-purple-50 dark:bg-purple-950/40',
+      border: 'border-purple-200 dark:border-purple-800',
+      gradient: 'from-purple-600 to-pink-600',
+      text: 'text-purple-700 dark:text-purple-300',
+      btn: 'bg-purple-600 hover:bg-purple-700',
+    },
+  },
+  {
+    id: 'kertepites',
+    title: 'Kertépítés',
+    subtitle: 'Pergolák & Támfalak',
+    description: 'Pergolák, lugasok, támfalak, virágládák. Tartós kerti építmények alapanyaga.',
+    features: ['Festhető', 'Időjárásálló', 'Természetes megjelenés'],
+    href: '/felhasznalasok/kertepites',
+    image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=400&fit=crop',
+    icon: '🏡',
+    color: {
+      bg: 'bg-teal-50 dark:bg-teal-950/40',
+      border: 'border-teal-200 dark:border-teal-800',
+      gradient: 'from-teal-600 to-cyan-600',
+      text: 'text-teal-700 dark:text-teal-300',
+      btn: 'bg-teal-600 hover:bg-teal-700',
+    },
+  },
+  {
+    id: 'keritesek',
+    title: 'Kerítésépítés',
+    subtitle: 'Rúdfa & Oszlopok',
+    description: 'Kerítésoszlopok, kapuoszlopok, lécek. A rúdfa a legkedveltebb kerítés alapanyag.',
+    features: ['Rúdfa választék', 'Földbe verhető', 'Évtizedekig tart'],
+    href: '/felhasznalasok/keritesek',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=400&fit=crop',
+    icon: '🏗️',
+    color: {
+      bg: 'bg-slate-100 dark:bg-slate-800/60',
+      border: 'border-slate-200 dark:border-slate-700',
+      gradient: 'from-slate-600 to-gray-700',
+      text: 'text-slate-700 dark:text-slate-300',
+      btn: 'bg-slate-600 hover:bg-slate-700',
+    },
+  },
+  {
+    id: 'kerti-epitmenyek',
+    title: 'Kerti Építmények',
+    subtitle: 'Házikók & Tárolók',
+    description: 'Kerti házak, szerszámtárolók, kutyaházak, madáretetők. Bármit megépíthet!',
+    features: ['Könnyen munkálható', 'Stabil szerkezet', 'DIY barát'],
+    href: '/felhasznalasok/kerti-epitmenyek',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop',
+    icon: '🛖',
+    color: {
+      bg: 'bg-amber-50 dark:bg-amber-950/40',
+      border: 'border-amber-200 dark:border-amber-800',
+      gradient: 'from-amber-600 to-orange-600',
+      text: 'text-amber-700 dark:text-amber-300',
+      btn: 'bg-amber-600 hover:bg-amber-700',
+    },
+  },
+  {
+    id: 'kozterulet',
+    title: 'Közterületek',
+    subtitle: 'Parkok & Sétányok',
+    description: 'Önkormányzati projektek, parkosítás, padok, szemetes keretek, útjelzők.',
+    features: ['Vandálbiztos', 'Alacsony karbantartás', 'Professzionális'],
+    href: '/felhasznalasok/kozterulet',
+    image: 'https://images.unsplash.com/photo-1573204464719-6bbfb61da1ea?w=600&h=400&fit=crop',
+    icon: '🏛️',
+    color: {
+      bg: 'bg-blue-50 dark:bg-blue-950/40',
+      border: 'border-blue-200 dark:border-blue-800',
+      gradient: 'from-blue-600 to-indigo-600',
+      text: 'text-blue-700 dark:text-blue-300',
+      btn: 'bg-blue-600 hover:bg-blue-700',
+    },
+  },
+];
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`}>
+  <Headline
+    title="Mire Használható a Telített Borovifa?"
+    subtitle="Faültetéstől játszóterig – biztonságos, tartós megoldások minden kültéri alkalmazáshoz"
+    tagline="🪵 Felhasználási Területek"
+  />
+
+  <div class="mt-10" id="usecases-grid">
+    
+    <!-- Kiemelt nagy kártya -->
+    <div class="mb-8">
+      <div class="featured-card relative rounded-2xl overflow-hidden shadow-2xl transition-all duration-500" style="min-height: 400px;">
+        
+        {useCases.map((item, index) => (
+          <a 
+            href={item.href}
+            class={`featured-slide absolute inset-0 transition-all duration-700 ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            data-index={index}
+          >
+            <!-- Háttérkép -->
+            <img 
+              src={item.image} 
+              alt={item.title}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class={`absolute inset-0 bg-gradient-to-r ${item.color.gradient} opacity-70`}></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+            <!-- Tartalom -->
+            <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+              <div class="absolute top-8 right-8">
+                <div class="w-20 h-20 md:w-24 md:h-24 bg-white/90 backdrop-blur rounded-2xl flex items-center justify-center text-5xl md:text-6xl shadow-xl">
+                  {item.icon}
+                </div>
+              </div>
+
+              <div class="max-w-2xl">
+                <span class="inline-block px-4 py-1 bg-white/20 backdrop-blur rounded-full text-white text-sm font-semibold mb-4">
+                  {item.subtitle}
+                </span>
+                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">{item.title}</h3>
+                <p class="text-white/90 text-lg md:text-xl mb-6 max-w-xl">{item.description}</p>
+                
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {item.features.map((f) => (
+                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur rounded-full text-white text-sm">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                <span class="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all">
+                  Részletek megtekintése
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+
+        <!-- Navigációs nyilak a nagy kártyán -->
+        <button type="button" class="featured-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button type="button" class="featured-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+
+        <!-- Progress bar -->
+        <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/30 z-20">
+          <div class="featured-progress h-full bg-white transition-all duration-100" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kis kártya grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      {useCases.map((item, index) => (
+        <button 
+          type="button"
+          class={`usecase-card group relative p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer text-left
+            ${index === 0 
+              ? 'border-transparent ring-2 ring-offset-2 ring-' + item.color.gradient.split(' ')[0].replace('from-', '') + ' shadow-lg scale-105 ' + item.color.bg
+              : item.color.bg + ' ' + item.color.border + ' hover:shadow-md hover:scale-102'
+            }
+          `}
+          data-index={index}
+        >
+          <!-- 3D tilt effect container -->
+          <div class="card-inner transition-transform duration-300 group-hover:scale-105">
+            <div class="flex flex-col items-center text-center">
+              <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color.gradient} flex items-center justify-center text-2xl mb-2 shadow-md transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110`}>
+                {item.icon}
+              </div>
+              <h4 class={`font-bold text-sm ${item.color.text}`}>{item.title}</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 hidden md:block">{item.subtitle}</p>
+            </div>
+          </div>
+
+          <!-- Active indicator -->
+          <div class={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full bg-gradient-to-r ${item.color.gradient} transition-opacity duration-300 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}></div>
+        </button>
+      ))}
+    </div>
+  </div>
+</WidgetWrapper>
+
+<style>
+  .usecase-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .usecase-card:hover .card-inner {
+    transform: translateZ(10px);
+  }
+
+  .featured-slide {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .featured-slide.slide-out-left {
+    animation: featuredOutLeft 0.6s ease-out forwards;
+  }
+
+  .featured-slide.slide-in-right {
+    animation: featuredInRight 0.6s ease-out forwards;
+  }
+
+  .featured-slide.slide-out-right {
+    animation: featuredOutRight 0.6s ease-out forwards;
+  }
+
+  .featured-slide.slide-in-left {
+    animation: featuredInLeft 0.6s ease-out forwards;
+  }
+
+  @keyframes featuredOutLeft {
+    0% { transform: translateX(0) rotateY(0); opacity: 1; }
+    100% { transform: translateX(-30%) rotateY(10deg); opacity: 0; }
+  }
+
+  @keyframes featuredInRight {
+    0% { transform: translateX(30%) rotateY(-10deg); opacity: 0; }
+    100% { transform: translateX(0) rotateY(0); opacity: 1; }
+  }
+
+  @keyframes featuredOutRight {
+    0% { transform: translateX(0) rotateY(0); opacity: 1; }
+    100% { transform: translateX(30%) rotateY(-10deg); opacity: 0; }
+  }
+
+  @keyframes featuredInLeft {
+    0% { transform: translateX(-30%) rotateY(10deg); opacity: 0; }
+    100% { transform: translateX(0) rotateY(0); opacity: 1; }
+  }
+</style>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', function() {
+  var grid = document.getElementById('usecases-grid');
+  if (!grid) return;
+
+  var slides = grid.querySelectorAll('.featured-slide');
+  var cards = grid.querySelectorAll('.usecase-card');
+  var prevBtn = grid.querySelector('.featured-prev');
+  var nextBtn = grid.querySelector('.featured-next');
+  var progressBar = grid.querySelector('.featured-progress');
+
+  var colors = [
+    { ring: 'ring-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-950/40' },
+    { ring: 'ring-purple-600', bg: 'bg-purple-50 dark:bg-purple-950/40' },
+    { ring: 'ring-teal-600', bg: 'bg-teal-50 dark:bg-teal-950/40' },
+    { ring: 'ring-slate-600', bg: 'bg-slate-100 dark:bg-slate-800/60' },
+    { ring: 'ring-amber-600', bg: 'bg-amber-50 dark:bg-amber-950/40' },
+    { ring: 'ring-blue-600', bg: 'bg-blue-50 dark:bg-blue-950/40' }
+  ];
+
+  var current = 0;
+  var total = slides.length;
+  var progress = 0;
+  var timer = null;
+  var isAnimating = false;
+
+  function goTo(index, direction) {
+    if (isAnimating || index === current) return;
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    
+    isAnimating = true;
+    var dir = direction || (index > current ? 'next' : 'prev');
+    var oldSlide = slides[current];
+    var newSlide = slides[index];
+
+    // Animate out old
+    oldSlide.classList.remove('opacity-100', 'z-10');
+    oldSlide.classList.add(dir === 'next' ? 'slide-out-left' : 'slide-out-right');
+
+    // Animate in new
+    newSlide.classList.remove('opacity-0', 'z-0');
+    newSlide.classList.add('z-10', dir === 'next' ? 'slide-in-right' : 'slide-in-left');
+
+    // Update cards
+    cards.forEach(function(card, i) {
+      card.classList.remove('border-transparent', 'ring-2', 'ring-offset-2', 'shadow-lg', 'scale-105');
+      card.classList.remove('ring-emerald-600', 'ring-purple-600', 'ring-teal-600', 'ring-slate-600', 'ring-amber-600', 'ring-blue-600');
+      
+      var indicator = card.querySelector('div:last-child');
+      if (indicator) indicator.classList.remove('opacity-100');
+      if (indicator) indicator.classList.add('opacity-0');
+
+      if (i === index) {
+        card.classList.add('border-transparent', 'ring-2', 'ring-offset-2', colors[i].ring, 'shadow-lg', 'scale-105');
+        if (indicator) indicator.classList.remove('opacity-0');
+        if (indicator) indicator.classList.add('opacity-100');
+      }
+    });
+
+    setTimeout(function() {
+      oldSlide.classList.remove('slide-out-left', 'slide-out-right');
+      oldSlide.classList.add('opacity-0', 'z-0');
+      newSlide.classList.remove('slide-in-right', 'slide-in-left');
+      newSlide.classList.add('opacity-100');
+      isAnimating = false;
+    }, 600);
+
+    current = index;
+    progress = 0;
+    if (progressBar) progressBar.style.width = '0%';
+  }
+
+  function startTimer() {
+    stopTimer();
+    timer = setInterval(function() {
+      progress += 2;
+      if (progressBar) progressBar.style.width = progress + '%';
+      if (progress >= 100) {
+        goTo(current + 1, 'next');
+      }
+    }, 100);
+  }
+
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  prevBtn.addEventListener('click', function() { goTo(current - 1, 'prev'); });
+  nextBtn.addEventListener('click', function() { goTo(current + 1, 'next'); });
+
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      var idx = parseInt(this.dataset.index);
+      goTo(idx, idx > current ? 'next' : 'prev');
+    });
+  });
+
+  grid.addEventListener('mouseenter', stopTimer);
+  grid.addEventListener('mouseleave', startTimer);
+
+  // Touch
+  var touchX = 0;
+  grid.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; stopTimer(); }, { passive: true });
+  grid.addEventListener('touchend', function(e) {
+    var diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1), diff > 0 ? 'next' : 'prev');
+    startTimer();
+  }, { passive: true });
+
+  startTimer();
+});
+</script>

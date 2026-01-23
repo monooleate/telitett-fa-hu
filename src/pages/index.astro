@@ -11,10 +11,14 @@ import InteractiveComparison from '~/components/widgets/InteractiveComparison.as
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import SpecialOffers, { buildSpecialOffersItemList } from '~/components/widgets/SpecialOffers.astro';
 import { fetchCategoriesOnly, fetchDiscountedProducts } from '../lib/medusa-adapter'
+import UseCasesCards from '~/components/widgets/UseCasesCards.astro';
+
+
 
 import Features from '~/components/widgets/Features.astro';
 import Stats from '~/components/widgets/Stats.astro';
-
+import UseCasesCarousel from '~/components/widgets/UseCasesCarousel.astro';
+import UseCasesGrid from '~/components/widgets/UseCasesGrid.astro';
 
 const metadata = {
   title: 'Nagynyomáson Kezelt Borovifa | Tartós és Biztonságos Faanyag',
@@ -198,7 +202,11 @@ const schemaHome = [
   </Stats>
 
   <!-- USE CASES - H2, 8 használati terület -->
-  <Features2
+<!--   <UseCasesCarousel id="use-cases" />
+  <UseCasesGrid id="use-cases" /> -->
+  <UseCasesCards id="use-cases" />
+
+<!--    <Features2
     id="use-cases"
     columns={2}
     items={[
@@ -293,14 +301,14 @@ const schemaHome = [
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- INTERACTIVE COMPARISON - H2, Bar-ok egymás mellett -->
   <InteractiveComparison
     id="interactive-comparison"
   >
     <Fragment slot="title">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Hasonlítsd Össze Magad!</h2>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Telített fa előnyei - Hasonlítsd Össze Magad!</h2>
     </Fragment>
     <Fragment slot="subtitle">
       Keményfa vs Telített • Mártott vs Telített - Látványos összehasonlítás számokkal

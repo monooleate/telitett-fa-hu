@@ -1,289 +1,503 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import ProductSizes from '~/components/widgets/ProductSizes.astro';
 
 const metadata = {
-  title: 'Faültetés Telített Borovi Cölöppel | Stabil, Környezetbarát Megoldások',
-  description:
-    'Faültetéshez ideális telített borovi cölöpök önkormányzatoknak és kertépítőknek. Tartós, UC4 minősítésű támasztó megoldások nagy mennyiségben, gyors szállítással.',
+  title: 'Faültetéshez Tartó Cölöp | Telített Hegyezett Cölöpök | Elvira Tüzép',
+  description: 'Telített fa tartó cölöpök faültetéshez. Hegyezett, nagynyomáson kezelt borovi cölöpök 15-25 év élettartammal. Szőlőkaró, gyümölcsfa támasz, facsemete rögzítés.',
   canonical: 'https://elviratuzep.hu/felhasznalasok/faultetes',
   openGraph: {
     type: 'website',
-    title: 'Faültetés Telített Borovi Cölöppel | Telített Fa Felhasználások',
-    description: 'Közterületi faültetés, parkosítás, nagy volumenű telepítések tartós támasztó cölöpökkel.',
-    image: '',
+    title: 'Faültetéshez Tartó Cölöp - Telített Fa | Elvira Tüzép',
+    description: 'Tartós, telített fa cölöpök faültetéshez. Nem rohad, nem korhad, 15-25 évig bírja a földben.',
+    image: '~/assets/images/og-faultetes.jpg',
   },
 };
 ---
 
 <Layout metadata={metadata}>
+  
+  <!-- ============================================
+       1. HERO SECTION
+       ============================================ -->
   <Hero
     id="hero"
-    tagline="🌱 Faültetés, ami évtizedekre stabil marad"
-    title="Faültetés Telített Borovi Cölöppel"
+    tagline="🌳 Faültetéshez"
+    title="Tartó Cölöpök – Hogy a Fa Egyenesen Nőjön"
     actions={[
       {
         variant: 'primary',
-        text: 'Ajánlatkérés nagy tételben',
+        text: 'Árajánlat kérése',
         href: '/kapcsolat',
         icon: 'tabler:mail',
       },
       {
         variant: 'secondary',
-        text: 'Telített fa kínálat',
-        href: '/telitett-fa',
-        icon: 'tabler:trees',
+        text: 'Méretek & Árak',
+        href: '#meretek',
+        icon: 'tabler:ruler',
       },
     ]}
-    image={{
-      src: '',
-      alt: 'Faültetéshez használt telített borovi cölöpök városi parkosításban',
-    }}
   >
     <Fragment slot="subtitle">
-      <div class="space-y-4 text-lg text-gray-600 dark:text-gray-300">
-        <p>
-          Önkormányzatoknak és kertépítő csapatoknak, akik <strong>nagy mennyiségű fát ültetnek</strong>. A
-          telített borovi cölöp stabil tartást ad a frissen ültetett fáknak, védi a gyökérzónát, és
-          hosszú éveken át ellenáll a talajkontaktusnak.
+      <div class="space-y-3">
+        <p class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-200">
+          <span class="text-emerald-600 dark:text-emerald-400 font-bold">Telített, hegyezett cölöpök</span> 
+          facsemeték, gyümölcsfák és díszfák biztonságos megtámasztásához.
         </p>
-        <div class="flex flex-wrap gap-3">
-          <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-800 dark:bg-green-900/40 dark:text-green-200">
-            🌿 Környezetbarát, tanúsított faanyag
-          </span>
-          <span class="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">
-            🛡️ UC4 minősítésű védelem
-          </span>
-          <span class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">
-            🚛 Gyors szállítás nagy tételben is
-          </span>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4 pb-4">
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>15-25 év élettartam</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Hegyezett vég</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            <span>Körmart kivitel</span>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <!-- 
+        🖼️ AJÁNLOTT KÉP: 
+        - Frissen ültetett fa cölöpökkel megtámasztva
+        - Vagy: telített cölöpök raklapon (termékfotó)
+        - Forrás: saját fotó vagy Unsplash "tree planting stake"
+      -->
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-700 via-green-600 to-lime-600 aspect-[4/3] flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative z-10 text-center text-white p-8">
+          <div class="text-8xl mb-4">🌳</div>
+          <p class="text-xl font-bold uppercase tracking-wider">Tartó Cölöpök</p>
+          <p class="text-lg opacity-80">Faültetéshez</p>
+          <p class="text-sm mt-4 bg-white/20 rounded-lg px-4 py-2">
+            📸 Ide jön a termékfotó
+          </p>
+        </div>
+        
+        <div class="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg">
+          UC4 minősítés
         </div>
       </div>
     </Fragment>
   </Hero>
 
-  <Stats
-    id="benefits"
-    stats={[
-      {
-        amount: '15-25 év',
-        title: 'tartósság talajkontaktusban',
-        icon: 'tabler:shield-check',
-      },
-      {
-        amount: 'UC4',
-        title: 'minősítés kültéri használatra',
-        icon: 'tabler:certificate',
-      },
-      {
-        amount: '1000+',
-        title: 'faültető cölöp készleten nagy projektekhez',
-        icon: 'tabler:trees',
-      },
-      {
-        amount: '48h',
-        title: 'kiemelt kiszállítás Pest megyébe',
-        icon: 'tabler:truck-delivery',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gray-50 dark:bg-slate-900"></div>
-    </Fragment>
-  </Stats>
+  <!-- ============================================
+       2. PROBLÉMA & MEGOLDÁS
+       ============================================ -->
+  <section class="py-12 md:py-16 bg-gradient-to-r from-red-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950/20">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        
+        <!-- Probléma -->
+        <div class="bg-red-50 dark:bg-red-950/30 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-bold text-red-800 dark:text-red-200">A Probléma</h2>
+          </div>
+          <ul class="space-y-3 text-red-700 dark:text-red-300">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">✗</span>
+              <span>Kezeletlen cölöp 2-3 év alatt elrothad</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">✗</span>
+              <span>Mártott fa csak felületileg védett</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">✗</span>
+              <span>Évente cserélgetni kell – drága és macerás</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">✗</span>
+              <span>Elkorhadt cölöp nem támasztja a fát</span>
+            </li>
+          </ul>
+        </div>
 
-  <Features2
-    id="audiences"
-    columns={2}
-    items={[
-      {
-        title: 'Önkormányzati parkosítás',
-        description:
-          'Utcafák, parkok, fasorok. A telített cölöpök biztosítják a friss telepítések stabilitását és a közterek esztétikáját.',
-        icon: 'tabler:building-community',
-        image: '',
-      },
-      {
-        title: 'Kertépítők és kivitelezők',
-        description:
-          'Gyors telepítés, megbízható rögzítés, kevesebb utómunka. Telített fa cölöpök a profi csapatoknak.',
-        icon: 'tabler:shovel',
-        image: '',
-      },
-      {
-        title: 'Zöld beruházások',
-        description:
-          'Környezetvédelmi programok, ültess fát kampányok. Fenntartható, FSC-eredetű faanyag.',
-        icon: 'tabler:leaf',
-        image: '',
-      },
-      {
-        title: 'Nagy volumenű telepítések',
-        description:
-          'Ipari parkok, lakóparkok, útmenti fasorok. Nagy tételben, egységes minőségben.',
-        icon: 'tabler:map-2',
-        image: '',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      <h2 class="text-3xl md:text-4xl font-bold">Kiknek ajánlott a telített faültető cölöp?</h2>
-    </Fragment>
-    <Fragment slot="subtitle">
-      Stabil, tartós és környezetbarát megoldás minden olyan projekthez, ahol a fák hosszú távú védelme a cél.
-    </Fragment>
-  </Features2>
+        <!-- Megoldás -->
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl p-6 border-2 border-emerald-200 dark:border-emerald-800">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-bold text-emerald-800 dark:text-emerald-200">A Megoldás</h2>
+          </div>
+          <ul class="space-y-3 text-emerald-700 dark:text-emerald-300">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 mt-1">✓</span>
+              <span><strong>Telített cölöp 15-25 évig</strong> bírja földben</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 mt-1">✓</span>
+              <span>Nagynyomásos kezelés – <strong>mélyen véd</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 mt-1">✓</span>
+              <span>Egyszer megveszed, <strong>évtizedekig használod</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 mt-1">✓</span>
+              <span>Stabil támasz a fa teljes életében</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <Content
-    id="solution"
-    title="Miért telített borovi cölöp a faültetéshez?"
-    subtitle="Erős támasz, hosszú élettartam, egységes minőség"
-    items={[
-      {
-        title: 'Talajkontaktusra tervezve',
-        description: 'A UC4 minősítésű kezelés védi a fát a nedvességtől, gombásodástól és rovaroktól.',
-      },
-      {
-        title: 'Gyors és tiszta telepítés',
-        description: 'Egységes méretek, könnyű megmunkálhatóság – kevesebb hulladék, gyorsabb kivitelezés.',
-      },
-      {
-        title: 'Esztétikus és természetes',
-        description: 'A telített borovi fa szépen öregszik, illeszkedik városi és természetközeli környezetbe is.',
-      },
-    ]}
-    image={{
-      src: '',
-      alt: 'Frissen ültetett fák telített cölöpökkel rögzítve',
-    }}
-  >
-    <Fragment slot="content">
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        A telített borovi fa cölöpök egyszerre biztosítják a friss telepítések stabilitását és a hosszú távú
-        tartósságot. Ideális választás <strong>út menti fasorokhoz</strong>, parkosítási projektekhez és
-        bármilyen nagy volumenű faültetéshez.
-      </p>
-    </Fragment>
-  </Content>
-
-  <Steps
-    id="process"
-    title="Faültetés a gyakorlatban"
-    subtitle="Egyszerű, mégis profi folyamat önkormányzatoknak és kertépítőknek"
-    items={[
-      {
-        title: 'Helyszíni felmérés',
-        description: 'Talajtípus, fa fajta és terhelés meghatározása a megfelelő cölöp mérethez.',
-        icon: 'tabler:map-search',
-      },
-      {
-        title: 'Cölöpök előkészítése',
-        description: 'Telített, hegyesre alakított cölöpök, egységes méretben nagy projektekhez.',
-        icon: 'tabler:tools',
-      },
-      {
-        title: 'Telepítés és rögzítés',
-        description: 'Gyors beütés, stabil támasztás, kötözés a törzs védelmével.',
-        icon: 'tabler:plant',
-      },
-      {
-        title: 'Hosszú távú védelem',
-        description: 'Időjárás- és talajálló védelem, minimális karbantartás.',
-        icon: 'tabler:shield-heart',
-      },
-    ]}
-    image={{
-      src: '',
-      alt: 'Faültetés folyamata telített cölöpökkel',
-    }}
-  />
-
+  <!-- ============================================
+       3. FELHASZNÁLÁSI TERÜLETEK
+       ============================================ -->
   <Features
-    id="themes"
-    title="Inspiráció és kapcsolódó témakörök"
-    subtitle="Minden projekt, ahol a telített fa magabiztosan teljesít"
+    id="felhasznalasok"
+    title="Mire Használható?"
+    subtitle="A telített tartó cölöp sokoldalú segítség a kertben"
     columns={3}
     items={[
       {
-        title: 'Fasorok és sétányok',
-        description: 'Közterületi sétányok, parkok, városi zöldfelületek stabil rögzítéssel.',
-        icon: 'tabler:road',
+        title: 'Gyümölcsfák Ültetése',
+        description: 'Almafa, körtefa, cseresznyefa, szilvafa – minden gyümölcsfa hálás a stabil támaszért az első években.',
+        icon: 'tabler:apple',
       },
       {
-        title: 'Vihar- és szélvédelem',
-        description: 'Fiatal fák védelme erős szélterhelésű környezetben.',
-        icon: 'tabler:wind',
+        title: 'Díszfák Megtámasztása',
+        description: 'Juhar, hárs, platán, nyírfa – a díszfák egyenes növekedéséhez elengedhetetlen a cölöp.',
+        icon: 'tabler:tree',
       },
       {
-        title: 'Ültess fát programok',
-        description: 'Környezettudatos, közösségi faültetések fenntartható anyagból.',
-        icon: 'tabler:heart',
+        title: 'Facsemete Védelem',
+        description: 'Fiatal csemeték védelmére a széltől, vadaktól. Stabil rögzítés az első kritikus években.',
+        icon: 'tabler:plant',
       },
       {
-        title: 'Árnyékot adó ligetek',
-        description: 'Közösségi terek, iskolák és parkok árnyékosítására.',
-        icon: 'tabler:sun',
+        title: 'Szőlőkaró',
+        description: 'Szőlőműveléshez tartós karók, amik évtizedekig bírják a terhelést és az időjárást.',
+        icon: 'tabler:line-height',      
       },
       {
-        title: 'Vízmegőrző zöldítések',
-        description: 'Közterületi vízmegtartó projektek fásítással kiegészítve.',
-        icon: 'tabler:droplet',
+        title: 'Futónövény Támasz',
+        description: 'Borostyán, vadszőlő, rózsák – minden kúszónövény örül a stabil támasznak.',
+        icon: 'tabler:plant-2',
       },
       {
-        title: 'Lakóparkok és ipari parkok',
-        description: 'Esztétikus és tartós zöldsávok nagy területre optimalizálva.',
-        icon: 'tabler:building-factory-2',
+        title: 'Sövény Rögzítés',
+        description: 'Frissen ültetett sövények egyenes sorba rendezéséhez és rögzítéséhez.',
+        icon: 'tabler:line-height',
       },
     ]}
   />
 
-  <FAQs
-    id="faq"
-    title="Gyakori kérdések faültetéshez"
-    subtitle="Segítünk a tervezésben és a beszerzésben"
+  <!-- ============================================
+       4. MÉRET TÁBLÁZAT / TERMÉKEK
+       ============================================ -->
+  <ProductSizes id="meretek" />
+
+  <!-- ============================================
+       5. HOGYAN VÁLASSZON? - Segédlet
+       ============================================ -->
+  <Content
+    id="hogyan-valasszon"
+    isReversed
+    title="Hogyan Válasszon Cölöpöt?"
+    subtitle="Egyszerű szabályok a megfelelő méret kiválasztásához"
     items={[
       {
-        title: 'Milyen méretű cölöpök érhetők el?',
-        description: 'Többféle átmérő és hossz áll rendelkezésre, a fa méretétől és a talajtól függően.',
+        title: 'Átmérő szabály',
+        description: 'A cölöp átmérője legyen legalább 1/3-a a fa törzsének. Vékony csemetéhez 4-5 cm, nagyobb fához 6-10 cm.',
       },
       {
-        title: 'Mekkora mennyiségtől rendelhető nagy tétel?',
-        description: 'Raklapos mennyiségtől kezdve szolgálunk ki projekteket – egyedi igény esetén kérjen ajánlatot.',
+        title: 'Hosszúság szabály',
+        description: 'A cölöp 1/3-a legyen a földben, 2/3-a felette. 2 méteres cölöpnél ~65 cm földben, ~135 cm kint.',
       },
       {
-        title: 'Miért előnyös a telített borovi fa?',
-        description: 'Hosszú élettartam, természetes megjelenés és környezetbarát kezelés jellemzi.',
+        title: 'Darabszám',
+        description: 'Kisebb fához 1-2 cölöp, nagyobb fához 2-3 cölöp háromszög alakban a stabilitásért.',
+      },
+    ]}
+    callToAction={{
+      text: 'Kérdése van? Hívjon! →',
+      href: 'tel:+36305319050',
+    }}
+    classes={{
+      container: 'bg-blue-50 dark:bg-blue-950/30',
+    }}
+  >
+    <Fragment slot="content">
+      <div class="bg-blue-100 dark:bg-blue-900/40 rounded-xl p-6 border-l-4 border-blue-500">
+        <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-3">
+          📏 Gyors Méretező
+        </h3>
+        <div class="space-y-2 text-blue-700 dark:text-blue-300 text-sm">
+          <p><strong>Facsemete (1-2 m):</strong> 4x150 vagy 4x200 cm cölöp</p>
+          <p><strong>Fiatal fa (2-3 m):</strong> 5x200 vagy 6x200 cm cölöp</p>
+          <p><strong>Nagyobb fa (3-5 m):</strong> 6x250 vagy 8x250 cm cölöp</p>
+          <p><strong>Nagy fa (5+ m):</strong> 8x300 vagy 10x300 cm cölöp</p>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <!-- 
+        🖼️ AJÁNLOTT KÉP: 
+        - Különböző méretű cölöpök egymás mellett
+        - Vagy: méretarányos illusztráció
+      -->
+      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-blue-700 aspect-square flex items-center justify-center">
+        <div class="text-center text-white p-8">
+          <div class="text-7xl mb-4">📏</div>
+          <p class="font-bold text-xl">Méret Segédlet</p>
+          <p class="text-blue-200 text-sm">Placeholder kép helye</p>
+        </div>
+      </div>
+    </Fragment>
+  </Content>
+
+  <!-- ============================================
+       6. ÜLTETÉSI TIPPEK (Steps)
+       ============================================ -->
+  <Steps
+    id="ultetes-tippek"
+    title="Faültetés Lépésről Lépésre"
+    subtitle="Így használja a tartó cölöpöket szakszerűen"
+    items={[
+      {
+        title: '1. Készítse elő a gödröt',
+        description: 'Ásson akkora gödröt, ami kétszer szélesebb a gyökérzetnél. A cölöpöket még a fa behelyezése ELŐTT verje le.',
+        icon: 'tabler:shovel',
       },
       {
-        title: 'Kapható-e helyszíni kiszállítás?',
-        description: 'Igen, gyors logisztikával szállítunk önkormányzati és kivitelezői projektekhez is.',
+        title: '2. Verje le a cölöpöket',
+        description: 'A cölöpöket a gödör szélére, a törzstől 10-15 cm távolságra verje. Legalább 50-60 cm mélyen legyen a földben.',
+        icon: 'tabler:hammer',
+      },
+      {
+        title: '3. Ültesse el a fát',
+        description: 'Helyezze a fát a gödörbe, töltse fel földdel, tapossa meg. A gyökérnyak maradjon a talajszinten.',
+        icon: 'tabler:plant',
+      },
+      {
+        title: '4. Rögzítse a törzset',
+        description: 'Puha fakötöző szalaggal vagy kókuszszalaggal rögzítse a törzset a cölöpökhöz. Ne feszítse túl!',
+        icon: 'tabler:link',
+      },
+      {
+        title: '5. Öntözés és mulcsolás',
+        description: 'Alaposan öntözze meg, majd mulcsolja a tövét. A támasztékot 2-3 év után távolítsa el.',
+        icon: 'tabler:droplet',
       },
     ]}
   />
 
-  <CallToAction
-    id="cta"
-    title="Készen áll a következő faültetési projektre?"
-    subtitle="Ültess fát velünk – stabil támasz, tartós védelem, gyors beszerzés."
+  <!-- ============================================
+       7. MIÉRT TELÍTETT FA?
+       ============================================ -->
+  <Content
+    id="miert-telitett"
+    title="Miért Telített Fa Cölöpöt Válasszon?"
+    subtitle="A nagynyomásos kezelés előnyei"
+    items={[
+      {
+        title: 'Mély védelem',
+        description: 'A Tanalith favédőszer mélyen behatol a fa rostjaiba, nem csak a felületet védi.',
+      },
+      {
+        title: 'UC4 minősítés',
+        description: 'Talajkontaktusban és állandó nedvességben is használható – pont oda, ahova a cölöp kerül.',
+      },
+      {
+        title: 'Nem kell cserélgetni',
+        description: 'Egyszer megveszi, 15-25 évig használja. Hosszú távon sokkal olcsóbb.',
+      },
+    ]}
     callToAction={{
-      text: 'Ajánlatkérés faültető cölöpökre',
-      href: '/kapcsolat',
-      icon: 'tabler:mail-forward',
-    }}
-    secondaryCallToAction={{
-      text: 'Telített fa termékek',
+      text: 'Telített fa részletesen →',
       href: '/telitett-fa',
     }}
+    classes={{
+      container: 'bg-emerald-50 dark:bg-emerald-950/30',
+    }}
   >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-r from-green-50 via-white to-amber-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+    <Fragment slot="content">
+      <div class="bg-emerald-100 dark:bg-emerald-900/40 rounded-xl p-6 border-l-4 border-emerald-500">
+        <h3 class="text-xl font-bold text-emerald-800 dark:text-emerald-200 mb-3">
+          🛡️ Tanalith Kezelés
+        </h3>
+        <ul class="space-y-2 text-emerald-700 dark:text-emerald-300">
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Nehézfém-mentes (nincs króm, arzén)
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Környezetbarát, nem szennyezi a talajt
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Rovarok, gombák, korhadás ellen véd
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Fémmel nem korrodál
+          </li>
+        </ul>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <!-- 
+        🖼️ AJÁNLOTT KÉP: 
+        - Telített fa keresztmetszet (zöldes szín látszik)
+        - Vagy: összehasonlítás kezeletlen vs telített
+      -->
+      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-600 to-green-700 aspect-square flex items-center justify-center">
+        <div class="text-center text-white p-8">
+          <div class="text-7xl mb-4">🛡️</div>
+          <p class="font-bold text-xl">Telített Fa</p>
+          <p class="text-emerald-200 text-sm">Placeholder kép helye</p>
+        </div>
+      </div>
+    </Fragment>
+  </Content>
+
+  <!-- ============================================
+       8. GYIK
+       ============================================ -->
+  <FAQs
+    id="gyik"
+    title="Gyakran Ismételt Kérdések"
+    subtitle="Minden, amit a tartó cölöpökről tudni érdemes"
+    items={[
+      {
+        title: 'Melyik végével kell lefelé verni a cölöpöt?',
+        description: 'A hegyezett végével lefelé – ez megkönnyíti a beverést. Ha nagyon kemény a talaj, előfúrás segíthet.',
+      },
+      {
+        title: 'Hány cölöp kell egy fához?',
+        description: 'Kisebb csemetéhez 1-2 cölöp elegendő. Nagyobb fákhoz (3+ méter) 2-3 cölöp ajánlott háromszög alakban a nagyobb stabilitásért.',
+      },
+      {
+        title: 'Milyen mélyre kell verni?',
+        description: 'A cölöp hosszának kb. 1/3-át (min. 50-60 cm) kell a földbe verni a stabil álláshoz.',
+      },
+      {
+        title: 'Meddig kell a fát támasztani?',
+        description: 'Általában 2-3 évig, amíg a gyökérzet meg nem erősödik. Túl sokáig hagyva a fa "elkényelmesedik".',
+      },
+      {
+        title: 'Mivel kössem a fát a cölöphöz?',
+        description: 'Puha fakötöző szalaggal, kókuszszalaggal vagy speciális fa-rögzítővel. Drót és műanyag zsineg sértheti a kérget!',
+      },
+      {
+        title: 'Használhatom szőlőhöz is?',
+        description: 'Igen! A telített cölöpök kiválóan alkalmasak szőlőkarónak is – évtizedekig bírják a terhelést.',
+      },
+      {
+        title: 'Festhetem a telített fát?',
+        description: 'Igen, de várjon 3-6 hónapot a telítés után, amíg a fa kiszárad. Használjon nem vizes bázisú festéket vagy lazúrt.',
+      },
+      {
+        title: 'Mi a különbség a mártott és a telített között?',
+        description: 'A mártott fa csak felületileg védett (2-3 év), a telített fa mélyen átitatott (15-25 év). Földbe csak telített cölöpöt tegyen!',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       9. ORSZÁGOS SZÁLLÍTÁS BANNER
+       ============================================ -->
+  <section class="py-10 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-800 dark:to-indigo-800">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        🚚 Országos Kiszállítás Raklapon!
+      </h2>
+      <p class="text-lg opacity-90 mb-6">
+        Nagyobb mennyiséget rendel? Kiszállítjuk az ország bármely pontjára, 3 munkanapon belül.
+      </p>
+      <a 
+        href="/orszagos-kiszallitas" 
+        class="inline-flex items-center gap-2 bg-white text-blue-600 font-bold px-6 py-3 rounded-xl hover:bg-blue-50 transition-colors"
+      >
+        Szállítási információk
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       10. CTA - MEGRENDELÉS
+       ============================================ -->
+  <CallToAction
+    id="megrendeles"
+    title="Készen Áll a Rendelésre?"
+    subtitle="Válassza a tartós megoldást – telített tartó cölöpök!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Árajánlat kérése',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Termékek böngészése',
+        href: '/telitett-fa',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-4">
+        <p class="text-xl">
+          <strong>Telített hegyezett cölöpök</strong> – egy befektetés évtizedekre!
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            15-25 év élettartam
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            UC4 minősítés
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Országos szállítás
+          </span>
+        </div>
+      </div>
     </Fragment>
   </CallToAction>
+
+  
 </Layout>
+
+

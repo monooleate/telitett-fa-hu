@@ -1,0 +1,220 @@
+---
+/**
+ * ProductSizes.astro
+ * Telített cölöp méretek táblázata
+ * Felhasználás fókusz, ár nélkül
+ * Link a termék kategóriára
+ */
+
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Cölöp méretek és felhasználásuk
+const products = [
+  // 4 cm átmérő
+  { diameter: 4, length: 100, use: 'Jelölő karó, zöldségnövények', plants: 'Paradicsom, paprika, bab' },
+  { diameter: 4, length: 150, use: 'Facsemete, kisebb növények', plants: 'Fiatal csemeték, bokrok' },
+  { diameter: 4, length: 200, use: 'Facsemete, szőlőkaró', plants: 'Szőlő, málna, ribizli' },
+  { diameter: 4, length: 250, use: 'Kisebb fa támasz', plants: '1-2 m magas csemeték' },
+  
+  // 5 cm átmérő
+  { diameter: 5, length: 150, use: 'Facsemete támasz', plants: 'Fiatal gyümölcsfák' },
+  { diameter: 5, length: 200, use: 'Fiatal fa megtámasztása', plants: 'Almafa, körtefa csemete' },
+  { diameter: 5, length: 250, use: 'Szőlő, fiatal fa', plants: 'Szőlősor, 2-3 m fák' },
+  
+  // 6 cm átmérő
+  { diameter: 6, length: 100, use: 'Rövid jelölő, ágyásszegély', plants: 'Kerti díszítés' },
+  { diameter: 6, length: 150, use: 'Kisebb fák támasztása', plants: 'Díszcserjék, bokorfák' },
+  { diameter: 6, length: 200, use: 'Gyümölcsfa támasz', plants: 'Cseresznye, meggy, szilva' },
+  { diameter: 6, length: 250, use: 'Közepes fák támasztása', plants: '2-3 m gyümölcsfák' },
+  { diameter: 6, length: 300, use: 'Nagyobb fák, erős szél ellen', plants: 'Dió, gesztenye fiatal' },
+  
+  // 8 cm átmérő
+  { diameter: 8, length: 150, use: 'Erős támasz, kerítésoszlop', plants: 'Sövény rögzítés' },
+  { diameter: 8, length: 200, use: 'Közepes-nagy fák', plants: '3-4 m fák, hárs, juhar' },
+  { diameter: 8, length: 250, use: 'Nagyobb fák megtámasztása', plants: 'Tölgy, bükk fiatal' },
+  { diameter: 8, length: 300, use: 'Nagy fák, parkfák', plants: '4-5 m parkfák' },
+  
+  // 10 cm átmérő
+  { diameter: 10, length: 200, use: 'Nagy fák, közterületek', plants: 'Utcai fasorok' },
+  { diameter: 10, length: 250, use: 'Igen nagy fák támasztása', plants: 'Platán, vadgesztenye' },
+  { diameter: 10, length: 300, use: 'Parkfák, allék', plants: '5+ m nagy lombos fák' },
+];
+
+const diameters = [...new Set(products.map(p => p.diameter))].sort((a, b) => a - b);
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline
+    title="Melyik Méretet Válasszam?"
+    subtitle="Segítünk kiválasztani a megfelelő cölöpöt a növényéhez"
+    tagline="📏 Méret Segédlet"
+  />
+
+  <div class="mt-8">
+    
+    <!-- Átmérő szűrő gombok -->
+    <div class="flex flex-wrap justify-center gap-3 mb-6">
+      <button 
+        class="filter-btn active px-4 py-2 rounded-lg font-semibold transition-all bg-emerald-500 text-white"
+        data-filter="all"
+      >
+        Összes méret
+      </button>
+      {diameters.map((d) => (
+        <button 
+          class="filter-btn px-4 py-2 rounded-lg font-semibold transition-all bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/40"
+          data-filter={d}
+        >
+          Ø {d} cm
+        </button>
+      ))}
+    </div>
+
+    <!-- Táblázat -->
+    <div class="overflow-x-auto rounded-xl shadow-lg">
+      <table class="w-full bg-white dark:bg-slate-800">
+        <thead>
+          <tr class="bg-emerald-600 dark:bg-emerald-700 text-white">
+            <th class="py-4 px-4 text-left font-bold">Átmérő</th>
+            <th class="py-4 px-4 text-left font-bold">Hossz</th>
+            <th class="py-4 px-4 text-left font-bold">Felhasználás</th>
+            <th class="py-4 px-4 text-left font-bold">Ajánlott növények</th>
+          </tr>
+        </thead>
+        <tbody id="product-table-body">
+          {products.map((product, index) => (
+            <tr 
+              class={`
+                product-row border-b border-gray-100 dark:border-slate-700 
+                hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors
+                ${index % 2 === 0 ? 'bg-gray-50 dark:bg-slate-800/50' : 'bg-white dark:bg-slate-800'}
+              `}
+              data-diameter={product.diameter}
+            >
+              <td class="py-3 px-4">
+                <span class="inline-flex items-center gap-2">
+                  <span class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold">
+                    {product.diameter}
+                  </span>
+                  <span class="text-gray-500 dark:text-gray-400 text-sm">cm</span>
+                </span>
+              </td>
+              <td class="py-3 px-4">
+                <span class="font-semibold text-gray-800 dark:text-gray-200 text-lg">
+                  {product.length} cm
+                </span>
+                <span class="block text-xs text-gray-500 dark:text-gray-400">
+                  ({(product.length / 100).toFixed(1)} m)
+                </span>
+              </td>
+              <td class="py-3 px-4">
+                <span class="text-gray-700 dark:text-gray-300">
+                  {product.use}
+                </span>
+              </td>
+              <td class="py-3 px-4">
+                <span class="text-sm text-emerald-600 dark:text-emerald-400 italic">
+                  {product.plants}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tippek -->
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      <div class="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-4 border border-blue-200 dark:border-blue-800">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">📏</span>
+          <h4 class="font-bold text-blue-800 dark:text-blue-200">Átmérő Szabály</h4>
+        </div>
+        <p class="text-sm text-blue-700 dark:text-blue-300">
+          A cölöp átmérője legyen legalább <strong>1/3-a</strong> a fa törzsének.
+        </p>
+      </div>
+      
+      <div class="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">📐</span>
+          <h4 class="font-bold text-amber-800 dark:text-amber-200">Hosszúság Szabály</h4>
+        </div>
+        <p class="text-sm text-amber-700 dark:text-amber-300">
+          A cölöp <strong>1/3-a földben</strong>, 2/3-a felette legyen.
+        </p>
+      </div>
+      
+      <div class="bg-purple-50 dark:bg-purple-950/30 rounded-xl p-4 border border-purple-200 dark:border-purple-800">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">🌳</span>
+          <h4 class="font-bold text-purple-800 dark:text-purple-200">Darabszám</h4>
+        </div>
+        <p class="text-sm text-purple-700 dark:text-purple-300">
+          Kis fa: <strong>1-2 cölöp</strong>, nagy fa: <strong>2-3 cölöp</strong> háromszögben.
+        </p>
+      </div>
+    </div>
+
+    <!-- CTA - Link a cölöpök kategóriára -->
+    <div class="mt-10 bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-600 dark:to-teal-600 rounded-2xl p-8 text-center text-white">
+      <h3 class="text-2xl font-bold mb-3">
+        Megtalálta a megfelelő méretet?
+      </h3>
+      <p class="text-lg opacity-90 mb-6">
+        Tekintse meg teljes cölöp kínálatunkat árakkal és részletes leírásokkal!
+      </p>
+      <a 
+        href="/telitett-fa/colopok" 
+        class="inline-flex items-center gap-3 bg-white text-emerald-600 font-bold px-8 py-4 rounded-xl hover:bg-emerald-50 transition-colors shadow-lg hover:shadow-xl"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        Cölöpök kategória böngészése
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productRows = document.querySelectorAll('.product-row');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Aktív gomb kezelése
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'bg-emerald-500', 'text-white');
+          b.classList.add('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+        });
+        btn.classList.add('active', 'bg-emerald-500', 'text-white');
+        btn.classList.remove('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+
+        // Sorok szűrése
+        productRows.forEach(row => {
+          const diameter = row.getAttribute('data-diameter');
+          if (filter === 'all' || diameter === filter) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

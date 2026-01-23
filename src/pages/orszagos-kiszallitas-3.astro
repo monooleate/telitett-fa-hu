@@ -1,0 +1,423 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import BrikettCalculator from '~/components/widgets/BrikettCalculator.astro';
+import DeliveryZones from '~/components/widgets/DeliveryZones.astro';
+
+const metadata = {
+  title: 'Országos Kiszállítás | Telített Fa & Brikett Raklapon | Elvira Tüzép',
+  description: 'Országos házhozszállítás raklapos tételben! Telített kertifa, brikett bruttó 23.000 Ft-tól. 3 napos kiszállítás, expressz opció. Rendeljen most!',
+  canonical: 'https://elviratuzep.hu/orszagos-kiszallitas',
+  openGraph: {
+    type: 'website',
+    title: 'Országos Kiszállítás - Telített Fa & Brikett | Elvira Tüzép',
+    description: 'Raklapos házhozszállítás országosan! 3 nap alatt nálad. Telített kertifa, tűzifa brikett.',
+    image: '~/assets/images/og-orszagos-kiszallitas.jpg',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  
+  <!-- ============================================
+       HERO SECTION - Figyelemfelkeltő belépő
+       ============================================ -->
+  <Hero
+    id="hero"
+    tagline="🚚 Országos Házhozszállítás"
+    title="Harmadnapra Nálad a Raklap!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Megrendelés most',
+        href: '#megrendeles',
+        icon: 'tabler:shopping-cart',
+      },
+      {
+        variant: 'secondary',
+        text: 'Árak & Kalkulátor',
+        href: '#arak',
+        icon: 'tabler:calculator',
+      },
+    ]}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-3">
+        <p class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-200">
+          <span class="text-primary-600 dark:text-primary-400 font-bold">Telített kertifa</span> és 
+          <span class="text-amber-600 dark:text-amber-400 font-bold">tűzifa brikett</span> – 
+          raklapos tételben, az ország bármely pontjára!
+        </p>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <div class="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Bruttó ~23.000 Ft-tól</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>3 napos szállítás</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Expressz opció</span>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <div class="relative">
+        <!-- Placeholder vizuális elem - cseréld valódi képre -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-800 via-emerald-700 to-amber-700 aspect-[4/3] flex items-center justify-center">
+          <div class="absolute inset-0 bg-black/20"></div>
+          <div class="relative z-10 text-center text-white p-8">
+            <div class="text-8xl mb-4">🪵</div>
+            <div class="text-6xl mb-4">🔥</div>
+            <p class="text-xl font-bold uppercase tracking-wider">Telített Fa & Brikett</p>
+            <p class="text-lg opacity-80">Országos szállítás</p>
+          </div>
+          
+          <!-- Dekoratív elemek -->
+          <div class="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg font-bold text-sm transform rotate-12 shadow-lg">
+            AKCIÓ!
+          </div>
+          <div class="absolute bottom-4 left-4 bg-white/90 dark:bg-slate-800/90 text-gray-800 dark:text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+            🚚 Raklapos tétel
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- ============================================
+       MOTIVÁCIÓS SZEKCIÓ - Érzelmi kötődés
+       ============================================ -->
+  <section class="py-12 md:py-16 bg-gradient-to-r from-emerald-50 via-white to-amber-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        Ne legyen álmainak gátja a beszerzés! 🌟
+      </h2>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+        Építsen <strong class="text-emerald-600 dark:text-emerald-400">kerítést</strong>, 
+        <strong class="text-emerald-600 dark:text-emerald-400">kertet</strong>, 
+        <strong class="text-emerald-600 dark:text-emerald-400">gyermekjátszóteret</strong>. 
+        <br class="hidden md:block" />
+        <span class="text-amber-600 dark:text-amber-400 font-semibold">Nyugozza le a szomszédokat és az asszonyt!</span> 
+        <br class="hidden md:block" />
+        A termékeket mi adjuk – Ön csak megrendeli, és <strong>harmadnapra ott a raklap</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FŐ USP KÁRTYÁK - Miért válasszon minket?
+       ============================================ -->
+  <Features
+    id="elonyok"
+    title="Miért Tőlünk Rendeljen?"
+    subtitle="Országos házhozszállítás, megbízható minőség, egyszerű rendelés"
+    columns={3}
+    items={[
+      {
+        title: 'Országos Kiszállítás',
+        description: 'Az ország bármely pontjára szállítunk raklapos tételben. Budapesttől Debrecenig, Soprontól Szegedig – mindenhova!',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: '3 Napos Szállítás',
+        description: 'Megrendelés után 3 munkanapon belül kézbesítjük. Sürgős? Expressz opcióval még gyorsabban (felár ellenében).',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        title: 'Súlyfüggő Árazás',
+        description: 'Transzparens, súly- és távolságfüggő szállítási díjak. Minél többet rendel, annál jobban megéri!',
+        icon: 'tabler:scale',
+      },
+      {
+        title: 'Telített Kertifa',
+        description: 'Nagynyomáson kezelt, Tanalith-tel telített borovifa. Tartós, gyermekbarát, 15-25 év élettartam.',
+        icon: 'tabler:trees',
+      },
+      {
+        title: 'Prémium Brikett',
+        description: 'Kiváló minőségű tűzifa brikett. Magas fűtőérték, kevés hamu, tiszta égés. Csomagtól raklapig!',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Rugalmas Mennyiség',
+        description: 'Brikettnél 1 csomagtól 96 csomagig (teljes raklap). Telített fánál raklapos minimum.',
+        icon: 'tabler:packages',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       BRIKETT ÁRAZÓ TÁBLÁZAT & KALKULÁTOR
+       ============================================ -->
+  <BrikettCalculator id="arak" />
+
+  <!-- ============================================
+       TERMÉKEK BEMUTATÁSA
+       ============================================ -->
+  <Content
+    id="termekek"
+    isReversed
+    title="Telített Kertifa"
+    subtitle="Nagynyomáson kezelt borovifa minden kültéri projekthez"
+    items={[
+      {
+        title: 'Kerítésoszlopok',
+        description: 'Hegyezett cölöpök, kerítésoszlopok különböző méretekben.',
+      },
+      {
+        title: 'Rúdfa & Karók',
+        description: 'Faültetéshez, szőlőműveléshez, kertépítéshez.',
+      },
+      {
+        title: 'Építőanyagok',
+        description: 'Pergolák, lugasok, kerti bútorok, játszóterek alapanyagai.',
+      },
+    ]}
+    callToAction={{
+      text: 'Telített fa termékek →',
+      href: '/telitett-fa',
+    }}
+  >
+    <Fragment slot="content">
+      <div class="bg-emerald-100 dark:bg-emerald-900/30 rounded-xl p-6">
+        <h3 class="text-xl font-bold text-emerald-800 dark:text-emerald-300 mb-3">
+          🛡️ Tanalith Kezelés Előnyei
+        </h3>
+        <ul class="space-y-2 text-emerald-700 dark:text-emerald-200">
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Gyermekbarát (EN 71-3 szabvány)
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Nehézfém-mentes (nincs króm, arzén)
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            15-25 év élettartam UC4 minősítéssel
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Fémmel nem korrodál
+          </li>
+        </ul>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-600 to-emerald-800 aspect-square flex items-center justify-center">
+        <div class="text-center text-white p-8">
+          <div class="text-7xl mb-4">🪵</div>
+          <p class="font-bold text-xl">Telített Kertifa</p>
+          <p class="text-emerald-200 text-sm">Placeholder kép helye</p>
+        </div>
+      </div>
+    </Fragment>
+  </Content>
+
+  <Content
+    id="brikett"
+    title="Tűzifa Brikett"
+    subtitle="Prémium minőségű brikett rugalmas mennyiségben"
+    items={[
+      {
+        title: '1-10 csomag',
+        description: 'Próba vásárláshoz, kis igényekhez.',
+      },
+      {
+        title: '11-48 csomag',
+        description: 'Fél raklap körüli mennyiség, kedvezőbb egységár.',
+      },
+      {
+        title: '49-96 csomag',
+        description: 'Teljes raklap – a legjobb ár-érték arány!',
+      },
+    ]}
+    callToAction={{
+      text: 'Brikett kalkulátor ↓',
+      href: '#arak',
+    }}
+  >
+    <Fragment slot="content">
+      <div class="bg-amber-100 dark:bg-amber-900/30 rounded-xl p-6">
+        <h3 class="text-xl font-bold text-amber-800 dark:text-amber-300 mb-3">
+          🔥 Brikett Előnyei
+        </h3>
+        <ul class="space-y-2 text-amber-700 dark:text-amber-200">
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Magas fűtőérték (4,5-5 kWh/kg)
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Kevés hamu (1-3%)
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Tiszta, füstmentes égés
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Könnyű tárolás és kezelés
+          </li>
+        </ul>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-amber-600 to-orange-700 aspect-square flex items-center justify-center">
+        <div class="text-center text-white p-8">
+          <div class="text-7xl mb-4">🔥</div>
+          <p class="font-bold text-xl">Tűzifa Brikett</p>
+          <p class="text-amber-200 text-sm">Placeholder kép helye</p>
+        </div>
+      </div>
+    </Fragment>
+  </Content>
+
+  <!-- ============================================
+       RENDELÉSI FOLYAMAT
+       ============================================ -->
+  <Steps
+    id="rendeles-folyamat"
+    title="Hogyan Rendeljen?"
+    subtitle="Egyszerű, gyors, problémamentes"
+    items={[
+      {
+        title: '1. Válassza ki a terméket',
+        description: 'Böngéssze át telített fa vagy brikett kínálatunkat. Használja a kalkulátort az árszámításhoz!',
+        icon: 'tabler:list-search',
+      },
+      {
+        title: '2. Küldje el rendelését',
+        description: 'Töltse ki az egyszerű megrendelő űrlapot, vagy hívjon minket közvetlenül.',
+        icon: 'tabler:send',
+      },
+      {
+        title: '3. Visszaigazolás',
+        description: 'Munkatársunk 24 órán belül visszahívja és egyeztet a szállítási részletekről.',
+        icon: 'tabler:phone-check',
+      },
+      {
+        title: '4. Szállítás 3 napon belül',
+        description: 'A megbeszélt időpontban kiszállítjuk a raklapot az Ön címére. Expressz opció elérhető!',
+        icon: 'tabler:truck-delivery',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       SZÁLLÍTÁSI ZÓNÁK TÉRKÉP
+       ============================================ -->
+  <DeliveryZones id="szallitas" />
+
+  <!-- ============================================
+       GYIK
+       ============================================ -->
+  <FAQs
+    id="gyik"
+    title="Gyakran Ismételt Kérdések"
+    subtitle="Minden, amit a rendelésről tudni érdemes"
+    items={[
+      {
+        title: 'Mi a minimum rendelési mennyiség?',
+        description: 'Brikettnél 1 csomagtól rendelhet, telített fánál a minimum 1 raklap. A legjobb ár-érték arányt a raklapos tételeknél éri el.',
+      },
+      {
+        title: 'Mennyibe kerül a szállítás?',
+        description: 'A szállítási díj súly- és távolságfüggő. Bruttó ~23.000 Ft-tól indul a költség raklapos tételnél. Pontos árajánlatért vegye fel velünk a kapcsolatot!',
+      },
+      {
+        title: 'Milyen gyorsan szállítanak?',
+        description: 'Standard szállítás 3 munkanapon belül. Ha sürgős, expressz opcióval akár másnap is kiszállíthatunk (felár ellenében).',
+      },
+      {
+        title: 'Hova szállítanak?',
+        description: 'Magyarország teljes területére! Budapesttől a legkisebb faluig, mindenhova eljuttatjuk a rendelését.',
+      },
+      {
+        title: 'Hogyan történik a fizetés?',
+        description: 'Előre utalással vagy a szállításkor készpénzzel. Céges vásárlóknak átutalásos fizetés 8/15 napos határidővel.',
+      },
+      {
+        title: 'Mit tegyek, ha sérült a termék?',
+        description: 'Szállításkor ellenőrizze a csomagolást! Sérülés esetén jelezze a sofőrnek és lépjen kapcsolatba velünk – gyorsan megoldjuk.',
+      },
+      {
+        title: 'Van garancia a telített fára?',
+        description: 'A Tanalith-kezelt telített fa 15-25 év tartósságot garantál talajkontaktusban is (UC4 minősítés).',
+      },
+      {
+        title: 'Adhatok ajándékba briketteket?',
+        description: 'Persze! A brikett praktikus és hasznos ajándék. Kérésre díszcsomagolást is tudunk biztosítani.',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       ZÁRÓ CTA - MEGRENDELÉS
+       ============================================ -->
+  <CallToAction
+    id="megrendeles"
+    title="Készen Áll a Rendelésre?"
+    subtitle="Ne halassza tovább – harmadnapra nálad a raklap!"
+    actions={[
+      {
+        variant: 'primary',
+        text: '📞 Hívjon Most: +36 30 531 9050',
+        href: 'tel:+36305319050',
+      },
+      {
+        variant: 'secondary',
+        text: '📧 Írjon Emailt',
+        href: 'mailto:rendeles@elviratuzep.hu?subject=Országos%20szállítás%20érdeklődés',
+      },
+    ]}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-4">
+        <p class="text-xl">
+          <strong>Telített kertifa</strong> • <strong>Tűzifa brikett</strong> • <strong>Minden megoldható!</strong>
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Országos szállítás
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            3 napos kiszállítás
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Expressz opció
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            ~23.000 Ft-tól
+          </span>
+        </div>
+      </div>
+    </Fragment>
+  </CallToAction>
+
+</Layout>
