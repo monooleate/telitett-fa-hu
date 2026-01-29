@@ -13,48 +13,12 @@ export const headerData = {
       
     },
     {
-      text: 'Szolgáltatásaink',
-      href: getPermalink('/szolgaltatasok'),
-      links: [
-        {
-          text: 'Vágás',
-          href: getPermalink('/szolgaltatasok/vagas')
-        },
-        {
-          text: 'Csiszolás',
-          href: getPermalink('/szolgaltatasok/csiszolas')
-        },
-               {
-          text: 'Festés',
-          href: getPermalink('/szolgaltatasok/festes')
-        }
-      ]
-      
+      text: 'Szállítás',
+      href: getPermalink('/orszagos-kiszallitas'),  
     },
     {
       text: 'Tudástár',
       href: getPermalink('/tudastar'),
-      
-    },
-    {
-      text: 'Kalkulátorok',
-      href: getPermalink('/kalkulatorok'),
-      links: [
-        {
-          text: 'Térfogat Ár Kalkulátor',
-          href: getPermalink('/faanyag-terfogat-kalkulator')
-        },
-        {
-          text: 'Felület Ár Kalkulátor',
-          href: getPermalink('/faanyag-negyzetmeter-kalkulator')
-        },
-                {
-          text: 'Tüzifa Ár Összehasonlító',
-          href: getPermalink('/tuzifa-ar-osszehasonlito')
-        }
-        
-        
-      ]
       
     },
     {

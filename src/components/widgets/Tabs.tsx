@@ -499,7 +499,7 @@ const filteredProducts = useMemo(() => {
         )
       }
 
-      {/* Főkategória csempék */}
+      {/* Főkategória csempék 
       <div
         ref={internalBarRef}
         id={stickyBarId}
@@ -652,62 +652,11 @@ const filteredProducts = useMemo(() => {
           </div>
         </div>
       </div>
-
+      */}
       {/* Anchor a csempék alján – ide ugrunk kattintáskor */}
       <div ref={gridBottomRef} class="h-1" />
 
-      {/* Sticky navigáció: vissza + aktuális főkategória jelző */}
-      {showBackSticky && (
-        <div class="sticky top-[calc(env(safe-area-inset-top)+72px)] md:top-[calc(env(safe-area-inset-top)+86px)] z-40 dark:bg-gray-900/80 backdrop-blur">
-          <div class="mx-auto max-w-6xl">
-            <div class="flex flex-wrap items-center justify-center gap-2 py-2">
-              <button
-                type="button"
-                onClick={scrollToGridTop}
-                class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-orange-500 text-white text-sm font-medium shadow hover:bg-orange-600 active:scale-[.99]"
-                aria-label="Vissza a főkategóriákhoz"
-                title="Vissza a főkategóriákhoz"
-              >
-                {/* up icon */}
-                <svg
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="arrow-up"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                  class="h-4 w-4"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
-                  />
-                </svg>
-                <span>Főkategóriákhoz</span>
-              </button>
 
-              {showSubCategory && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (tabIntros[active]) {
-                      scrollToIntro();
-                    } else {
-                      scrollToPanelTopIfNeeded(active);
-                    }
-                  }}
-                  class="px-3 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-white/80 dark:bg-gray-800/80 backdrop-blur text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
-                  aria-label={`Ugrás a(z) ${active} tetejére`}
-                  title={`Ugrás a(z) ${active} tetejére`}
-                >
-                  {active}
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Sticky alatti bevezető doboz */}
       {activeIntro && (
