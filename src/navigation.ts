@@ -14,11 +14,33 @@ export const headerData = {
     },
     {
       text: 'Szállítás',
-      href: getPermalink('/orszagos-kiszallitas'),  
+      href: getPermalink('/szallitas'),  
+    },
+    {
+      text: 'Felhasználás',
+ 
+      links: [
+        {
+          text: 'Faültetés',
+          href: getPermalink('/felhasznalasok/faultetes')
+        },
+        {
+          text: 'Játszótér',
+          href: getPermalink('/felhasznalasok/jatszoter')
+        },
+        {
+          text: 'Kertépítés',
+          href: getPermalink('/felhasznalasok/kertepites')
+        },
+               {
+          text: 'Kerítés',
+          href: getPermalink('/felhasznalasok/keritesek')
+        }
+      ]
     },
     {
       text: 'Tudástár',
-      href: getPermalink('/tudastar'),
+      href: getPermalink('/blog'),
       
     },
     {

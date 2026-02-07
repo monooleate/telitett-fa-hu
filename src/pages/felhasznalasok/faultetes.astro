@@ -40,7 +40,7 @@ const metadata = {
       {
         variant: 'secondary',
         text: 'Méretek & Árak',
-        href: '#meretek',
+        href: '#product-sizes',
         icon: 'tabler:ruler',
       },
     ]}
@@ -217,7 +217,7 @@ const metadata = {
   <!-- ============================================
        4. MÉRET TÁBLÁZAT / TERMÉKEK
        ============================================ -->
-  <ProductSizes id="meretek" />
+  <ProductSizes id="product-sizes" />
 
   <!-- ============================================
        5. HOGYAN VÁLASSZON? - Segédlet
@@ -264,18 +264,13 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="image">
-      <!-- 
-        🖼️ AJÁNLOTT KÉP: 
-        - Különböző méretű cölöpök egymás mellett
-        - Vagy: méretarányos illusztráció
-      -->
-      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-blue-500 to-blue-700 aspect-square flex items-center justify-center">
-        <div class="text-center text-white p-8">
-          <div class="text-7xl mb-4">📏</div>
-          <p class="font-bold text-xl">Méret Segédlet</p>
-          <p class="text-blue-200 text-sm">Placeholder kép helye</p>
-        </div>
-      </div>
+   
+      <img
+        src="/images/faultetes-500.avif"
+        alt="4 cölöppel rögzített fiatal facsemete képe"
+        class="w-full rounded-lg shadow-lg"
+      />
+
     </Fragment>
   </Content>
 
@@ -371,18 +366,11 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="image">
-      <!-- 
-        🖼️ AJÁNLOTT KÉP: 
-        - Telített fa keresztmetszet (zöldes szín látszik)
-        - Vagy: összehasonlítás kezeletlen vs telített
-      -->
-      <div class="rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-emerald-600 to-green-700 aspect-square flex items-center justify-center">
-        <div class="text-center text-white p-8">
-          <div class="text-7xl mb-4">🛡️</div>
-          <p class="font-bold text-xl">Telített Fa</p>
-          <p class="text-emerald-200 text-sm">Placeholder kép helye</p>
-        </div>
-      </div>
+      <img
+        src="/images/pressure_treated_timber-500.avif"
+        alt="Tanalith-tal kezelt fa metszeti képe"
+        class="w-full rounded-lg shadow-lg"
+      />
     </Fragment>
   </Content>
 

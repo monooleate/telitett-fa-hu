@@ -298,23 +298,29 @@ const {
   </div>
 </WidgetWrapper>
 
-<script>
-  // Tab Switching
-  const tabs = document.querySelectorAll('.comparison-tab');
-  const contents = document.querySelectorAll('.comparison-content');
+<script is:inline>
+  function initInteractiveComparison() {
+    const root = document.getElementById('interactive-comparison');
+    if (!root) return;
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
+    // Ha már egyszer inicializáltuk, ne duplázzuk a listenereket
+    if (root.dataset.inited === "1") return;
+    root.dataset.inited = "1";
+
+    const tabs = root.querySelectorAll('.comparison-tab');
+    const contents = root.querySelectorAll('.comparison-content');
+
+    function setActiveTab(tab) {
       const target = tab.getAttribute('data-comparison');
-      
+
       tabs.forEach(t => {
         t.classList.remove('active', 'bg-white', 'dark:bg-gray-700', 'shadow-lg', 'text-primary-600', 'dark:text-primary-400', 'scale-105');
         t.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-200', 'dark:hover:bg-gray-700');
       });
-      
+
       tab.classList.add('active', 'bg-white', 'dark:bg-gray-700', 'shadow-lg', 'text-primary-600', 'dark:text-primary-400', 'scale-105');
       tab.classList.remove('text-gray-600', 'dark:text-gray-400');
-      
+
       contents.forEach(content => {
         if (content.id === `${target}-comparison`) {
           content.classList.remove('hidden');
@@ -323,68 +329,71 @@ const {
           content.classList.add('hidden');
         }
       });
-    });
-  });
-
-  // Animate bars with stagger
-  function animateBars(container) {
-    const boxes = container.querySelectorAll('.comparison-box');
-    
-    boxes.forEach((box, boxIndex) => {
-      setTimeout(() => {
-        const bars = box.querySelectorAll('[data-height]');
-        bars.forEach((bar, barIndex) => {
-          const targetHeight = bar.getAttribute('data-height');
-          setTimeout(() => {
-            bar.style.height = `${targetHeight}%`;
-          }, barIndex * 200);
-        });
-
-        // Show explanation box
-        const explanationBox = box.querySelector('.explanation-box');
-        if (explanationBox) {
-          setTimeout(() => {
-            explanationBox.classList.remove('opacity-0', 'translate-y-2');
-            explanationBox.classList.add('opacity-100', 'translate-y-0');
-          }, bars.length * 200 + 400);
-        }
-      }, boxIndex * 150);
-    });
-
-    // Show summary box
-    const summaryBox = container.querySelector('.summary-box');
-    if (summaryBox) {
-      setTimeout(() => {
-        summaryBox.classList.remove('opacity-0', 'translate-y-4');
-        summaryBox.classList.add('opacity-100', 'translate-y-0');
-      }, boxes.length * 150 + 1000);
     }
+
+    // Event delegation: elég egy listener a root-ra (stabilabb navigációnál)
+    root.addEventListener('click', (e) => {
+      const btn = e.target.closest('.comparison-tab');
+      if (!btn) return;
+      setActiveTab(btn);
+    });
+
+    // --- Animációk (a te kódod, minimálisan igazítva) ---
+    function animateBars(container) {
+      const boxes = container.querySelectorAll('.comparison-box');
+
+      boxes.forEach((box, boxIndex) => {
+        setTimeout(() => {
+          const bars = box.querySelectorAll('[data-height]');
+          bars.forEach((bar, barIndex) => {
+            const targetHeight = bar.getAttribute('data-height');
+            setTimeout(() => {
+              bar.style.height = `${targetHeight}%`;
+            }, barIndex * 200);
+          });
+
+          const explanationBox = box.querySelector('.explanation-box');
+          if (explanationBox) {
+            setTimeout(() => {
+              explanationBox.classList.remove('opacity-0', 'translate-y-2');
+              explanationBox.classList.add('opacity-100', 'translate-y-0');
+            }, bars.length * 200 + 400);
+          }
+        }, boxIndex * 150);
+      });
+
+      const summaryBox = container.querySelector('.summary-box');
+      if (summaryBox) {
+        setTimeout(() => {
+          summaryBox.classList.remove('opacity-0', 'translate-y-4');
+          summaryBox.classList.add('opacity-100', 'translate-y-0');
+        }, boxes.length * 150 + 1000);
+      }
+    }
+
+    // Default: első tab aktív
+    if (tabs[0]) setActiveTab(tabs[0]);
+
+    // IntersectionObserver csak ezen root-on belül
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const visible = root.querySelector('.comparison-content:not(.hidden)');
+          if (visible) animateBars(visible);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(root);
   }
 
-  // Intersection Observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const visibleContent = document.querySelector('.comparison-content:not(.hidden)');
-        if (visibleContent) {
-          animateBars(visibleContent);
-        }
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
+  // Első betöltés
+  document.addEventListener('DOMContentLoaded', initInteractiveComparison);
 
-  // Initialize
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('interactive-comparison');
-    if (section) {
-      observer.observe(section);
-    }
-    
-    tabs[0]?.classList.add('active', 'bg-white', 'dark:bg-gray-700', 'shadow-lg', 'text-primary-600', 'dark:text-primary-400', 'scale-105');
-  });
+  // Astro kliens oldali navigáció után is
+  document.addEventListener('astro:page-load', initInteractiveComparison);
 </script>
-
 <style>
   .explanation-box,
   .summary-box {

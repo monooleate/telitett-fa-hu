@@ -1,23 +1,116 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import ContentSticky from '~/components/widgets/ContentSticky.astro';
+import Content from '~/components/widgets/Content.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import InteractiveComparison from '~/components/widgets/InteractiveComparison_2.astro';
+import InteractiveComparison from '~/components/widgets/InteractiveComparison.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
-import UseCasesCards from '~/components/widgets/UseCasesCards.astro';
+import SpecialOffers, { buildSpecialOffersItemList } from '~/components/widgets/SpecialOffers.astro';
+import { fetchCategoriesOnly, fetchDiscountedProducts } from '../lib/medusa-adapter'
+import UseCasesCards from '~/components/widgets/UseCasesCards_2.astro';
+
+import heroImg from '../assets/images/elvira-tuzep-hero.png';
 
 import Features from '~/components/widgets/Features.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import UseCasesCarousel from '~/components/widgets/UseCasesCarousel.astro';
+import UseCasesGrid from '~/components/widgets/UseCasesGrid.astro';
 
 const metadata = {
   title: 'Nagynyomáson Kezelt Borovifa | Tartós és Biztonságos Faanyag',
   description: 'Tanalith-kezelt telített borovifa B2B értékesítés. Gyermekbarát, környezetbarát, 15-25 év tartósság. Kerítésoszlopok, játszóterek, kerti építmények számára.',
   ignoreTitleTemplate: true,
 };
+const discounted = await fetchDiscountedProducts();
 
+const schemaHome = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://elviratuzep.hu/#website",
+    "name": "Elvira Tüzép",
+    "url": "https://elviratuzep.hu/",
+    "publisher": { "@id": "https://gigawood.hu/#organization" },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://elviratuzep.hu/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://gigawood.hu/#organization",
+    "name": "Gigawood Kft.",
+    "url": "https://gigawood.hu/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gigawood.hu/custom/megawood/image/cache/w220h100m00/GigaWood_logo_3_Vasvari_Design.png"
+    },
+    "sameAs": [
+      "https://www.facebook.com/kertifajatszoter",
+      "https://www.instagram.com/gigawoodkft",
+      "https://www.google.com/maps?cid=4954816018312604745"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+36 70 368 7809",
+        "contactType": "customer service",
+        "email": "info@gigawood.hu",
+        "areaServed": "HU",
+        "availableLanguage": ["hu"]
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://elviratuzep.hu/#store",
+    "name": "Elvira Tüzép",
+    "image": "https://elviratuzep.hu/favicon.png",
+    "telephone": "+36 70 368 7809",
+    "email": "info@elviratuzep.hu",
+    "url": "https://elviratuzep.hu/",
+    "priceRange": "Ft",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Elvira utca 33.",
+      "addressLocality": "Érd",
+      "addressRegion": "Pest",
+      "postalCode": "2030",
+      "addressCountry": "HU"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "07:00",
+        "closes": "17:00"
+      }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 47.375516,
+      "longitude": 18.932424
+    },
+    "hasMap": "https://maps.google.com/?q=47.375516,18.932424",
+    "parentOrganization": { "@id": "https://gigawood.hu/#organization" },
+    "areaServed": ["Érd","Diósd","Tárnok","Budapest","Szigetszentmiklós","Százhalombatta"],
+    "currenciesAccepted": "HUF",
+    "paymentAccepted": "Cash, Card, BankTransfer",
+    "sameAs": [
+      "https://www.google.com/maps?cid=4954816018312604745"
+    ]
+  }
+];
 ---
 
 <Layout metadata={metadata}>
@@ -37,11 +130,8 @@ const metadata = {
         },
       ]}
       heroSlides={[
-        { image: '/images/product-1-500.avif', alt: 'Hegyezett cölöp, melyet főlög fák ültetésekor használnak', href: '/termekek/telitett-hegyzett-colop', label: 'Prémium termék', sublabel: 'Cölöp' },
-        { image: '/images/kamy-hippo-500.avif', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/telitett-oszlop', label: 'Játszótér', sublabel: 'Faanyag' },
-        { image: '/images/product-2-500.avif', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/telitett-pallo', label: 'Faanyag', sublabel: 'Palló' },
-        { image: '/images/product-3-500.avif', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/telitett-rudfa', label: 'Rúdfa', sublabel: 'Karózás' },
-
+        { image: heroImg.src, alt: 'Elvira Tüzép Hero képe. Egy árny, aki egy pajzsot tart ET felirattal, mely az Elvira Tüzepet rövidíti.', href: '', label: 'Prémium termékek', sublabel: '' },
+        { image: '/termekek/bsh-gerenda-8x16.jpg', alt: 'BSH gerendát ábrázoló kép', href: '/termekek/bsh-ragasztott-gerenda', label: 'BSH gerendák', sublabel: 'Osztrák minőség' },
         ]}
     >
     <Fragment slot="title">
@@ -112,6 +202,9 @@ const metadata = {
     </Fragment>
   </Stats>
 
+  <!-- USE CASES - H2, 8 használati terület -->
+<!--   <UseCasesCarousel id="use-cases" />
+  <UseCasesGrid id="use-cases" /> -->
   <UseCasesCards 
     id="use-cases" 
     useCases = {[
@@ -121,7 +214,7 @@ const metadata = {
         description: 'Fiatal fák védelme és támasztása. Akár 25 évig tartanak talajban.',
         features: ['UC4 minősítés', 'Hegyezett vég', '15-25 év'],
         href: '/felhasznalasok/faultetes',
-        image: '/images/faultetes-500.avif',
+        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=500&h=350&fit=crop',
         icon: '🌳',
         color: 'emerald',
       },
@@ -131,7 +224,7 @@ const metadata = {
         description: 'EN 71-3 szabvány, nehézfém-mentes. Köztéri és kerti használatra.',
         features: ['Gyermekbarát', 'EN 71-3', 'Nehézfém-mentes'],
         href: '/felhasznalasok/jatszoter',
-        image: '/images/jatszoter-500.avif',
+        image: 'https://images.unsplash.com/photo-1587616211892-d7a3c0f5f5e8?w=500&h=350&fit=crop',
         icon: '🎠',
         color: 'purple',
       },
@@ -141,7 +234,7 @@ const metadata = {
         description: 'Pergolák, lugasok, virágládák. Tartós kerti építmények alapanyaga.',
         features: ['Festhető', 'Időjárásálló', 'Természetes'],
         href: '/felhasznalasok/kertepites',
-        image: '/images/kerites-haloval-500.avif',
+        image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=500&h=350&fit=crop',
         icon: '🏡',
         color: 'teal',
       },
@@ -151,12 +244,109 @@ const metadata = {
         description: 'Kerítésoszlopok, kapuk, lécek. A rúdfa a legkedveltebb alapanyag.',
         features: ['Rúdfa választék', 'Földbe verhető', 'Évtizedekig tart'],
         href: '/felhasznalasok/keritesek',
-        image: '/images/kerites-colop-500.avif',
+        image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=500&h=350&fit=crop',
         icon: '🏗️',
         color: 'slate',
       },
     ]}
   />
+
+<!--    <Features2
+    id="use-cases"
+    columns={2}
+    items={[
+      {
+        title: 'Faültetés Tartó Cölöpök',
+        description: 'Fiatal fák védelmére és támasztására. A telített cölöpök akár 25 évig tartanak talajkontaktusban, nem rothadnak, és stabilan tartják a növekvő fákat.',
+        icon: 'tabler:tree',
+        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Tudj meg többet',
+          href: '/felhasznalasok/faultetes',
+        },
+      },
+      {
+        title: 'Gyermek Játszóterek',
+        description: 'A Tanalith nehézfém-mentes kezelés gyermekbarát - nincs króm, nincs arzén. Mászókák, hinták, homokozó keretek biztonságosan készíthetők telített boroviból.',
+        icon: 'tabler:users',
+        image: 'https://images.unsplash.com/photo-1587616211892-d7a3c0f5f5e8?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Gyermekbarát részletek',
+          href: '/tanalith-gyermekbarat',
+        },
+      },
+      {
+        title: 'Kerítésépítés és Oszlopok',
+        description: 'Kerítésoszlopok, kapuoszlopok, kerítés tartószerkezetek. Könnyebb megmunkálni, mint keményfa, így gyorsabb a szerelés és alacsonyabb a munkaerőköltség.',
+        icon: 'tabler:fence',
+        image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Kerítés projektek',
+          href: '/felhasznalasok/kerites',
+        },
+      },
+      {
+        title: 'Kerti Építmények',
+        description: 'Pergolák, lugasok, kerti pihenők, teraszok tartószerkezete. A telített fa ellenáll az időjárásnak és UV sugárzásnak, festhető, gyönyörűen öregszik.',
+        icon: 'tabler:home-eco',
+        image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Kerti ötletek',
+          href: '/felhasznalasok/kerti-epitmenyek',
+        },
+      },
+      /* {
+        title: 'Teraszok és Járdák',
+        description: 'Teraszléc, járdalap, padozat. A telített fa tartós, csúszásmentes felületet biztosít. UC4 minősítéssel talajközeli használatra is alkalmas.',
+        icon: 'tabler:building',
+        image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Terasz megoldások',
+          href: '/felhasznalasok/terasz',
+        },
+      },
+      {
+        title: 'Támfalak és Talajmegőrző',
+        description: 'Talpgerenda, cölöpsor, támfal építés. Talajkontaktusban is tartós védelem, lejtős terepen ideális megoldás. Stabil, hosszú élettartamú.',
+        icon: 'tabler:wall',
+        image: 'https://images.unsplash.com/photo-1585914924626-e32a4f455de9?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Támfal projektek',
+          href: '/felhasznalasok/tamfal',
+        },
+      }, */
+      {
+        title: 'Közterületi Projektek',
+        description: 'Önkormányzati parkosítás, közterek, sétányok. EN 71-3 gyermekbarát tanúsítvány, hosszú élettartam, minimális karbantartás. Ideális közösségi terekhez.',
+        icon: 'tabler:building-community',
+        image: 'https://images.unsplash.com/photo-1573204464719-6bbfb61da1ea?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Közterületi referenciák',
+          href: '/felhasznalasok/kozterulet',
+        },
+      },
+      {
+        title: 'Mezőgazdasági Létesítmények',
+        description: 'Istálló, fészer, kerítés, kapualj. Tartós védelem állatokkal és időjárással szemben. UC4 minősítés, rézmentes - nem káros az állatokra.',
+        icon: 'tabler:tractor',
+        image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+        callToAction: {
+          text: 'Mezőgazdasági megoldások',
+          href: '/felhasznalasok/mezogazdasag',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Mire Használható a Telített Borovifa?</h2>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Faültetéstől játszóterig, közterektől mezőgazdaságig - biztonságos, tartós megoldások minden kültéri alkalmazáshoz
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+    </Fragment>
+  </Features2> -->
 
   <!-- INTERACTIVE COMPARISON - H2, Bar-ok egymás mellett -->
   <InteractiveComparison
@@ -220,7 +410,7 @@ const metadata = {
         job: 'Építési Vállalkozó',
         company: 'ÉpítőMester Kft',
         testimonial: 'Több mint 50 kerítésprojektnél használtuk már a Gigawood telített boroviját. A megbízhatóság és tartósság kiváló, az ügyfelek elégedettek. A szállítás mindig pontosan érkezik.',
-        image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=150&h=150&fit=crop&crop=faces',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
         rating: 5,
       },
       {
@@ -253,28 +443,28 @@ const metadata = {
   </Testimonials>
 
   <!-- SZÁLLÍTÁSI INFORMÁCIÓK - H2 -->
-<ContentSticky
+  <ContentSticky
     id="shipping"
     isReversed
     items={[
       {
         title: 'Gyors Kiszállítás',
-        description: 'Rövid átfutási idővel szállítunk a megrendelés leadását követően. Rugalmas szállítási megoldások.',
+        description: '24-48 órán belül kiszállítjuk a megrendelést Pest megyébe. Országos szállítás 3-5 munkanapon belül.',
         icon: 'tabler:clock-hour-4',
       },
       {
         title: 'Központi Raktár',
-        description: 'Jól felszerelt központi raktárunkból biztosítjuk a folyamatos készleteket és a gyors kiszállítást.',
+        description: 'Érd központi telephelyünkről szolgáljuk ki az Érd, Diósd, Tárnok, Budapest és környéki ügyfeleket.',
         icon: 'tabler:map-pin',
       },
       {
         title: 'Raklapos Szállítás',
-        description: 'Nagyobb mennyiségek esetén raklapos szállítási lehetőség. Egyedi árajánlat B2B partnereknek.',
+        description: 'B2B mennyiségben raklapos kiszállítás kedvező áron. Nagyobb tételek esetén egyedi árajánlat.',
         icon: 'tabler:packages',
       },
       {
-        title: 'Közép-Európai Szállítás',
-        description: 'Magyarország és Közép-Európa több országa területén vállalunk szállítást teherautóval.',
+        title: 'Közép-Európai Lefedettség',
+        description: 'Magyarország, Románia, Horvátország, Szlovákia területén szállítunk. Hosszú távú partnerkapcsolatok.',
         icon: 'tabler:world',
       },
     ]}
@@ -284,18 +474,16 @@ const metadata = {
         Szállítási Információk
       </h2>
       <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
-        Rugalmas Szállítási Megoldások Közép-Európában
+        Gyors és Megbízható Kiszállítás Közép-Európában
       </h3>
       <p class="text-lg mb-4">
-        Központi raktárunkból gyors és megbízható kiszállítást biztosítunk. 
-        <strong>Raklapos szállítás</strong> nagyobb mennyiségekhez, vagy 
-        <strong>teherautós/kamionos szállítás</strong> teljes rakományokhoz – 
-        az Ön igényeinek megfelelően.
+        <strong>Központi raktárunk Érden</strong> található, ahonnan 24-48 órán belül szállítunk Pest megyébe 
+        és 3-5 munkanapon belül országszerte. B2B partnereinknek <strong>raklapos mennyiségben</strong> 
+        kedvező áron biztosítjuk a szállítást.
       </p>
       <p class="text-base text-muted mb-6">
-        Szállítási területünk: <strong>Közép-Európa</strong> 
-        (beleértve Romániát, Horvátországot, Szlovákiát, Magyarországot). Nagyobb tételek esetén 
-        egyedi szállítási árajánlatot készítünk.
+        Szállítási területünk: <strong>Érd, Diósd, Tárnok, Budapest és agglomeráció, Pest megye, 
+        valamint Magyarország, Románia, Horvátország és Szlovákia</strong> területén.
       </p>
       
       <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
@@ -310,28 +498,18 @@ const metadata = {
               📞 Egyedi Árajánlat Nagyobb Tételekre
             </h4>
             <p class="text-sm text-blue-800 dark:text-blue-200">
-              Nagyobb mennyiségű megrendelések esetén egyedi szállítási feltételeket 
-              és kedvező árajánlatot biztosítunk. Speciális igényekre (teljes rakomány, 
-              különleges méretek) kérjen személyre szabott ajánlatot!
+              500.000 Ft feletti megrendelés esetén ingyenes szállítást biztosítunk Pest megyén belül. 
+              Egyedi igényekre (speciális méretek, nagyobb mennyiségek) kérjen árajánlatot telefonon vagy emailben!
             </p>
           </div>
         </div>
-
-      </div>
-              <div class="flex gap-4 pt-5">
-        <a
-          href="/szallitas"
-          class="btn btn-primary m-auto"
-        >
-          Részletes szállítási információ
-        </a>
       </div>
     </Fragment>
 
     <Fragment slot="image">
       <img
-        src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=600&fit=crop"
-        alt="Faanyag szállítás teherautón"
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop"
+        alt="Raklapos szállítás"
         class="rounded-2xl shadow-2xl"
       />
     </Fragment>
@@ -344,6 +522,7 @@ const metadata = {
   <!-- BOROVI FENYŐ -->
   <ContentSticky
     id="scots-pine"
+    isReversed
     title="Miért Borovi Fenyő?"
     subtitle="A sejtszerkezet teszi lehetővé a mély telítést"
     items={[
@@ -397,7 +576,6 @@ const metadata = {
     <!-- TANALITH - Regular Content -->
   <ContentSticky
     id="tanalith"
-    isReversed
     title="Miért a Tanalith Kezelés?"
     subtitle="Nehézfém-mentes, gyermekbarát, környezetbarát védelem"
     items={[
@@ -456,9 +634,9 @@ const metadata = {
 
     <Fragment slot="image">
       <img
-        src="/images/tanalith-treating.jpg"
+        src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=600&fit=crop"
         alt="Tanalith kezelés"
-        class="rounded-2xl shadow-2xl mx-auto"
+        class="rounded-2xl shadow-2xl"
       />
     </Fragment>
 
@@ -501,7 +679,7 @@ const metadata = {
     </Fragment>
     <Fragment slot="image">
       <img
-        src="/images/kamy-500.avif"
+        src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=800&fit=crop"
         alt="Gyermekek játszótéren"
         class="absolute inset-0 w-full h-full object-cover"
       />
@@ -546,9 +724,9 @@ const metadata = {
     </Fragment>
     <Fragment slot="image">
       <img
-        src="images/tree-kit-500.avif"
+        src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&h=800&fit=crop"
         alt="Fiatal fa ültetve támasztékkal"
-        class="absolute inset-0 m-auto rounded-xl h-full object-cover"
+        class="absolute inset-0 w-full h-full object-cover"
       />
     </Fragment>
 
@@ -588,7 +766,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'images/timber-treatment-process-500.avif',
+      src: 'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=800',
       alt: 'Telítési eljárás folyamata',
     }}
   >

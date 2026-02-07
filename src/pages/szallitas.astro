@@ -1,0 +1,643 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Telített Fa Kiszállítás Közép-Európába | Raklapos & Kamionos | Elvira Tüzép',
+  description: 'Telített kertifa szállítás Közép-Európa szerte! Raklapos és kamionos kiszállítás Magyarország, Románia, Horvátország, Szlovákia területére. Kapcsolatfelvétel után gyors szállítás!',
+  canonical: 'https://elviratuzep.hu/orszagos-kiszallitas',
+  openGraph: {
+    type: 'website',
+    title: 'Telített Fa Kiszállítás Közép-Európába | Elvira Tüzép',
+    description: 'Raklapos és kamionos telített fa szállítás Közép-Európa szerte. Megrendeli – leszállítjuk!',
+    image: '~/assets/images/og-orszagos-kiszallitas.jpg',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  
+  <!-- ============================================
+       1. HERO SECTION
+       ============================================ -->
+  <Hero
+    id="hero"
+    tagline="🚚 Telített Fa Kiszállítás Közép-Európába"
+    title="Megrendeli – Leszállítjuk!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Árajánlatot kérek',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Hogyan működik?',
+        href: '#hogyan-mukodik',
+        icon: 'tabler:info-circle',
+      },
+    ]}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-3">
+        <p class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-200">
+          <span class="text-primary-600 dark:text-primary-400 font-bold">Telített kertifa</span> – 
+          raklapon vagy kamionnal, Közép-Európa szerte.
+          <br class="hidden md:block" />
+          Ön csak megrendeli, mi <strong>gyorsan és megbízhatóan leszállítjuk</strong>.
+        </p>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4 pb-4">
+          <div class="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Raklapos szállítás</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Kamionos szállítás</span>
+          </div>
+          
+          <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-4 py-2 rounded-full font-semibold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Közép-Európa</span>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+
+    <Fragment slot="image">
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-800 via-emerald-700 to-emerald-900 aspect-[4/3] flex items-center justify-center">
+          <div class="absolute inset-0 bg-black/20"></div>
+          <div class="relative z-10 text-center text-white p-8">
+            <div class="text-8xl mb-4">🪵</div>
+            <div class="text-5xl mb-4">🚛</div>
+            <p class="text-xl font-bold uppercase tracking-wider">Telített Fa Szállítás</p>
+            <p class="text-lg opacity-80">Közép-Európa szerte</p>
+          </div>
+          
+          <div class="absolute bottom-4 left-4 bg-white/90 dark:bg-slate-800/90 text-gray-800 dark:text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+            🚚 Raklap & Kamion
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- ============================================
+       2. MOTIVÁCIÓS SZEKCIÓ
+       ============================================ -->
+  <section class="py-12 md:py-16 bg-gradient-to-r from-emerald-50 via-white to-blue-50 dark:from-slate-900 dark:via-emerald-950/30 dark:to-slate-900">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        Nem kell utánajárnia – mi megoldjuk a szállítást!
+      </h2>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+        Akár <strong class="text-emerald-600 dark:text-emerald-400">kerítést épít</strong>, 
+        <strong class="text-emerald-600 dark:text-emerald-400">pergolát tervez</strong>, vagy 
+        <strong class="text-emerald-600 dark:text-emerald-400">játszóteret álmodott meg</strong> – 
+        <br class="hidden md:block" />
+        a telített fa anyagot <span class="text-primary-600 dark:text-primary-400 font-semibold">bárhova leszállítjuk Közép-Európában</span>. 
+        <br class="hidden md:block" />
+        Kapcsolatfelvétel után egyeztetünk, és <strong>hamarosan ott is van a raklap</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       3. SZÁLLÍTÁSI LEFEDETTSÉG
+       ============================================ -->
+  <section class="py-12 md:py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Hova Szállítunk?
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Közép-Európa szerte vállalunk kiszállítást – raklapos és kamionos tételben egyaránt.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-8 items-start">
+        
+        <!-- VIZUALIZÁCIÓ (3 oszlop) -->
+        <div class="lg:col-span-3">
+          <div class="bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-slate-800 dark:via-slate-750 dark:to-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+            <div class="relative aspect-[4/3] bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-inner">
+              
+              <svg viewBox="0 0 500 380" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Központi glow -->
+                  <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.35" />
+                    <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:0.08" />
+                    <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0" />
+                  </radialGradient>
+                  <!-- Külső gyűrű gradient -->
+                  <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="70%" style="stop-color:#10b981;stop-opacity:0" />
+                    <stop offset="85%" style="stop-color:#10b981;stop-opacity:0.06" />
+                    <stop offset="100%" style="stop-color:#10b981;stop-opacity:0" />
+                  </radialGradient>
+                  <!-- Nyílhegyek -->
+                  <marker id="ah1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                    <path d="M0,0.5 L7,3 L0,5.5Z" fill="#f59e0b" opacity="0.85" />
+                  </marker>
+                  <marker id="ah2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                    <path d="M0,0.5 L6,2.5 L0,4.5Z" fill="#10b981" opacity="0.6" />
+                  </marker>
+                  <!-- Glow filter -->
+                  <filter id="glw">
+                    <feGaussianBlur stdDeviation="4" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                  <!-- Halvány pont glow -->
+                  <filter id="dotGlw">
+                    <feGaussianBlur stdDeviation="2" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Háttér -->
+                <rect width="500" height="380" class="fill-white dark:fill-slate-900" />
+                
+                <!-- Halvány rácsozat háttér -->
+                <g opacity="0.06" class="dark:opacity-[0.08]">
+                  <line x1="0" y1="76" x2="500" y2="76" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="0" y1="152" x2="500" y2="152" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="0" y1="228" x2="500" y2="228" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="0" y1="304" x2="500" y2="304" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="100" y1="0" x2="100" y2="380" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="200" y1="0" x2="200" y2="380" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="300" y1="0" x2="300" y2="380" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                  <line x1="400" y1="0" x2="400" y2="380" class="stroke-gray-400 dark:stroke-gray-500" stroke-width="0.5" />
+                </g>
+
+                <!-- Külső hatósugár gyűrűk -->
+                <circle cx="250" cy="190" r="160" fill="none" class="stroke-emerald-300 dark:stroke-emerald-700" stroke-width="0.8" stroke-dasharray="3,6" opacity="0.4" />
+                <circle cx="250" cy="190" r="120" fill="none" class="stroke-emerald-400 dark:stroke-emerald-600" stroke-width="0.8" stroke-dasharray="3,6" opacity="0.3" />
+                <circle cx="250" cy="190" r="75" fill="none" class="stroke-amber-400 dark:stroke-amber-600" stroke-width="1" stroke-dasharray="4,5" opacity="0.3" />
+
+                <!-- Központi glow -->
+                <circle cx="250" cy="190" r="80" fill="url(#hubGlow)" />
+                <circle cx="250" cy="190" r="160" fill="url(#ringGlow)" />
+
+                <!-- ============================== -->
+                <!-- FŐ SZÁLLÍTÁSI NYILAK (vastag) -->
+                <!-- ============================== -->
+                
+                <!-- Észak (SK irány) -->
+                <path d="M250,170 Q248,130 235,60" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="8,5" opacity="0.7" marker-end="url(#ah1)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.8s" repeatCount="indefinite" />
+                </path>
+                
+                <!-- Kelet (RO irány) -->
+                <path d="M270,188 Q340,180 445,175" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="8,5" opacity="0.7" marker-end="url(#ah1)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="2.2s" repeatCount="indefinite" />
+                </path>
+
+                <!-- Dél (HR irány) -->
+                <path d="M240,208 Q220,260 175,335" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="8,5" opacity="0.7" marker-end="url(#ah1)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="2s" repeatCount="indefinite" />
+                </path>
+
+                <!-- Északkelet -->
+                <path d="M265,175 Q330,120 410,65" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7,5" opacity="0.55" marker-end="url(#ah1)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.4s" repeatCount="indefinite" />
+                </path>
+
+                <!-- Nyugat -->
+                <path d="M230,185 Q160,180 65,190" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="7,5" opacity="0.5" marker-end="url(#ah1)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="2.1s" repeatCount="indefinite" />
+                </path>
+
+                <!-- ============================== -->
+                <!-- MÁSODLAGOS NYILAK (vékonyabb) -->
+                <!-- ============================== -->
+                
+                <!-- Északnyugat -->
+                <path d="M238,178 Q180,140 100,80" fill="none" class="stroke-emerald-500 dark:stroke-emerald-400" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.4" marker-end="url(#ah2)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite" />
+                </path>
+                
+                <!-- Délkelet -->
+                <path d="M262,200 Q320,260 395,330" fill="none" class="stroke-emerald-500 dark:stroke-emerald-400" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.4" marker-end="url(#ah2)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.3s" repeatCount="indefinite" />
+                </path>
+                
+                <!-- Délnyugat -->
+                <path d="M240,200 Q170,250 80,310" fill="none" class="stroke-emerald-500 dark:stroke-emerald-400" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.35" marker-end="url(#ah2)">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.5s" repeatCount="indefinite" />
+                </path>
+
+                <!-- ============================== -->
+                <!-- CÉLPONT PONTOK -->
+                <!-- ============================== -->
+                <g>
+                  <!-- Észak -->
+                  <circle cx="235" cy="52" r="5" fill="#f59e0b" opacity="0.7" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Kelet -->
+                  <circle cx="452" cy="174" r="5" fill="#f59e0b" opacity="0.7" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Dél -->
+                  <circle cx="170" cy="340" r="5" fill="#f59e0b" opacity="0.7" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.8s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Északkelet -->
+                  <circle cx="415" cy="60" r="4.5" fill="#f59e0b" opacity="0.6" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.7s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Nyugat -->
+                  <circle cx="58" cy="190" r="4.5" fill="#f59e0b" opacity="0.6" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.6s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Északnyugat -->
+                  <circle cx="95" cy="75" r="4" class="fill-emerald-500 dark:fill-emerald-400" opacity="0.5" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.4s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Délkelet -->
+                  <circle cx="400" cy="335" r="4" class="fill-emerald-500 dark:fill-emerald-400" opacity="0.5" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.9s" repeatCount="indefinite" />
+                  </circle>
+                  <!-- Délnyugat -->
+                  <circle cx="75" cy="315" r="4" class="fill-emerald-500 dark:fill-emerald-400" opacity="0.5" filter="url(#dotGlw)">
+                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.6s" repeatCount="indefinite" />
+                  </circle>
+                </g>
+
+                <!-- ============================== -->
+                <!-- KÖZPONTI HUB -->
+                <!-- ============================== -->
+                
+                <!-- Forgó gyűrű -->
+                <circle cx="250" cy="190" r="25" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.4">
+                  <animateTransform attributeName="transform" type="rotate" from="0 250 190" to="360 250 190" dur="15s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="250" cy="190" r="35" fill="none" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,10" opacity="0.25">
+                  <animateTransform attributeName="transform" type="rotate" from="360 250 190" to="0 250 190" dur="20s" repeatCount="indefinite" />
+                </circle>
+                
+                <!-- Fő pont -->
+                <circle cx="250" cy="190" r="12" fill="#f59e0b" filter="url(#glw)">
+                  <animate attributeName="r" values="10;13;10" dur="2.5s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="250" cy="190" r="5" fill="#fff" />
+                
+                <!-- 🚛 ikon a központban -->
+                <text x="250" y="196" text-anchor="middle" font-size="13">🚛</text>
+
+              </svg>
+              
+              <!-- Overlay badge -->
+              <div class="absolute top-3 right-3 bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-bold text-xs shadow-lg">
+                🌍 Közép-Európa
+              </div>
+              
+              <div class="absolute bottom-3 left-3 bg-white/90 dark:bg-slate-800/90 rounded-lg px-3 py-2 shadow-lg flex items-center gap-2">
+                <span class="text-lg animate-bounce">📦</span>
+                <span class="text-xs font-semibold text-gray-700 dark:text-gray-300">Raklap & Kamion</span>
+              </div>
+            </div>
+            
+            <!-- Statisztikák -->
+            <div class="grid grid-cols-3 gap-4 mt-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">4</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">ország</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">2</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">szállítási mód</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">1</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">kapcsolatfelvétel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORSZÁG KÁRTYÁK (2 oszlop) -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-lg border-l-4 border-emerald-500 hover:shadow-xl transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🇭🇺</div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Magyarország</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Teljes országos lefedettség. Raklapos és kamionos szállítás, gyors kiszállítási idő.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🇷🇴</div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Románia</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Erdély, Partium és más régiók. Kamionos szállítással, nagyobb tételben.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-lg border-l-4 border-indigo-500 hover:shadow-xl transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🇸🇰</div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Szlovákia</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Felvidék és az ország egész területe. Közvetlen szomszéd – gyors szállítás.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🇭🇷</div>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Horvátország</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Szlavónia, Zágráb környéke és más régiók. Kiszállítás egyeztetés alapján.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border border-blue-200 dark:border-blue-800">
+            <div class="flex items-start gap-3">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p class="font-semibold text-blue-900 dark:text-blue-100 text-sm">Más országba is szállítana?</p>
+                <p class="text-blue-700 dark:text-blue-300 text-xs mt-1"><strong>Kérdezzen bátran</strong> – egyedi megoldást találunk!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       4. SZÁLLÍTÁSI MÓDOK
+       ============================================ -->
+  <section class="py-12 md:py-20 bg-gray-50 dark:bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Szállítási Módok
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Az igényeinek megfelelő megoldást választjuk – a néhány raklapnyi tételtől a teljes kamionrakományig.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Raklapos szállítás -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-emerald-200 dark:border-emerald-800">
+          <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 p-6 text-white">
+            <div class="flex items-center gap-4">
+              <div class="text-5xl">📦</div>
+              <div>
+                <h3 class="text-2xl font-bold">Raklapos Szállítás</h3>
+                <p class="text-emerald-100">Kisebb és közepes tételekhez</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">1-10 raklap telített fa</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Emelőhátfalas lepakolás</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Magánszemélyeknek és cégeknek is</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Ideális kertépítéshez, kerítéshez, kisebb projektekhez</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Kamionos szállítás -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-blue-200 dark:border-blue-800">
+          <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+            <div class="flex items-center gap-4">
+              <div class="text-5xl">🚛</div>
+              <div>
+                <h3 class="text-2xl font-bold">Kamionos Szállítás</h3>
+                <p class="text-blue-100">Nagyobb mennyiségekhez, B2B</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Teljes kamionrakomány (24 tonna)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Kedvezőbb egységár nagyobb tételnél</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Közép-európai kiszállítás (HU, RO, SK, HR)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span class="text-gray-700 dark:text-gray-300">Hosszú távú partneri együttműködés lehetősége</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       5. MIÉRT TŐLÜNK RENDELJEN?
+       ============================================ -->
+  <Features
+    id="elonyok"
+    title="Miért Tőlünk Rendeljen?"
+    subtitle="Egyszerű rendelés, megbízható szállítás, minőségi telített fa"
+    columns={3}
+    items={[
+      {
+        title: 'Közép-Európai Lefedettség',
+        description: 'Magyarország, Románia, Szlovákia, Horvátország – raklapon és kamionnal is szállítunk a régióban.',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'Gyors Egyeztetés & Szállítás',
+        description: 'Kapcsolatfelvétel után gyorsan egyeztetünk. A szállítás a megbeszélt ütemezés szerint indul – hamar ott a raklap!',
+        icon: 'tabler:truck-delivery',
+      },
+      {
+        title: 'Transzparens Árazás',
+        description: 'A szállítási díj mennyiségtől és távolságtól függ. Előre megkapja a pontos árajánlatot, nincsenek rejtett költségek.',
+        icon: 'tabler:receipt',
+      },
+      {
+        title: 'Minőségi Telített Fa',
+        description: 'Tanalith-kezelt, UC4 besorolású telített kertifa. 15-25 év tartósság kültéren, talajkontaktusban is.',
+        icon: 'tabler:award',
+      },
+      {
+        title: 'Rugalmas Mennyiség',
+        description: 'Egy raklaptól a teljes kamionrakományig. Kis kertépítés vagy nagy B2B projekt – mindent megoldunk.',
+        icon: 'tabler:packages',
+      },
+      {
+        title: '15+ Év Tapasztalat',
+        description: 'Évtizedes szaktudás a telített fa forgalmazásban. Megbízható partner, több ezer elégedett vásárló.',
+        icon: 'tabler:history',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       6. HOGYAN MŰKÖDIK?
+       ============================================ -->
+  <Steps
+    id="hogyan-mukodik"
+    title="Hogyan Működik?"
+    subtitle="Ön megrendeli – mi leszállítjuk. Ilyen egyszerű."
+    items={[
+      {
+        title: '1. Vegye fel velünk a kapcsolatot',
+        description: 'Telefonon, e-mailben vagy az űrlapon jelezze, milyen telített fa terméket és mekkora mennyiségben szeretne, hova szállítsuk.',
+        icon: 'tabler:message',
+      },
+      {
+        title: '2. Egyeztetés & árajánlat',
+        description: 'Munkatársunk felveszi Önnel a kapcsolatot, pontosítjuk a részleteket és elküldjük a szállítási költséggel együtt az árajánlatot.',
+        icon: 'tabler:file-invoice',
+      },
+      {
+        title: '3. Visszaigazolás & fizetés',
+        description: 'Az ajánlat elfogadása után előre utalással történik a fizetés. Céges vásárlóknak egyedi fizetési feltételek is lehetségesek.',
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: '4. Szállítás a megbeszéltek szerint',
+        description: 'Az egyeztetett időpontban kiszállítjuk a terméket az Ön címére – raklapon vagy kamionnal, a megrendelt mennyiségnek megfelelően.',
+        icon: 'tabler:truck-delivery',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       7. GYIK
+       ============================================ -->
+  <FAQs
+    id="gyik"
+    title="Gyakran Ismételt Kérdések"
+    subtitle="Minden, amit a szállításról és rendelésről tudni érdemes"
+    items={[
+      {
+        title: 'Hova szállítanak pontosan?',
+        description: 'Magyarország teljes területére, valamint Romániába, Szlovákiába és Horvátországba. Más közép-európai célpontra is érdemes érdeklődni – egyedi megoldást találunk!',
+      },
+      {
+        title: 'Mi a különbség a raklapos és kamionos szállítás között?',
+        description: 'Raklapos szállítás kisebb tételekhez ideális (1-10 raklap), emelőhátfalas lepakolással. Kamionos szállítás nagyobb mennyiségekhez (teljes kamionrakomány), kedvezőbb egységáron. Mindkét opciónál egyeztetés után szállítunk.',
+      },
+      {
+        title: 'Milyen gyorsan szállítanak?',
+        description: 'A pontos szállítási idő a mennyiségtől, a célállomástól és az aktuális készlettől függ. Kapcsolatfelvétel után gyorsan egyeztetünk, és a lehető leghamarabb szállítunk. A legtöbb esetben néhány munkanapon belül megérkezik a rendelés.',
+      },
+      {
+        title: 'Mi a minimum rendelési mennyiség?',
+        description: 'Szállításnál a minimum 1 raklap telített fa. Kamionos szállítás esetén a teljes rakomány kihasználása a leggazdaságosabb. Pontos igényeit egyeztetjük a kapcsolatfelvétel során.',
+      },
+      {
+        title: 'Mennyibe kerül a szállítás?',
+        description: 'A szállítási díj a mennyiségtől és a távolságtól függ. Előre megkapja a pontos árajánlatot – vegye fel velünk a kapcsolatot és küldünk ajánlatot!',
+      },
+      {
+        title: 'Van utánvétes fizetési lehetőség?',
+        description: 'Utánvétet sajnos nem tudunk vállalni. A fizetés előre utalással történik. Céges vásárlóknak, visszatérő partnereinknek egyedi fizetési feltételek is lehetségesek.',
+      },
+      {
+        title: 'Hogyan történik a lepakolás?',
+        description: 'Raklapos szállításnál emelőhátfalas autóval érkezünk. Kamionos szállítás esetén a célhelyen targonca szükséges a lepakoláshoz – ezt egyeztetjük előre. Ha speciális lepakolási igény van, kérjük jelezze rendeléskor!',
+      },
+      {
+        title: 'Mit tegyek, ha sérült a termék?',
+        description: 'Szállításkor ellenőrizze a terméket a sofőr jelenlétében! Sérülés esetén azonnal jelezze a helyszínen és lépjen kapcsolatba velünk – keressük a megoldást.',
+      },
+    ]}
+  />
+
+  <!-- ============================================
+       8. ZÁRÓ CTA
+       ============================================ -->
+  <CallToAction
+    id="megrendeles"
+    title="Szüksége Van Telített Fára?"
+    subtitle="Vegye fel velünk a kapcsolatot – gyorsan egyeztetünk és szállítunk!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Árajánlat kérése',
+        href: '/kapcsolat',
+        icon: 'tabler:mail',
+      },
+      {
+        variant: 'secondary',
+        text: 'Telített fa termékek',
+        href: '/telitett-fa',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="subtitle">
+      <div class="space-y-4">
+        <p class="text-xl">
+          <strong>Megrendeli</strong> – <strong>Egyeztetünk</strong> – <strong>Leszállítjuk!</strong>
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Közép-európai szállítás
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Raklapos & kamionos
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Gyors egyeztetés
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            15+ év tapasztalat
+          </span>
+        </div>
+      </div>
+    </Fragment>
+  </CallToAction>
+
+</Layout>

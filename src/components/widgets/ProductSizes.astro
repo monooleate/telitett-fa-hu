@@ -188,33 +188,48 @@ const diameters = [...new Set(products.map(p => p.diameter))].sort((a, b) => a -
   </div>
 </WidgetWrapper>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const productRows = document.querySelectorAll('.product-row');
+<script is:inline>
+  function initProductSizes() {
+    const root = document.getElementById('product-sizes');
+    if (!root) return;
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
+    // Ne duplázzuk, ha Astro navigáció miatt újra fut
+    if (root.dataset.inited === "1") return;
+    root.dataset.inited = "1";
 
-        // Aktív gomb kezelése
-        filterBtns.forEach(b => {
-          b.classList.remove('active', 'bg-emerald-500', 'text-white');
-          b.classList.add('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
-        });
-        btn.classList.add('active', 'bg-emerald-500', 'text-white');
-        btn.classList.remove('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+    const filterBtns = root.querySelectorAll('.filter-btn');
+    const productRows = root.querySelectorAll('.product-row');
+    if (!filterBtns.length || !productRows.length) return;
 
-        // Sorok szűrése
-        productRows.forEach(row => {
-          const diameter = row.getAttribute('data-diameter');
-          if (filter === 'all' || diameter === filter) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        });
+    // Event delegation: 1 listener, stabilabb
+    root.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+
+      const filter = btn.getAttribute('data-filter');
+
+      // Aktív gomb
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'bg-emerald-500', 'text-white');
+        b.classList.add('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+      });
+      btn.classList.add('active', 'bg-emerald-500', 'text-white');
+      btn.classList.remove('bg-gray-100', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+
+      // Szűrés
+      productRows.forEach(row => {
+        const diameter = row.getAttribute('data-diameter');
+        row.style.display = (filter === 'all' || diameter === filter) ? '' : 'none';
       });
     });
-  });
+
+    // ✅ DEFAULT: a 2. gomb legyen alapból (index 1)
+    const defaultBtn = filterBtns[3] || filterBtns[0];
+    if (defaultBtn) defaultBtn.click();
+  }
+
+  document.addEventListener('DOMContentLoaded', initProductSizes);
+  document.addEventListener('astro:page-load', initProductSizes);
+  document.addEventListener('astro:after-swap', initProductSizes);
 </script>
+

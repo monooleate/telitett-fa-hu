@@ -104,7 +104,7 @@ const hasSlides = slides.length > 0;
               <!-- Kép helye: ha slides nem üres → HeroCarousel, különben fallback kép -->
     <div class="order-1 lg:order-2">
       {hasSlides ? (
-        <HeroCarousel client:visible slides={slides} intervalMs={3000} showArrows={true} />
+        <HeroCarousel client:visible slides={slides} intervalMs={3500} showArrows={true} />
       ) : (
         image && (
           <div class="relative m-auto max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
@@ -112,7 +112,7 @@ const hasSlides = slides.length > 0;
               <Fragment set:html={image} />
             ) : (
               <Image
-                class="mx-auto rounded-md w-full h-full object-contain"
+                class="mx-auto rounded-xl w-full h-full object-contain"
                 widths={[400, 768, 1024, 2040]}
                 sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                 loading="eager"

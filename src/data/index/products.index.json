@@ -1,0 +1,389 @@
+[
+    {
+    "slug": "telitett-hegyezett-colop-atmero-40",
+    "categorySlug": "telitett-hegyzett-colop",
+    "name": "Telített hegyezett cölöp Ø40mm",
+    "description": "Telített, impregnált hegyezett fa cölöp 40 mm átmérővel, kerítéshez és kertépítéshez.",
+    "sku": "HC4150",
+    "image": "/termekek/hegyezett-colop-atmero-4.webp",
+    "images": [],
+    "priceFrom": 719,
+    "priceTo": 1430,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø40mm x 150 | hegyezett",
+      "Ø40mm x 200 | hegyezett",
+      "Telített hegyezett cölöp Ø40mm"
+    ],
+    "variantSkus": [
+      "HC4150",
+      "HC4200",
+      "HC4100"
+    ]
+  },
+  {
+    "slug": "telitett-hegyezett-colop-atmero-50",
+    "categorySlug": "telitett-hegyzett-colop",
+    "name": "Telített hegyezett cölöp Ø50mm",
+    "description": "Impregnált, telített hegyezett fa cölöp 50 mm átmérővel, tartós kültéri felhasználásra.",
+    "sku": "HC5150",
+    "image": "/termekek/hegyezett-colop-atmero-5.jpg",
+    "images": [],
+    "priceFrom": 1242,
+    "priceTo": 2055,
+    "stock": 3,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø50mm x 150 | hegyezett",
+      "Ø50mm x 200 | hegyezett",
+      "Ø50mm x 250 | hegyezett"
+    ],
+    "variantSkus": [
+      "HC5150",
+      "HC5200",
+      "HC5250"
+    ]
+  },
+  {
+    "slug": "telitett-hegyezett-colop-atmero-60",
+    "categorySlug": "telitett-hegyzett-colop",
+    "name": "Telített hegyezett cölöp Ø60mm",
+    "description": "Telített, impregnált hegyezett fa cölöp 60 mm átmérővel, erős és időjárásálló kivitelben.",
+    "sku": "HC06125",
+    "image": "/termekek/hegyezett-colop-atmero-6.webp",
+    "images": [],
+    "priceFrom": 610,
+    "priceTo": 3056,
+    "stock": 4,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø60mm x 50 | hegyezett",
+      "Ø60mm x 100 | hegyezett",
+      "Ø60mm x 125 | hegyezett",
+      "Ø60mm x 150 | hegyezett",
+      "Ø60mm x 200 | hegyezett",
+      "Ø60mm x 250 | hegyezett"
+    ],
+    "variantSkus": [
+      "HC6050",
+      "HC06100",
+      "HC06125",
+      "HC06150",
+      "HC06200",
+      "HC06250"
+    ]
+  },
+  {
+    "slug": "telitett-hegyezett-colop-atmero-70",
+    "categorySlug": "telitett-hegyzett-colop",
+    "name": "Telített hegyezett cölöp Ø70mm",
+    "description": "Erős, telített hegyezett cölöp 70 mm átmérővel, hosszú élettartamra tervezve.",
+    "sku": "HC7250",
+    "image": "/termekek/hegyezett-colop-atmero-7.jpg",
+    "images": [],
+    "priceFrom": 3556,
+    "priceTo": null,
+    "stock": 0,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Alap"
+    ],
+    "variantSkus": [
+      "HC7250"
+    ]
+  },
+  {
+    "slug": "telitett-hegyezett-colop-atmero-80",
+    "categorySlug": "telitett-hegyzett-colop",
+    "name": "Telített hegyezett cölöp Ø80mm",
+    "description": "Telített, impregnált hegyezett fa cölöp 80 mm átmérővel, nagy teherbírású kivitel.",
+    "sku": "HC08050",
+    "image": "/termekek/hegyezett-colop-atmero-8.webp",
+    "images": [],
+    "priceFrom": 740,
+    "priceTo": 5306,
+    "stock": 5,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø80mm x 50 | hegyezett",
+      "Ø80mm x 100 | hegyezett",
+      "Ø80mm x 150 | hegyezett",
+      "Ø80mm x 180 | hegyezett",
+      "Ø80mm x 250 | hegyezett",
+      "Ø80mm x 300 | hegyezett"
+    ],
+    "variantSkus": [
+      "HC08050",
+      "HC08100",
+      "HC08150",
+      "HC8180",
+      "HC08250",
+      "HC08300"
+    ]
+  },
+  {
+    "slug": "telitett-rudfa-atmero-80",
+    "categorySlug": "telitett-rudfa",
+    "name": "Telített rúdfa Ø80mm",
+    "description": "Nyomás alatt impregnált, tartós telített rúdfa 80 mm átmérővel kerítésekhez és kerti szerkezetekhez.",
+    "sku": "RF08050",
+    "image": "/termekkep/rudfa-atmero-8.webp",
+    "images": [],
+    "priceFrom": 740,
+    "priceTo": 4530,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø80mm x 50 | rúdfa",
+      "Ø80mm x 100 | rúdfa",
+      "Ø80mm x 200 | rúdfa",
+      "Ø80mm x 250 | rúdfa",
+      "Ø80mm x 300 | rúdfa"
+    ],
+    "variantSkus": [
+      "RF08050",
+      "RF08100",
+      "RF08200",
+      "RF08250",
+      "RF08300"
+    ]
+  },
+  {
+    "slug": "telitett-rudfa-atmero-100",
+    "categorySlug": "telitett-rudfa",
+    "name": "Telített rúdfa Ø100mm",
+    "description": "Masszív, nyomás alatt impregnált telített rúdfa 100 mm átmérővel kültéri felhasználásra.",
+    "sku": "RF10200",
+    "image": "/termekkep/rudfa-atmero-10.webp",
+    "images": [],
+    "priceFrom": 1095,
+    "priceTo": 12745,
+    "stock": 6,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø100mm x 50 | rúdfa",
+      "Ø100mm x 100 | rúdfa",
+      "Ø100mm x 150 | rúdfa",
+      "Ø100mm x 200 | rúdfa",
+      "Ø100mm x 250 | rúdfa",
+      "Ø100mm x 300 | rúdfa",
+      "Ø100mm x 400 | rúdfa"
+    ],
+    "variantSkus": [
+      "RF10050",
+      "RF10100",
+      "RF10150",
+      "RF10200",
+      "RF10250",
+      "RF10300",
+      "RF10400"
+    ]
+  },
+  {
+    "slug": "telitett-rudfa-atmero-120",
+    "categorySlug": "telitett-rudfa",
+    "name": "Telített rúdfa Ø120mm",
+    "description": "Prémium minőségű, nyomás alatt impregnált telített rúdfa 120 mm átmérővel.",
+    "sku": "RF12400",
+    "image": "/termekkep/rudfa-atmero-12.webp",
+    "images": [],
+    "priceFrom": 3760,
+    "priceTo": 18515,
+    "stock": 2,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø120mm x 50 | rúdfa",
+      "Ø120mm x 150 | rúdfa",
+      "Ø120mm x 200 | rúdfa",
+      "Ø120mm x 250 | rúdfa",
+      "Ø120mm x 300 | rúdfa",
+      "Ø120mm x 400 | rúdfa"
+    ],
+    "variantSkus": [
+      "RF1250",
+      "RF12150",
+      "RF12200",
+      "RF12250",
+      "RF12300",
+      "RF12400"
+    ]
+  },
+  {
+    "slug": "telitett-rudfa-atmero-140",
+    "categorySlug": "telitett-rudfa",
+    "name": "Telített rúdfa Ø140mm",
+    "description": "Erős, nagyméretű nyomás alatt impregnált telített rúdfa 140 mm átmérővel.",
+    "sku": "RF14300",
+    "image": "/termekkep/rudfa-atmero-14.webp",
+    "images": [],
+    "priceFrom": 4065,
+    "priceTo": 19583,
+    "stock": 2,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Ø140mm x 50 | rúdfa",
+      "Ø140mm x 300 | rúdfa"
+    ],
+    "variantSkus": [
+      "RF1450",
+      "RF14300"
+    ]
+  },
+  {
+    "slug": "telitett-deszka-18x140",
+    "categorySlug": "telitett-deszka",
+    "name": "Telített deszka 18×140 mm",
+    "description": "Nyomás alatt impregnált, tartós telített deszka 18×140 mm méretben kerítésekhez, burkolatokhoz és kerti szerkezetekhez.",
+    "sku": "Telített deszka 18×140 mm",
+    "image": "/termekek/telitett-deszka.jpg",
+    "images": [],
+    "priceFrom": 3060,
+    "priceTo": null,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Alap"
+    ],
+    "variantSkus": [
+      "Telített deszka 18×140 mm"
+    ]
+  },
+  {
+    "slug": "telitett-bordazott-deszka-28x140",
+    "categorySlug": "telitett-deszka",
+    "name": "Telített bordázott deszka 28×140 mm",
+    "description": "Nyomás alatt impregnált, időjárásálló bordázott deszka 28×140 mm teraszokhoz, járófelületekhez és kerti burkolatokhoz.",
+    "sku": "Telített bordázott deszka 28×140 mm",
+    "image": "/termekek/telitett-bordazott-deszka.jpg",
+    "images": [],
+    "priceFrom": 6365,
+    "priceTo": null,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Alap"
+    ],
+    "variantSkus": [
+      "Telített bordázott deszka 28×140 mm"
+    ]
+  },
+  {
+    "slug": "telitett-pallo-45x68",
+    "categorySlug": "telitett-pallo",
+    "name": "Telített palló 45×68 mm",
+    "description": "Nyomás alatt impregnált, tartós telített palló 45×68 mm méretben kültéri szerkezetekhez és keretépítéshez.",
+    "sku": "Telített palló 45×68 mm",
+    "image": "/termekek/telitett-pallo.webp",
+    "images": [],
+    "priceFrom": 3460,
+    "priceTo": null,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Alap"
+    ],
+    "variantSkus": [
+      "Telített palló 45×68 mm"
+    ]
+  },
+  {
+    "slug": "telitett-oszlop-70x70",
+    "categorySlug": "telitett-oszlop",
+    "name": "Telített oszlop 70×70 mm",
+    "description": "Nyomás alatt impregnált, tartós telített oszlop 70×70 mm keresztmetszettel kerti szerkezetekhez és kerítésekhez.",
+    "sku": "OSZ77240",
+    "image": "/termekek/telitett-oszlop.webp",
+    "images": [],
+    "priceFrom": 4000,
+    "priceTo": 6025,
+    "stock": 3,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "70x70 x 180",
+      "70x70 x 240",
+      "70x70 x 270"
+    ],
+    "variantSkus": [
+      "OSZ77180",
+      "OSZ77240",
+      "OSZ77270"
+    ]
+  },
+  {
+    "slug": "telitett-oszlop-90x90",
+    "categorySlug": "telitett-oszlop",
+    "name": "Telített oszlop 90×90 mm",
+    "description": "Nyomás alatt impregnált, masszív telített oszlop 90×90 mm keresztmetszettel nagy teherbírású kültéri szerkezetekhez.",
+    "sku": "OSZ99210",
+    "image": "/termekek/telitett-oszlop.webp",
+    "images": [],
+    "priceFrom": 6128,
+    "priceTo": 10910,
+    "stock": 5,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "90x90 x 210",
+      "90x90 x 240",
+      "90x90 x 270",
+      "90x90 x 300",
+      "90x90 x 350"
+    ],
+    "variantSkus": [
+      "OSZ99210",
+      "OSZ99240",
+      "OSZ99270",
+      "OSZ99300",
+      "OSZ99350"
+    ]
+  },
+  {
+    "slug": "telitett-felcolop-atmero-70",
+    "categorySlug": "telitett-felcolop",
+    "name": "Telített félcölöp Ø70mm",
+    "description": "Nyomás alatt impregnált, tartós telített félcölöp 70 mm átmérővel szegélyekhez, kerítésekhez és kerti szerkezetekhez.",
+    "sku": "Telített félcölöp Ø70mm",
+    "image": "/termekek/telitett-felcolop-atmero-7.webp",
+    "images": [],
+    "priceFrom": 1778,
+    "priceTo": null,
+    "stock": 1,
+    "discountPercent": null,
+    "discountValidUntil": null,
+    "hasDiscount": false,
+    "variantTitles": [
+      "Alap"
+    ],
+    "variantSkus": [
+      "Telített félcölöp Ø70mm"
+    ]
+  }
+]
